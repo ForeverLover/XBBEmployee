@@ -206,8 +206,6 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                     }
                 }
             }
-      /*  params.addBodyParameter("sign",StringUtil.getMD5(StringUtil.getSignedParams(map)));
-        params.addBodyParameter("timeline",currentTime);*/
         request(XRequestCallBack, Task.MISSION_COMPLETE, "uploadimg", params);
     }
 
