@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/add_recommand_titleLayout"
+        layout="@layout/page_title_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/recommand_diy_lable"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_hundred_twenty">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/selected_diy_img"
+                        android:layout_width="@dimen/dp_eighty"
+                        android:layout_height="@dimen/dp_sixty"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/select_diy_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_five"
+                        android:text="所选diy"
+                        android:textSize="@dimen/sp_seventeen" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_one"
+                android:layout_marginLeft="@dimen/dp_twenty"
+                android:layout_marginRight="@dimen/dp_twenty"
+                android:layout_marginBottom="@dimen/dp_five"
+                android:background="@color/light_gray" />
+
+            <com.xbb.la.xbbemployee.widget.CustomGridView
+                android:id="@+id/diy_group_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_twenty"
+                android:layout_marginRight="@dimen/dp_twenty"
+                android:horizontalSpacing="@dimen/dp_ten"
+                android:verticalSpacing="@dimen/dp_ten"
+                android:numColumns="3"></com.xbb.la.xbbemployee.widget.CustomGridView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/recommand_car_lable"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <LinearLayout
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp_ten"
+                    android:layout_marginTop="@dimen/dp_ten"
+                    android:text="@string/recommand_num_lable"
+                    android:textSize="@dimen/sp_sixteen" />
+
+                <com.xbb.la.xbbemployee.widget.CustomGridView
+                    android:id="@+id/diy_describe_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_twenty"
+                    android:horizontalSpacing="@dimen/dp_five"
+                    android:verticalSpacing="@dimen/dp_five"
+                    android:layout_marginRight="@dimen/dp_twenty"
+                    android:layout_marginBottom="@dimen/dp_five"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:numColumns="3">
+
+                </com.xbb.la.xbbemployee.widget.CustomGridView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_one"
+                        android:background="@color/dark_gray" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/edit_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_edit" />
+
+                        <Button
+                            android:id="@+id/preview_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_five"
+                            android:text="@string/label_preview" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/recommand_remark_lable"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty">
+
+                <EditText
+                    android:padding="@dimen/dp_five"
+                    android:gravity="top"
+                    android:id="@+id/add_remark_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_hundred_thirty" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/add_remark_textNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/150"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/add_ensure_btn"
+                android:layout_margin="@dimen/dp_twenty"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_sixty"
+                android:text="@string/recommand_ensure_lable"
+                android:textSize="@dimen/sp_sixteen"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

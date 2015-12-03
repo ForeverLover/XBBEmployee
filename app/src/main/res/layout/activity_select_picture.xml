@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/dialog_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/take_photo_layout"
+            android:layout_margin="@dimen/dp_twenty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_take_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_weight="1"
+                android:src="@mipmap/take_photo"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_take_photo"
+                android:layout_centerHorizontal="true"
+                android:text="@string/take_photo_label"
+                android:textColor="#000000"
+                android:textSize="@dimen/sp_eighteen"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="@dimen/dp_one"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_ten"
+            android:layout_marginBottom="@dimen/dp_ten"
+            android:background="@mipmap/split_img_y" />
+
+        <RelativeLayout
+            android:id="@+id/pic_photo_layout"
+            android:layout_margin="@dimen/dp_twenty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_pick_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_weight="1"
+                android:src="@mipmap/pic_photo"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_ten"
+                android:layout_below="@+id/iv_pick_photo"
+                android:layout_centerHorizontal="true"
+                android:text="@string/pic_photo_label"
+                android:textColor="#000000"
+                android:textSize="@dimen/sp_eighteen"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

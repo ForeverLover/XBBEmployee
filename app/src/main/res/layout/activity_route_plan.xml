@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/route_plan_titleLayout"
+        layout="@layout/page_title_layout" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/map_op_layout"
+        android:layout_below="@+id/route_plan_titleLayout">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/route_plan_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp_fifteen"
+            android:layout_marginBottom="@dimen/dp_thirty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/route_plan_targetImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher"/>
+            <ImageView
+                android:layout_marginTop="@dimen/dp_ten"
+                android:id="@+id/route_plan_selfImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/map_op_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_fifty"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/arrived_btn"
+            android:layout_width="@dimen/dp_zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/order_arrive"
+            android:textSize="@dimen/sp_sixteen" />
+
+        <Button
+            android:id="@+id/navigate_btn"
+            android:layout_width="@dimen/dp_zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/order_do_navigation"
+            android:textSize="@dimen/sp_sixteen" />
+    </LinearLayout>
+</RelativeLayout>

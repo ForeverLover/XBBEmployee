@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_title_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/light_gray"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/orderinfo_order_label"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_five"
+                android:paddingLeft="@dimen/dp_twenty_five"
+                android:paddingRight="@dimen/dp_twenty_five"
+                android:paddingTop="@dimen/dp_five">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_no"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_orderNo_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_time"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_orderTime_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_content"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_orderContent_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_total"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_orderPrice_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_payWay"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_payWay_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_payState"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_payState_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_serviceTime"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_serviceTime_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_state"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_orderState_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/orderinfo_finish_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_order_finishTime"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_finish_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/light_gray"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/orderinfo_customer_label"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_five"
+                android:paddingLeft="@dimen/dp_twenty_five"
+                android:paddingRight="@dimen/dp_twenty_five"
+                android:paddingTop="@dimen/dp_five">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/orderInfo_call_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_five"
+                        android:layout_toLeftOf="@+id/orderInfo_call_img"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/orderinfo_customer_driver"
+                                android:textSize="@dimen/sp_sixteen" />
+
+                            <TextView
+                                android:id="@+id/orderinfo_driver_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_three"
+                                android:textSize="@dimen/sp_sixteen" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_five"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/orderinfo_customer_tel"
+                                android:textSize="@dimen/sp_sixteen" />
+
+                            <TextView
+                                android:id="@+id/orderinfo_driverTel_Tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_three"
+                                android:textSize="@dimen/sp_sixteen" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_customer_carinfo"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_carInfo_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_customer_cartype"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_carType_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_customer_plateNo"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_plateNo_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_customer_carlocation"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_carLocation_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orderinfo_customer_loc_audio"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:id="@+id/orderinfo_addressAudio_Tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_three"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/orderInfo_op_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:layout_margin="@dimen/dp_twenty"
+                android:text="@string/order_setOut"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/orderInfo_ing_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_twenty"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/orderInfo_arrive_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_fourty"
+                    android:layout_weight="1"
+                    android:text="@string/order_arrive" />
+
+                <Button
+                    android:id="@+id/orderInfo_navigate_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_fourty"
+                    android:layout_weight="1"
+                    android:text="@string/order_navi" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

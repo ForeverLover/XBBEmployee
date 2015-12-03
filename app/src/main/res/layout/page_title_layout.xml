@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/bg_title"
+    android:paddingLeft="@dimen/dp_five"
+    android:paddingRight="@dimen/dp_five">
+
+    <ImageView
+        android:id="@+id/title_left_img"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:minWidth="?attr/actionBarSize"
+        android:padding="@dimen/dp_fifteen"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/title_icon_back"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/title_left_text"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:minWidth="?attr/actionBarSize"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/title_center_txt"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+    <ImageView
+        android:id="@+id/title_right_img"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:minWidth="?attr/actionBarSize"
+        android:padding="@dimen/dp_fifteen"
+        android:scaleType="fitCenter"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/title_right_text"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:minWidth="?attr/actionBarSize"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+</RelativeLayout>

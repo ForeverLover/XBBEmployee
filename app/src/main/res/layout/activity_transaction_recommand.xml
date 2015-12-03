@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include
+        android:id="@+id/recommand_title_layout"
+        layout="@layout/page_title_layout"/>
+    <ListView
+        android:layout_below="@+id/recommand_title_layout"
+        android:layout_above="@+id/recommand_op_layout"
+        android:scrollbars="none"
+        android:id="@+id/recommand_list_lv"
+        android:dividerHeight="@dimen/dp_five"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+    <LinearLayout
+        android:id="@+id/recommand_op_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_sixty"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/recommand_skip_btn"
+            android:layout_width="@dimen/dp_zero"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/recommand_skip_label"/>
+        <Button
+            android:id="@+id/recommand_submit_btn"
+            android:layout_width="@dimen/dp_zero"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/recommand_submit_label"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/start_car_titleLayout"
+        layout="@layout/page_title_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/start_car_nextBtn"
+        android:layout_below="@+id/start_car_titleLayout"
+        android:scrollbars="none">
+        <!--android:fillViewport="true"-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/start_car_normal_label"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/dp_twenty"
+                android:paddingLeft="@dimen/dp_twenty">
+                <com.xbb.la.xbbemployee.widget.CustomGridView
+                    android:id="@+id/start_car_normal_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_five"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:horizontalSpacing="@dimen/dp_five"
+                    android:numColumns="4"
+                    android:verticalSpacing="@dimen/dp_five"></com.xbb.la.xbbemployee.widget.CustomGridView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_one"
+                        android:background="@color/dark_gray" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/body_edit_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_edit" />
+
+                        <Button
+                            android:id="@+id/body_preview_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_five"
+                            android:text="@string/label_preview" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/start_car_damage_label"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty">
+
+                <com.xbb.la.xbbemployee.widget.CustomGridView
+                    android:id="@+id/start_car_damage_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_five"
+                    android:layout_marginTop="@dimen/dp_five"
+                    android:horizontalSpacing="@dimen/dp_five"
+
+                    android:numColumns="4"
+                    android:verticalSpacing="@dimen/dp_five"></com.xbb.la.xbbemployee.widget.CustomGridView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_one"
+                        android:background="@color/dark_gray" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/nick_edit_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_edit" />
+
+                        <Button
+                            android:id="@+id/nick_preview_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_five"
+                            android:text="@string/label_preview" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/start_car_nextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@color/label_bg_color"
+        android:text="@string/btn_next_text" />
+</RelativeLayout>

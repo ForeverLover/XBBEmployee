@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_title_layout" />
+
+    <ScrollView
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_eighty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_twenty"
+            android:paddingRight="@dimen/dp_twenty"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/transaction_start_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fifty"
+                android:textSize="@dimen/sp_sixteen"
+                android:text="@string/transaction_start"/>
+            <Button
+                android:layout_marginTop="@dimen/dp_twenty"
+                android:id="@+id/transaction_end_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fifty"
+                android:textSize="@dimen/sp_sixteen"
+                android:text="@string/transaction_end"/>
+            <Button
+                android:layout_marginTop="@dimen/dp_twenty"
+                android:id="@+id/transaction_recommand_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fifty"
+                android:textSize="@dimen/sp_sixteen"
+                android:text="@string/transaction_recommand"/>
+            <Button
+                android:layout_marginTop="@dimen/dp_twenty"
+                android:id="@+id/transaction_suggest_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fifty"
+                android:textSize="@dimen/sp_sixteen"
+                android:text="@string/transaction_suggest"
+                android:visibility="gone"/>
+            <Button
+                android:layout_marginTop="@dimen/dp_twenty"
+                android:id="@+id/transaction_submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fifty"
+                android:textSize="@dimen/sp_sixteen"
+                android:text="@string/transaction_submit"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

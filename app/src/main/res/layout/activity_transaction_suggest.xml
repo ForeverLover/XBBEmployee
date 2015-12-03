@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_title_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/reminder_selection"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <com.xbb.la.xbbemployee.widget.CustomListView
+                android:id="@+id/suggest_list_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_twenty"
+                android:layout_marginRight="@dimen/dp_twenty"
+                android:scrollbars="none"
+                ></com.xbb.la.xbbemployee.widget.CustomListView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:background="@color/label_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty"
+                android:text="@string/reminder_other"
+                android:textColor="@color/main_text"
+                android:textSize="@dimen/sp_sixteen" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty">
+
+                <EditText
+                    android:padding="@dimen/dp_five"
+                    android:gravity="top"
+                    android:id="@+id/suggest_remark_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_hundred_thirty" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/suggest_textNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="@dimen/sp_sixteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/150"
+                        android:textSize="@dimen/sp_sixteen" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/suggest_ensure_btn"
+                android:layout_margin="@dimen/dp_twenty"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_sixty"
+                android:text="@string/recommand_ensure_lable"
+                android:textSize="@dimen/sp_sixteen"
+                />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

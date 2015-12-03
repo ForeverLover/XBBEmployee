@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/dp_ten"
+    android:paddingBottom="@dimen/dp_ten">
+
+    <CheckBox
+        android:id="@+id/reminder_item_cb"
+        android:layout_width="@dimen/dp_fourty"
+        android:layout_height="@dimen/dp_fourty"
+        android:layout_marginTop="@dimen/dp_five" />
+
+    <ImageView
+        android:id="@+id/reminder_item_img"
+        android:layout_width="@dimen/dp_sixty"
+        android:layout_height="@dimen/dp_sixty"
+        android:scaleType="center"
+        android:src="@mipmap/abc" />
+
+    <TextView
+        android:id="@+id/reminder_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_five"
+        android:textColor="@color/main_text"
+        android:textSize="@dimen/sp_sixteen" />
+</LinearLayout>

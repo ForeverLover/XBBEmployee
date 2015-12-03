@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/employee_main_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_sixty"
+        android:background="#ff000f"
+        android:paddingLeft="@dimen/dp_twenty"
+        android:paddingRight="@dimen/dp_twenty">
+
+        <com.xbb.la.xbbemployee.widget.RoundImageView
+            android:id="@+id/employee_head_img"
+            android:layout_width="@dimen/dp_fifty"
+            android:layout_height="@dimen/dp_fifty"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_nineteen" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/employee_orderstate_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_fourty"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_gray"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/employee_order_noAccept"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/main_order_noAccept"
+            android:textSize="@dimen/sp_sixteen" />
+
+        <RadioButton
+            android:id="@+id/employee_order_ing"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/main_order_ing"
+            android:textSize="@dimen/sp_sixteen" />
+
+        <RadioButton
+            android:id="@+id/employee_order_finished"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/main_order_finish"
+            android:textSize="@dimen/sp_sixteen" />
+    </RadioGroup>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp_ten"-->
+        <!--android:background="@color/light_gray"/>-->
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/order_list_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+
+</LinearLayout>

@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">XBBEmployee</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="btn_next_text">下一步</string>
+    <string name="exit_back">再点一次退出程序</string>
+
+    <string name="no_more_data">暂无更多数据</string>
+    <string name="no_data">暂无数据</string>
+
+    <!--登录-->
+    <string name="login_user_hint">用户名</string>
+    <string name="login_password_hint">密码</string>
+    <string name="login_submit_btn">登 录</string>
+
+    <!--主页-->
+    <string name="main_order_noAccept">未完成</string>
+    <string name="main_order_ing">进行中</string>
+    <string name="main_order_finish">已完成</string>
+
+    <!--到达-->
+    <string name="arrive_page_title">到达目的地</string>
+
+    <!--业务-->
+    <string name="transaction_title">业务区</string>
+    <string name="transaction_start">开始作业</string>
+    <string name="transaction_end">结束作业</string>
+    <string name="transaction_recommand">建议</string>
+    <string name="transaction_suggest">温馨提示</string>
+    <string name="transaction_submit">完成任务（有网条件执行）</string>
+    <string name="transaction_submit_title">上传任务</string>
+
+    <!--开始作业-->
+    <string name="start_car_normal_label">洗车前车身照</string>
+    <string name="start_car_damage_label">洗车前划痕照</string>
+    <string name="car_too_more">需要四张车身照</string>
+    <string name="local_cache_failed">本地数据保存失败，请再次尝试保存</string>
+    <string name="label_preview">预览</string>
+    <string name="label_edit">编辑</string>
+    <string name="label_edit_finish">完成编辑</string>
+    <string name="tost_no_pic">请在添加图片后进行预览</string>
+
+    <!--结束作业-->
+    <string name="end_car_normal_label">洗车后车身照</string>
+    <string name="end_car_damage_label">洗车后划痕照</string>
+
+    <!--选择图片-->
+    <string name="take_photo_label">拍照</string>
+    <string name="pic_photo_label">图片</string>
+    <string name="no_sdcard">存储卡不可用</string>
+    <string name="pic_error">所选图片文件格式有误</string>
+    <string name="no_pic">选择图片错误</string>
+    <string name="green_pic_size">附件过大，请重新选择</string>
+
+    <!--建议-->
+    <string name="recommand_add_lable">添加建议</string>
+    <string name="recommand_update_lable">修改建议</string>
+    <string name="recommand_diy_lable">DIY建议</string>
+    <string name="recommand_car_lable">汽车照片</string>
+    <string name="recommand_remark_lable">备注</string>
+    <string name="recommand_ensure_lable">确 定</string>
+    <string name="recommand_addPic_lable">添加照片</string>
+    <string name="recommand_num_lable">1~3张</string>
+    <string name="recommand_diy_null">请添加建议的diy套餐</string>
+
+    <string name="dialog_title_tip">提示</string>
+    <string name="dialog_content_tip">你将放弃已编辑的内容，是否确定？</string>
+    <string name="dialog_ensure_tip">放弃编辑</string>
+    <string name="dialog_cancel_tip">继续编辑</string>
+
+    <string name="recommand_skip_label">跳过</string>
+    <string name="recommand_submit_label">提交</string>
+    <string name="recommand_layout_label">建议图</string>
+    <string name="recommand_describe_label">说明图</string>
+
+    <!--温馨提示-->
+    <string name="reminder_selection">请选择</string>
+    <string name="reminder_other">其他（选填）</string>
+    <string name="reminder_other_hint">再次输入备注信息</string>
+    <string name="reminder_ensure_btn">确 定</string>
+
+    <!--订单列表-->
+    <string name="order_serviceTime">服务时间：</string>
+    <string name="order_car_location">车辆位置：</string>
+    <string name="order_car_driver">车主姓名：</string>
+    <string name="order_car_info">车辆信息：</string>
+    <string name="order_car_type">车\t\t\t型：</string>
+    <string name="order_car_plateNo">车\t\t\t牌：</string>
+    <string name="order_accept">接受派单</string>
+    <string name="order_setOut">出发</string>
+    <string name="order_mission_continue">继续作业</string>
+    <string name="order_arrived">到达</string>
+    <string name="order_navi">导航</string>
+
+    <string name="order_dilivery_deal">派单</string>
+    <string name="order_accept_deal">接单</string>
+    <string name="order_finish_deal">完成</string>
+
+    <!--订单详情-->
+    <string name="order_info_title">订单详情</string>
+    <string name="orderinfo_order_label">订单信息</string>
+    <string name="orderinfo_order_no">订单编号：</string>
+    <string name="orderinfo_order_time">订单时间：</string>
+    <string name="orderinfo_order_content">订单内容：</string>
+    <string name="orderinfo_order_total">订单总价：</string>
+    <string name="orderinfo_order_payWay">支付方式：</string>
+    <string name="orderinfo_order_payState">支付状态：</string>
+    <string name="orderinfo_order_serviceTime">服务时间：</string>
+    <string name="orderinfo_order_state">订单状态：</string>
+    <string name="orderinfo_order_finishTime">完成时间：</string>
+    <string name="orderinfo_customer_label">顾客信息</string>
+    <string name="orderinfo_customer_driver">车主名称:</string>
+    <string name="orderinfo_customer_tel">客户电话:</string>
+    <string name="orderinfo_customer_carinfo">车辆信息:</string>
+    <string name="orderinfo_customer_cartype">类\t\t\t型:</string>
+    <string name="orderinfo_customer_plateNo">车\t\t\t牌:</string>
+    <string name="orderinfo_customer_carlocation">车辆位置：</string>
+    <string name="orderinfo_customer_loc_audio">地址录音：</string>
+    <string name="order_tel_error">顾客电话信息有误</string>
+
+    <string name="order_do_navigation">进入导航</string>
+    <string name="order_arrive">到达</string>
+
+    <string name="order_submit_info">本地缓存数据异常</string>
+</resources>
