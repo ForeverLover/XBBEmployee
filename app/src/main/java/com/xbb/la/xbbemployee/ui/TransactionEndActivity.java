@@ -15,12 +15,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Transaction;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.CameraPhotoAdapter;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.receiver.FinisActivityReceiver;
 import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
@@ -37,17 +39,24 @@ import java.util.List;
  * 描述：结束作业
  */
 
-public class TransactionEndActivity extends BaseActivity {
+public class TransactionEndActivity extends TitleActivity {
     private IntentFilter intentFilter;
     private BroadcastReceiver finishReceiver;
 
+    @ViewInject(R.id.end_car_normal_gv)
     private CustomGridView end_car_normal_gv;
+    @ViewInject(R.id.end_car_damage_gv)
     private CustomGridView end_car_damage_gv;
+    @ViewInject(R.id.end_car_nextBtn)
     private Button end_car_nextBtn;
 
+    @ViewInject(R.id.body_edit_btn)
     private Button body_edit_btn;
+    @ViewInject(R.id.body_preview_btn)
     private Button body_preview_btn;
+    @ViewInject(R.id.nick_edit_btn)
     private Button nick_edit_btn;
+    @ViewInject(R.id.nick_preview_btn)
     private Button nick_preview_btn;
 
     private List<String> endNormalList;
@@ -85,22 +94,15 @@ public class TransactionEndActivity extends BaseActivity {
     private boolean damageEditable;
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_end);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        end_car_damage_gv = (CustomGridView) findViewById(R.id.end_car_damage_gv);
-        end_car_normal_gv = (CustomGridView) findViewById(R.id.end_car_normal_gv);
-        end_car_nextBtn = (Button) findViewById(R.id.end_car_nextBtn);
-        body_edit_btn = (Button) findViewById(R.id.body_edit_btn);
-        body_preview_btn = (Button) findViewById(R.id.body_preview_btn);
-        nick_edit_btn = (Button) findViewById(R.id.nick_edit_btn);
-        nick_preview_btn = (Button) findViewById(R.id.nick_preview_btn);
     }
 
+
     @Override
-    protected void initData() {
-        page_title.setText(getString(R.string.transaction_end));
+    public void initData() {
+        setTitle(getString(R.string.transaction_end));
         intentFilter = new IntentFilter(Constant.IntentAction.TRANSACTION_TO_FINISH);
         finishReceiver = new FinisActivityReceiver(this);
         localBroadcastManager.registerReceiver(finishReceiver, intentFilter);

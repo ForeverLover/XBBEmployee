@@ -14,4 +14,6 @@
 
     <color name="bg_title">#db3839</color>
     <color name="label_bg_color">#eaeaea</color>
+
+    <color name="et_hint_color">#cccccc</color>
 </resources>

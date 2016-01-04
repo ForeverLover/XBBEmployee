@@ -113,11 +113,12 @@
         <!--百度地图-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="PVKgwZhGVzZXQyZSHsnCHf82" />
+            android:value="q6FGRRP5HR2UVLetVLh2rPa7" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" />
+            android:process="system"
+            />
 
     </application>
     <supports-screens

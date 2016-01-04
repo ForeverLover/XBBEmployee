@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,11 +14,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Recommand;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.RecommandAdapter;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.receiver.FinisActivityReceiver;
 import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
@@ -32,7 +35,7 @@ import java.util.List;
  * 描述：技师推荐
  */
 
-public class TransactionRecommandActivity extends BaseActivity {
+public class TransactionRecommandActivity extends TitleActivity {
     private IntentFilter intentFilter;
     private BroadcastReceiver finishReceiver;
 
@@ -42,12 +45,15 @@ public class TransactionRecommandActivity extends BaseActivity {
     private List<Recommand> recommandList;
     private RecommandAdapter recommandAdapter;
 
+    @ViewInject(R.id.recommand_list_lv)
     private ListView recommand_list_lv;
 
     private String userId;
     private String orderId;
 
+    @ViewInject(R.id.recommand_skip_btn)
     private Button recommand_skip_btn;
+    @ViewInject(R.id.recommand_submit_btn)
     private Button recommand_submit_btn;
 
     /**
@@ -59,20 +65,15 @@ public class TransactionRecommandActivity extends BaseActivity {
     private int pointIndex;
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_recommand);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        title_right_text = (TextView) findViewById(R.id.title_right_text);
-        recommand_list_lv = (ListView) findViewById(R.id.recommand_list_lv);
-        recommand_skip_btn = (Button) findViewById(R.id.recommand_skip_btn);
-        recommand_submit_btn = (Button) findViewById(R.id.recommand_submit_btn);
     }
 
     @Override
-    protected void initData() {
-        page_title.setText(getString(R.string.transaction_recommand));
-        title_right_text.setText(getString(R.string.recommand_add_lable));
+    public void initData() {
+        setTitle(getString(R.string.transaction_recommand));
+       setRightText(getString(R.string.recommand_add_lable));
         userId = SharePreferenceUtil.getInstance().getUserId(this);
         orderId = getIntent().getStringExtra(Constant.IntentVariable.ORDER_ID);
         select = getIntent().getIntExtra("select", 1);

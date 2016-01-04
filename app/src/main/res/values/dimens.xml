@@ -22,6 +22,7 @@
     <dimen name="dp_fifty">50dp</dimen>
     <dimen name="dp_sixty">60dp</dimen>
     <dimen name="dp_eighty">80dp</dimen>
+    <dimen name="dp_ninety">90dp</dimen>
     <dimen name="dp_hundred">100dp</dimen>
     <dimen name="dp_hundred_twenty">120dp</dimen>
     <dimen name="dp_hundred_thirty">130dp</dimen>
@@ -43,4 +44,7 @@
     <dimen name="indicator_internal_padding">4dp</dimen>
     <dimen name="header_footer_left_right_padding">24dp</dimen>
     <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
 </resources>

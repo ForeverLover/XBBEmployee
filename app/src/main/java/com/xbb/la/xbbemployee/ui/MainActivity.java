@@ -4,9 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.xbb.la.modellibrary.bean.DIYProduct;
 import com.xbb.la.modellibrary.bean.OrderInfo;
 import com.xbb.la.modellibrary.bean.Reminder;
@@ -26,7 +29,7 @@ import com.xbb.la.modellibrary.utils.DensityUtil;
 import com.xbb.la.modellibrary.utils.ParseUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.OrderAdapter;
-import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.SlideBaseActivity;
 import com.xbb.la.xbbemployee.location.LocationTools;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.service.LocationService;
@@ -36,11 +39,13 @@ import com.xbb.la.xbbemployee.widget.RoundImageView;
 import java.util.List;
 
 
-public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRefreshListener2<ListView>, RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends SlideBaseActivity implements PullToRefreshBase.OnRefreshListener2<ListView>, RadioGroup.OnCheckedChangeListener {
     private IntentFilter intentFilter;
     private Intent serviceIntent;
 
     private RoundImageView employee_head_img;
+
+    private RoundImageView pc_head_img;
 
     /**
      * 当前数据类型
@@ -92,15 +97,16 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             String orderId = intent.getStringExtra(Constant.IntentVariable.ORDER_ID);
-            Log.v("Tag", "receiver_orderID:" + orderId + " action:" + action);
             if (Constant.IntentAction.STOP_LOCATION_UPLOAD.equals(action)) {
                 stopUploadInstantLocation(orderId);
             }
             if (Constant.IntentAction.START_LOCATION_UPLOAD.equals(action)) {
+                employee_orderstate_group.check(R.id.employee_order_ing);
                 uploadInstantLocation(orderId);
+
             }
             if (Constant.IntentAction.MISSION_COMPLETE.equals(action)) {
-                changeList(2);
+                employee_orderstate_group.check(R.id.employee_order_finished);
             }
 
         }
@@ -135,8 +141,8 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
     };
 
     @Override
-    protected void initViews() {
-        super.initViews();
+    protected void initViews(Bundle savedInstanceState) {
+        super.initViews(savedInstanceState);
         setContentView(R.layout.activity_main);
         employee_orderstate_group = (RadioGroup) findViewById(R.id.employee_orderstate_group);
         employee_head_img = (RoundImageView) findViewById(R.id.employee_head_img);
@@ -145,6 +151,9 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
         employee_order_ing = (RadioButton) findViewById(R.id.employee_order_ing);
         employee_order_finished = (RadioButton) findViewById(R.id.employee_order_finished);
         main_title = (TextView) findViewById(R.id.main_title);
+
+        //初始化滑动菜单
+        initSlidingMenu(savedInstanceState);
     }
 
     @Override
@@ -161,7 +170,6 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
         apiRequest.getKindReminders();
         showLoading = true;
         order_list_lv.setMode(PullToRefreshBase.Mode.BOTH);
-        type = 2;
         noConfirmPageIndex = 1;
         ingPageIndex = 1;
         finishedPageIndex = 1;
@@ -171,32 +179,38 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
         main_title.setOnClickListener(this);
         order_list_lv.setOnRefreshListener(this);
         employee_orderstate_group.setOnCheckedChangeListener(this);
+        pc_head_img.setOnClickListener(this);
+    }
+
+    /**
+     * 初始化滑动菜单
+     */
+    private void initSlidingMenu(Bundle savedInstanceState) {
+        View v= LayoutInflater.from(this).inflate(R.layout.menu_content,null);
+        // 设置滑动菜单的视图
+        setBehindContentView(v);
+        pc_head_img= (RoundImageView) v.findViewById(R.id.pc_head_img);
+        showMenu();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame, new MenuActivity()).commit();
+        // 实例化滑动菜单对象
+        SlidingMenu sm = getSlidingMenu();
+        // 设置滑动阴影的宽度
+        sm.setShadowWidthRes(R.dimen.shadow_width);
+        // 设置滑动阴影的图像资源
+        sm.setShadowDrawable(R.drawable.shadow);
+        // 设置滑动菜单视图的宽度
+        sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        // 设置渐入渐出效果的值
+        sm.setFadeDegree(0.35f);
+        // 设置触摸屏幕的模式
+        sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
     }
 
     public void changeList(int select) {
         showLoading = true;
         order_list_lv.setAdapter(null);
-        order_list_lv.setDividerHeight(0);
+        showDivider(false);
         type = select;
-
-        switch (select) {
-            case 0:
-                employee_order_noAccept.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                employee_order_ing.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_finished.setBackgroundColor(getResources().getColor(R.color.white));
-                break;
-            case 1:
-                employee_order_noAccept.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_ing.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                employee_order_finished.setBackgroundColor(getResources().getColor(R.color.white));
-                break;
-            case 2:
-                employee_order_noAccept.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_ing.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_finished.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                break;
-        }
-        Log.v("Tag", "update_data");
         getNewestDataList();
 
     }
@@ -268,16 +282,19 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
 //                locationBean.setLat("30.663456");
 //                locationBean.setLon("104.072227");
 //                startActivity(new Intent(this, RoutePlanActivity.class).putExtra("targetLocation", locationBean));
-                if (flag)
+               /* if (flag)
                     uploadInstantLocation("1");
                 else
-                    stopUploadInstantLocation("1");
+                    stopUploadInstantLocation("1");*/
                 flag = !flag;
+
                 break;
             case R.id.main_title:
                 stopUploadInstantLocation("1");
                 break;
-
+            case R.id.pc_head_img:
+                showToast("gaaga");
+                break;
         }
     }
 
@@ -396,7 +413,8 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
                 noConfirmOrderAdapter.notifyDataSetChanged();
                 break;
             case Task.SET_OUT:
-                changeList(1);
+
+                employee_orderstate_group.check(R.id.employee_order_ing);
                 uploadInstantLocation(operateOrderInfo.getOrderId());
                 break;
         }
@@ -429,32 +447,27 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.employee_order_noAccept:
-                employee_order_noAccept.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                employee_order_ing.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_finished.setBackgroundColor(getResources().getColor(R.color.white));
                 changeList(0);
                 break;
             case R.id.employee_order_ing:
-                employee_order_noAccept.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_ing.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                employee_order_finished.setBackgroundColor(getResources().getColor(R.color.white));
                 changeList(1);
                 break;
             case R.id.employee_order_finished:
-                employee_order_noAccept.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_ing.setBackgroundColor(getResources().getColor(R.color.white));
-                employee_order_finished.setBackgroundColor(getResources().getColor(R.color.dark_gray));
                 changeList(2);
                 break;
         }
     }
 
     private void showDivider(boolean isShow) {
-        if (order_list_lv != null)
+        if (order_list_lv != null) {
             if (!isShow)
                 order_list_lv.setDividerHeight(0);
-            else if (order_list_lv.getDividerHeight() == 0)
-                order_list_lv.setDividerHeight(DensityUtil.dip2px(this, 10));
+            else {
+                if (order_list_lv.getDividerHeight() == 0) {
+                    order_list_lv.setDividerHeight(DensityUtil.dip2px(this, 10));
+                }
+            }
+        }
     }
 
     @Override
@@ -478,10 +491,10 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
     }
 
     private void uploadInstantLocation(String orderId) {
-        Log.v("Tag", "upload_orderId:" + orderId);
         serviceIntent = new Intent(this, LocationService.class);
         serviceIntent.putExtra(Constant.IntentVariable.ORDER_ID, orderId);
         serviceIntent.putExtra("uid", SharePreferenceUtil.getInstance().getUserId(this));
+        serviceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startService(serviceIntent);
     }
 
@@ -490,5 +503,15 @@ public class MainActivity extends BaseActivity implements PullToRefreshBase.OnRe
             serviceIntent = new Intent(this, LocationService.class);
         stopService(serviceIntent);
         LocationTools.getInstance(getApplicationContext()).stopListener(orderId);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            exitSystem();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+
     }
 }

@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Transaction;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
 
@@ -23,11 +25,16 @@ import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
  * 描述：业务区域
  */
 
-public class TransactionActivity extends BaseActivity {
+public class TransactionActivity extends TitleActivity {
+    @ViewInject(R.id.transaction_start_btn)
     private Button transaction_start_btn;
+    @ViewInject(R.id.transaction_end_btn)
     private Button transaction_end_btn;
+    @ViewInject(R.id.transaction_recommand_btn)
     private Button transaction_recommand_btn;
+    @ViewInject(R.id.transaction_suggest_btn)
     private Button transaction_suggest_btn;
+    @ViewInject(R.id.transaction_submit_btn)
     private Button transaction_submit_btn;
 
 
@@ -69,21 +76,11 @@ public class TransactionActivity extends BaseActivity {
         }
     };
 
-    @Override
-    protected void initViews() {
-        setContentView(R.layout.activity_transaction);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        transaction_start_btn = (Button) findViewById(R.id.transaction_start_btn);
-        transaction_end_btn = (Button) findViewById(R.id.transaction_end_btn);
-        transaction_recommand_btn = (Button) findViewById(R.id.transaction_recommand_btn);
-        transaction_suggest_btn = (Button) findViewById(R.id.transaction_suggest_btn);
-        transaction_submit_btn = (Button) findViewById(R.id.transaction_submit_btn);
-    }
+
 
     @Override
-    protected void initData() {
-        page_title.setText(getString(R.string.transaction_title));
+    public void initData() {
+        setTitle(getString(R.string.transaction_title));
         orderId = getIntent().getStringExtra(Constant.IntentVariable.ORDER_ID);
         showToast("orderId:" + orderId);
         userId = SharePreferenceUtil.getInstance().getUserId(this);

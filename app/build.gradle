@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'oneapm'
 
 android {
     compileSdkVersion 22
@@ -33,10 +34,12 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':modellibrary')
+    compile project(':slidelibrary')
     compile files('libs/universal-image-loader-1.9.4.jar')
     compile files('libs/httpmime-4.1.2.jar')
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/PhotoViewLibs.jar')
+    compile files('libs/oneapm-android-agent.jar')
 }
 
 

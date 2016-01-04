@@ -40,6 +40,10 @@ public class Constant {
         public static final String PARAMS_KEY="123456";
     }
 
+    public interface Keys{
+        public static final String OneAPM="5001BC9F21163A753F97A6908C68DFB249";
+    }
+
     public interface Path {
         String PATH_BASE = Environment.getExternalStorageDirectory() + File.separator + "XBBEmployee";
 

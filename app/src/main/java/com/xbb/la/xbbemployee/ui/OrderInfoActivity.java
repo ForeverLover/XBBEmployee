@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.xbb.la.modellibrary.bean.LocationBean;
 import com.xbb.la.modellibrary.bean.OrderInfo;
 import com.xbb.la.modellibrary.bean.ResponseJson;
@@ -23,6 +26,7 @@ import com.xbb.la.modellibrary.utils.ParseUtil;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.location.LocationTools;
 import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
 
@@ -33,16 +37,52 @@ import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
  * 描述：订单详情
  */
 
-public class OrderInfoActivity extends BaseActivity {
+public class OrderInfoActivity extends TitleActivity {
+    @ViewInject(R.id.orderInfo_call_img)
     private ImageView orderInfo_call_img;
-    private TextView orderinfo_orderNo_tv, orderinfo_orderTime_Tv, orderinfo_orderContent_Tv,
-            orderinfo_orderPrice_Tv, orderinfo_payWay_Tv, orderinfo_payState_Tv,
-            orderinfo_serviceTime_Tv, orderinfo_orderState_Tv, orderinfo_driver_tv,
-            orderinfo_driverTel_Tv, orderinfo_carInfo_Tv, orderinfo_carType_Tv,
-            orderinfo_plateNo_Tv, orderinfo_carLocation_Tv, orderinfo_addressAudio_Tv, orderinfo_finish_Tv;
+    @ViewInject(R.id.orderinfo_orderNo_tv)
+    private TextView orderinfo_orderNo_tv;
+    @ViewInject(R.id.orderinfo_orderTime_Tv)
+    private TextView orderinfo_orderTime_Tv;
+    @ViewInject(R.id.orderinfo_orderContent_Tv)
+    private TextView orderinfo_orderContent_Tv;
+    @ViewInject(R.id.orderinfo_orderPrice_Tv)
+    private TextView orderinfo_orderPrice_Tv;
+    @ViewInject(R.id.orderinfo_payWay_Tv)
+    private TextView orderinfo_payWay_Tv;
+    @ViewInject(R.id.orderinfo_payState_Tv)
+    private TextView orderinfo_payState_Tv;
+    @ViewInject(R.id.orderinfo_serviceTime_Tv)
+    private TextView orderinfo_serviceTime_Tv;
+    @ViewInject(R.id.orderinfo_orderState_Tv)
+    private TextView orderinfo_orderState_Tv;
+    @ViewInject(R.id.orderinfo_driver_tv)
+    private TextView orderinfo_driver_tv;
+    @ViewInject(R.id.orderinfo_driverTel_Tv)
+    private TextView orderinfo_driverTel_Tv;
+    @ViewInject(R.id.orderinfo_carInfo_Tv)
+    private TextView orderinfo_carInfo_Tv;
+    @ViewInject(R.id.orderinfo_carType_Tv)
+    private TextView orderinfo_carType_Tv;
+    @ViewInject(R.id.orderinfo_plateNo_Tv)
+    private TextView orderinfo_plateNo_Tv;
+    @ViewInject(R.id.orderinfo_carLocation_Tv)
+    private TextView orderinfo_carLocation_Tv;
+    @ViewInject(R.id.orderinfo_addressAudio_Tv)
+    private TextView orderinfo_addressAudio_Tv;
+    @ViewInject(R.id.orderinfo_finish_Tv)
+    private TextView orderinfo_finish_Tv;
+    @ViewInject(R.id.orderinfo_finish_layout)
     private LinearLayout orderinfo_finish_layout;
+    @ViewInject(R.id.orderInfo_ing_layout)
     private LinearLayout orderInfo_ing_layout;
-    private Button orderInfo_op_btn, orderInfo_arrive_btn, orderInfo_navigate_btn;
+    @ViewInject(R.id.orderInfo_op_btn)
+    private Button orderInfo_op_btn;
+    @ViewInject(R.id.orderInfo_arrive_btn)
+    private Button orderInfo_arrive_btn;
+    @ViewInject(R.id.orderInfo_navigate_btn)
+    private Button orderInfo_navigate_btn;
+
     private Intent serviceIntent;
     private IntentFilter intentFilter;
 
@@ -80,39 +120,14 @@ public class OrderInfoActivity extends BaseActivity {
     private boolean updateData = false;
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_info);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        orderinfo_orderNo_tv = (TextView) findViewById(R.id.orderinfo_orderNo_tv);
-        orderinfo_orderTime_Tv = (TextView) findViewById(R.id.orderinfo_orderTime_Tv);
-        orderinfo_orderContent_Tv = (TextView) findViewById(R.id.orderinfo_orderContent_Tv);
-        orderinfo_orderPrice_Tv = (TextView) findViewById(R.id.orderinfo_orderPrice_Tv);
-        orderinfo_payWay_Tv = (TextView) findViewById(R.id.orderinfo_payWay_Tv);
-        orderinfo_payState_Tv = (TextView) findViewById(R.id.orderinfo_payState_Tv);
-        orderinfo_serviceTime_Tv = (TextView) findViewById(R.id.orderinfo_serviceTime_Tv);
-        orderinfo_orderState_Tv = (TextView) findViewById(R.id.orderinfo_orderState_Tv);
-        orderinfo_driver_tv = (TextView) findViewById(R.id.orderinfo_driver_tv);
-        orderinfo_driverTel_Tv = (TextView) findViewById(R.id.orderinfo_driverTel_Tv);
-        orderinfo_carInfo_Tv = (TextView) findViewById(R.id.orderinfo_carInfo_Tv);
-        orderinfo_carType_Tv = (TextView) findViewById(R.id.orderinfo_carType_Tv);
-        orderinfo_plateNo_Tv = (TextView) findViewById(R.id.orderinfo_plateNo_Tv);
-        orderinfo_carLocation_Tv = (TextView) findViewById(R.id.orderinfo_carLocation_Tv);
-        orderinfo_addressAudio_Tv = (TextView) findViewById(R.id.orderinfo_addressAudio_Tv);
-        orderinfo_finish_Tv = (TextView) findViewById(R.id.orderinfo_finish_Tv);
-        orderInfo_call_img = (ImageView) findViewById(R.id.orderInfo_call_img);
-        orderInfo_op_btn = (Button) findViewById(R.id.orderInfo_op_btn);
-        orderInfo_navigate_btn = (Button) findViewById(R.id.orderInfo_navigate_btn);
-
-        orderInfo_arrive_btn = (Button) findViewById(R.id.orderInfo_arrive_btn);
-        orderinfo_finish_layout = (LinearLayout) findViewById(R.id.orderinfo_finish_layout);
-        orderInfo_ing_layout = (LinearLayout) findViewById(R.id.orderInfo_ing_layout);
-        super.initViews();
     }
 
     @Override
-    protected void initData() {
-        page_title.setText(getString(R.string.order_info_title));
+    public void initData() {
+        setTitle(getString(R.string.order_info_title));
         orderId = getIntent().getStringExtra(Constant.IntentVariable.ORDER_ID);
         showToast(orderId);
         userId = SharePreferenceUtil.getInstance().getUserId(this);
@@ -124,7 +139,6 @@ public class OrderInfoActivity extends BaseActivity {
         localBroadcastManager.registerReceiver(receiver, intentFilter);
         orderInfo_call_img.setOnClickListener(this);
         orderInfo_op_btn.setOnClickListener(this);
-        title_left_img.setOnClickListener(this);
         orderInfo_arrive_btn.setOnClickListener(this);
         orderInfo_navigate_btn.setOnClickListener(this);
 
@@ -213,9 +227,6 @@ public class OrderInfoActivity extends BaseActivity {
                             break;
                     }
                 break;
-            case R.id.title_left_img:
-                doBack();
-                break;
             case R.id.orderInfo_arrive_btn:
                 if (apiRequest == null)
                     apiRequest = new ApiRequest(this);
@@ -231,6 +242,11 @@ public class OrderInfoActivity extends BaseActivity {
                     showToast("用户地址信息有误");
                 break;
         }
+    }
+
+    @Override
+    protected void onClickTitleLeft(View v) {
+        doBack();
     }
 
     @Override
@@ -273,14 +289,14 @@ public class OrderInfoActivity extends BaseActivity {
                 orderInfo.setMissionState("2");
                 type = 2;
                 initOrderInfo();
-                localBroadcastManager.sendBroadcast(new Intent(Constant.IntentAction.START_LOCATION_UPLOAD).putExtra(Constant.IntentVariable.ORDER_ID,orderId));
+                localBroadcastManager.sendBroadcast(new Intent(Constant.IntentAction.START_LOCATION_UPLOAD).putExtra(Constant.IntentVariable.ORDER_ID, orderId));
 
                 break;
             case Task.ARRIVE:
                 type = 3;
                 orderInfo.setMissionState("3");
                 initOrderInfo();
-                localBroadcastManager.sendBroadcast(new Intent(Constant.IntentAction.STOP_LOCATION_UPLOAD).putExtra(Constant.IntentVariable.ORDER_ID,orderId));
+                localBroadcastManager.sendBroadcast(new Intent(Constant.IntentAction.STOP_LOCATION_UPLOAD).putExtra(Constant.IntentVariable.ORDER_ID, orderId));
                 startActivity(new Intent(this, TransactionActivity.class).putExtra(Constant.IntentVariable.ORDER_ID, orderId));
                 break;
 

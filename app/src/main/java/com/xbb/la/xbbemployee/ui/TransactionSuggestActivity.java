@@ -3,6 +3,7 @@ package com.xbb.la.xbbemployee.ui;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -11,10 +12,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Reminder;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.provider.ReminderAdapter;
 import com.xbb.la.xbbemployee.receiver.FinisActivityReceiver;
@@ -30,35 +33,34 @@ import java.util.List;
  * 描述：技师建议
  */
 
-public class TransactionSuggestActivity extends BaseActivity {
+public class TransactionSuggestActivity extends TitleActivity {
     private IntentFilter intentFilter;
     private BroadcastReceiver finishReceiver;
 
     private List<Reminder> reminderList;
     private ReminderAdapter reminderAdapter;
 
+    @ViewInject(R.id.suggest_list_lv)
     private CustomListView suggest_list_lv;
+    @ViewInject(R.id.suggest_ensure_btn)
     private Button suggest_ensure_btn;
+    @ViewInject(R.id.suggest_remark_et)
     private EditText suggest_remark_et;
 
     private int textSum = 150;
+    @ViewInject(R.id.suggest_textNum)
     private TextView suggest_textNum;
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_suggest);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        suggest_list_lv= (CustomListView) findViewById(R.id.suggest_list_lv);
-        suggest_ensure_btn= (Button) findViewById(R.id.suggest_ensure_btn);
-        suggest_remark_et= (EditText) findViewById(R.id.suggest_remark_et);
-        suggest_textNum = (TextView) findViewById(R.id.suggest_textNum);
-
     }
 
+
     @Override
-    protected void initData() {
-        page_title.setText(getString(R.string.transaction_suggest));
+    public void initData() {
+        setTitle(getString(R.string.transaction_suggest));
         intentFilter = new IntentFilter(Constant.IntentAction.TRANSACTION_TO_FINISH);
         reminderList = DBHelperMethod.getInstance().getReminderList();
         if (reminderList != null && !reminderList.isEmpty()) {

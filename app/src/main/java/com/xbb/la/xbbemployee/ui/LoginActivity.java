@@ -1,10 +1,13 @@
 package com.xbb.la.xbbemployee.ui;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Employee;
 import com.xbb.la.modellibrary.bean.ResponseJson;
 import com.xbb.la.modellibrary.config.Task;
@@ -23,8 +26,11 @@ import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
  */
 
 public class LoginActivity extends BaseActivity {
+    @ViewInject(R.id.login_user_et)
     private EditText login_user_et;
+    @ViewInject(R.id.login_password_et)
     private EditText login_pwd_et;
+    @ViewInject(R.id.login_submit_btn)
     private Button login_submit_btn;
 
     private String account;
@@ -32,17 +38,17 @@ public class LoginActivity extends BaseActivity {
 
     private IApiRequest apiRequest;
 
+    @ViewInject(R.id.login_forget_layout)
+    private LinearLayout login_forget_layout;
+
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        login_pwd_et= (EditText) findViewById(R.id.login_password_et);
-        login_user_et= (EditText) findViewById(R.id.login_user_et);
-        login_submit_btn= (Button) findViewById(R.id.login_submit_btn);
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    public void initData() {
         login_user_et.setText("18202810133");
         login_pwd_et.setText("123123");
         login_submit_btn.setOnClickListener(this);
@@ -50,6 +56,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
+    public void initListener() {
+    }
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_submit_btn:

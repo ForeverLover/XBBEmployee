@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
@@ -37,8 +39,9 @@ public class SelectPictureActivity extends BaseActivity {
      */
     private static final int CROP_PHOTO = 3;
 
-
+    @ViewInject(R.id.pic_photo_layout)
     private RelativeLayout pic_photo_layout;
+    @ViewInject(R.id.take_photo_layout)
     private RelativeLayout take_photo_layout;
     /**
      * 获取到的图片路径
@@ -57,17 +60,13 @@ public class SelectPictureActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void initViews() {
         setContentView(R.layout.activity_select_picture);
-        take_photo_layout = (RelativeLayout) findViewById(R.id.take_photo_layout);
-        pic_photo_layout = (RelativeLayout) findViewById(R.id.pic_photo_layout);
     }
 
+
+
     @Override
-    protected void initData() {
+    public void initData() {
         lastIntent = new Intent();
         type = getIntent().getIntExtra("type", 2);
         take_photo_layout.setOnClickListener(this);

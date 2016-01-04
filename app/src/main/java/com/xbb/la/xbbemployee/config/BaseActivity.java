@@ -2,25 +2,24 @@ package com.xbb.la.xbbemployee.config;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.LocationClient;
+import com.blueware.agent.android.BlueWare;
+import com.lidroid.xutils.ViewUtils;
+import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.modellibrary.net.ApiRequest;
 import com.xbb.la.modellibrary.net.XRequestCallBack;
 import com.xbb.la.xbbemployee.R;
-import com.xbb.la.xbbemployee.service.LocationService;
-import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
 import com.xbb.la.xbbemployee.widget.CustomProgressDialog;
 
 /**
@@ -30,8 +29,7 @@ import com.xbb.la.xbbemployee.widget.CustomProgressDialog;
  * 描述：基类
  */
 
-public class BaseActivity extends Activity implements View.OnClickListener, XRequestCallBack {
-    protected LocationService locationService;
+public class BaseActivity extends Activity implements View.OnClickListener, XRequestCallBack,Init {
     protected LocalBroadcastManager localBroadcastManager;
     protected BaseApplication application;
 
@@ -41,17 +39,6 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
 
     protected ApiRequest apiRequest;
 
-    protected ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            locationService = ((LocationService.LocationBinder) service).getService();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            locationService = null;
-        }
-    };
 
     protected TextView page_title;
     protected ImageView title_left_img;
@@ -65,10 +52,45 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
-        initVariabe();
-        initViews();
-        initData();
+        BlueWare.withApplicationToken(Constant.Keys.OneAPM).start(this.getApplication());
     }
+
+    protected void setSuperContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+    }
+
+    protected void setSuperContentView(View view) {
+        super.setContentView(view);
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        ViewUtils.inject(this);
+        init();
+    }
+
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        ViewUtils.inject(this);
+        init();
+    }
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        super.setContentView(view, params);
+        ViewUtils.inject(this);
+        init();
+    }
+
+
+    protected void init() {
+        initData();
+        initView();
+        initListener();
+    }
+
 
     /**
      * 初始化变量
@@ -81,19 +103,6 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
 
     }
 
-    /**
-     * 初始化控件信息
-     */
-    protected void initViews() {
-    }
-
-    /**
-     * 设置数据
-     */
-    protected void initData() {
-    }
-
-    ;
 
     /**
      * 设置点击事件
@@ -144,20 +153,6 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
         return true;
     }
 
-    /**
-     * 多次点击退出程序
-     */
-    public void exitSystem() {
-        if ((System.currentTimeMillis() - exitTime) > 2000) {
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.exit_back), Toast.LENGTH_SHORT).show();
-            exitTime = System.currentTimeMillis();
-        } else {
-            application.exitSystem(BaseActivity.this);
-            SharePreferenceUtil.getInstance().clear(getApplicationContext());
-            BaseActivity.this.finish();
-        }
-    }
 
     protected void startLocate() {
         application.startLocate();
@@ -196,5 +191,20 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
         if (application != null) {
             application.unregister(this);
         }
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initListener() {
+
     }
 }

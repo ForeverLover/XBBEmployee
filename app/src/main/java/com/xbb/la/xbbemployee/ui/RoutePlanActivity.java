@@ -29,6 +29,7 @@ import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.baidu.navisdk.adapter.BNOuterTTSPlayerCallback;
 import com.baidu.navisdk.adapter.BNRoutePlanNode;
 import com.baidu.navisdk.adapter.BaiduNaviManager;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.LocationBean;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.modellibrary.config.Task;
@@ -36,6 +37,7 @@ import com.xbb.la.modellibrary.net.ApiRequest;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.listener.LocateProcessListener;
 import com.xbb.la.xbbemployee.utils.DrivingRouteOverlay;
 import com.xbb.la.xbbemployee.utils.LocationUtil;
@@ -52,13 +54,18 @@ import java.util.List;
  * 描述：路径规划界面
  */
 
-public class RoutePlanActivity extends BaseActivity implements LocateProcessListener, BaiduMap.OnMapClickListener,
+public class RoutePlanActivity extends TitleActivity implements LocateProcessListener, BaiduMap.OnMapClickListener,
         OnGetRoutePlanResultListener {
+    @ViewInject(R.id.route_plan_map)
     private MapView route_plan_map;
+    @ViewInject(R.id.arrived_btn)
     private Button arrived_btn;
+    @ViewInject(R.id.navigate_btn)
     private Button navigate_btn;
 
+    @ViewInject(R.id.route_plan_targetImg)
     private ImageView route_plan_targetImg;
+    @ViewInject(R.id.route_plan_selfImg)
     private ImageView route_plan_selfImg;
 
     private LocationBean myLocation;
@@ -77,21 +84,14 @@ public class RoutePlanActivity extends BaseActivity implements LocateProcessList
 
     private String orderId;
 
-
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_plan);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        route_plan_targetImg = (ImageView) findViewById(R.id.route_plan_targetImg);
-        route_plan_selfImg = (ImageView) findViewById(R.id.route_plan_selfImg);
-        route_plan_map = (MapView) findViewById(R.id.route_plan_map);
-        arrived_btn = (Button) findViewById(R.id.arrived_btn);
-        navigate_btn = (Button) findViewById(R.id.navigate_btn);
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         mBaiduMap = route_plan_map.getMap();
         myLocation = SharePreferenceUtil.getInstance().getLocationInfo(this);
         targetLocation = (LocationBean) getIntent().getSerializableExtra(Constant.IntentVariable.DESTINATION_LOCATION);

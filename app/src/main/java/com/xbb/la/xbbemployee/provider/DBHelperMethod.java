@@ -425,6 +425,7 @@ public class DBHelperMethod {
             return false;
         ContentValues contentValues = new ContentValues();
         contentValues.put(Constant.DB.TransactionColumns.CURRENT_STEP, 3);
+        contentValues.put(Constant.DB.TransactionColumns.END_TIME, System.currentTimeMillis());
         int flag = db.update(Constant.DB.TABLE_TRANSACTION, contentValues, Constant.DB.TransactionColumns.ORDER_ID + " = ? and " + Constant.DB.TransactionColumns.EMPLOYEE_ID + " = ? ", new String[]{
                 orderId, employeeId});
         Log.v(TAG, "flag=" + flag);

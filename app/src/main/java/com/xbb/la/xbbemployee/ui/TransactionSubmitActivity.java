@@ -3,11 +3,13 @@ package com.xbb.la.xbbemployee.ui;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Recommand;
 import com.xbb.la.modellibrary.bean.Transaction;
 import com.xbb.la.modellibrary.bean.UploadRecommand;
@@ -19,6 +21,7 @@ import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.modellibrary.utils.SystemUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+import com.xbb.la.xbbemployee.config.TitleActivity;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.receiver.FinisActivityReceiver;
 import com.xbb.la.xbbemployee.utils.SharePreferenceUtil;
@@ -34,7 +37,7 @@ import java.util.List;
  * 描述：提交任务
  */
 
-public class TransactionSubmitActivity extends BaseActivity {
+public class TransactionSubmitActivity extends TitleActivity {
     private IntentFilter intentFilter;
     private BroadcastReceiver finishReceiver;
 
@@ -42,19 +45,19 @@ public class TransactionSubmitActivity extends BaseActivity {
 
     private String orderId;
 
+    @ViewInject(R.id.transaction_commit_btn)
     private Button transaction_commit_btn;
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_submit);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        transaction_commit_btn = (Button) findViewById(R.id.transaction_commit_btn);
     }
 
+
     @Override
-    protected void initData() {
-        page_title.setText(getString(R.string.transaction_submit_title));
+    public void initData() {
+        setTitle(getString(R.string.transaction_submit_title));
         userId = SharePreferenceUtil.getInstance().getUserId(this);
         orderId = getIntent().getStringExtra(Constant.IntentVariable.ORDER_ID);
         intentFilter = new IntentFilter(Constant.IntentAction.TRANSACTION_TO_FINISH);

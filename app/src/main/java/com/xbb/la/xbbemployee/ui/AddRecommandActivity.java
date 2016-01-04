@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.DIYProduct;
 import com.xbb.la.modellibrary.bean.Recommand;
 import com.xbb.la.modellibrary.config.Constant;
@@ -40,14 +41,22 @@ import java.util.List;
  */
 
 public class AddRecommandActivity extends BaseActivity {
+    @ViewInject(R.id.selected_diy_img)
     private ImageView selected_diy_img;
+    @ViewInject(R.id.select_diy_name)
     private TextView select_diy_name;
+    @ViewInject(R.id.diy_group_gv)
     private CustomGridView diy_group_gv;
+    @ViewInject(R.id.diy_describe_gv)
     private CustomGridView diy_describe_gv;
+    @ViewInject(R.id.add_remark_et)
     private EditText add_remark_et;
+    @ViewInject(R.id.add_remark_textNum)
     private TextView add_remark_textNum;
 
+    @ViewInject(R.id.edit_btn)
     private Button edit_btn;
+    @ViewInject(R.id.preview_btn)
     private Button preview_btn;
 
     private List<DIYProduct> diyProductList;
@@ -86,23 +95,13 @@ public class AddRecommandActivity extends BaseActivity {
     private int type;
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recommand);
-        selected_diy_img = (ImageView) findViewById(R.id.selected_diy_img);
-        select_diy_name = (TextView) findViewById(R.id.select_diy_name);
-        add_remark_textNum = (TextView) findViewById(R.id.add_remark_textNum);
-        diy_group_gv = (CustomGridView) findViewById(R.id.diy_group_gv);
-        diy_describe_gv = (CustomGridView) findViewById(R.id.diy_describe_gv);
-        add_remark_et = (EditText) findViewById(R.id.add_remark_et);
-        title_left_img = (ImageView) findViewById(R.id.title_left_img);
-        page_title = (TextView) findViewById(R.id.title_center_txt);
-        add_ensure_btn = (Button) findViewById(R.id.add_ensure_btn);
-        preview_btn = (Button) findViewById(R.id.preview_btn);
-        edit_btn = (Button) findViewById(R.id.edit_btn);
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         type = getIntent().getIntExtra("type", 1);
         diyProductList = DBHelperMethod.getInstance().getLocalDIYProductList();
         path = Constant.Path.ADD_PIC_Path;

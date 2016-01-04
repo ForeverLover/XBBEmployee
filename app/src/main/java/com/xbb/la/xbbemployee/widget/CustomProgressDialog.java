@@ -46,8 +46,5 @@ public class CustomProgressDialog extends Dialog{
 		animationDrawable.start();
 	}
 
-	public CustomProgressDialog setTitile(String strTitle) {
-		return customProgressDialog;
-	}
 
 }
