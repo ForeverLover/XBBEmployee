@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/diy_unselect_bg">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/diy_grid_name"
@@ -11,12 +10,12 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/dp_five"
         android:layout_marginRight="@dimen/dp_five"
-        android:paddingTop="@dimen/dp_eight"
-        android:paddingBottom="@dimen/dp_eight"
         android:gravity="center_vertical"
+        android:padding="@dimen/dp_eight"
         android:singleLine="true"
+
         android:text="aaa"
-        android:textColor="@color/main_text"
-        android:textSize="@dimen/sp_fifteen" />
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/sp_forteen" />
 
 </LinearLayout>

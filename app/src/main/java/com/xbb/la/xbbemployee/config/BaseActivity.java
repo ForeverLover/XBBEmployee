@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.android.pushservice.PushManager;
 import com.baidu.location.LocationClient;
 import com.blueware.agent.android.BlueWare;
 import com.lidroid.xutils.ViewUtils;
@@ -35,7 +36,7 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
 
     private long exitTime = 0;
 
-    private Dialog dialog = null;
+    protected Dialog dialog = null;
 
     protected ApiRequest apiRequest;
 
@@ -53,6 +54,7 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
         super.onCreate(savedInstanceState);
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         BlueWare.withApplicationToken(Constant.Keys.OneAPM).start(this.getApplication());
+
     }
 
     protected void setSuperContentView(int layoutResID) {
@@ -86,16 +88,18 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
 
 
     protected void init() {
+        initVariabe();
         initData();
         initView();
         initListener();
+
     }
 
 
     /**
      * 初始化变量
      */
-    private void initVariabe() {
+    protected void initVariabe() {
 
         mLocationClient = ((BaseApplication) getApplication()).mLocationClient;
         application = (BaseApplication) getApplication();
@@ -122,6 +126,9 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
     protected void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+    protected void showToast(int resId) {
+        Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onPrepare(int taskId) {
@@ -134,8 +141,18 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
     }
 
     @Override
+    public void onSuccess(int taskId, String flag, Object... params) {
+
+    }
+
+    @Override
     public void onEnd(int taskId) {
 
+    }
+
+    @Override
+    public void onFailed(int taskId, int errorCode, String errorMsg) {
+        showToast(errorMsg);
     }
 
     @Override

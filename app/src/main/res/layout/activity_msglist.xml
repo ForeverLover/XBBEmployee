@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:background="@color/label_bg"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.xbb.la.xbbemployee.widget.CustomListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/msg_list_lv"
+            android:layout_marginLeft="@dimen/dp_twenty"
+            android:dividerHeight="@dimen/dp_one">
+
+        </com.xbb.la.xbbemployee.widget.CustomListView>
+    </LinearLayout>
+
+</ScrollView>

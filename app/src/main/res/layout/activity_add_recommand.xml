@@ -2,11 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/label_bg"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/add_recommand_titleLayout"
-        layout="@layout/page_title_layout" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,18 +19,19 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:layout_height="@dimen/dp_thirty_eight"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/recommand_diy_lable"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_hundred_twenty">
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -49,50 +48,65 @@
                         android:src="@mipmap/ic_launcher" />
 
                     <TextView
+                        android:textColor="@color/main_text_color"
                         android:id="@+id/select_diy_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_five"
-                        android:text="所选diy"
+                        android:hint="@string/recommand_diy_tip"
                         android:textSize="@dimen/sp_seventeen" />
+
                 </LinearLayout>
+
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_one"
-                android:layout_marginLeft="@dimen/dp_twenty"
-                android:layout_marginRight="@dimen/dp_twenty"
-                android:layout_marginBottom="@dimen/dp_five"
-                android:background="@color/light_gray" />
-
-            <com.xbb.la.xbbemployee.widget.CustomGridView
-                android:id="@+id/diy_group_gv"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_twenty"
-                android:layout_marginRight="@dimen/dp_twenty"
-                android:horizontalSpacing="@dimen/dp_ten"
-                android:verticalSpacing="@dimen/dp_ten"
-                android:numColumns="3"></com.xbb.la.xbbemployee.widget.CustomGridView>
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_five"
+                android:paddingTop="@dimen/dp_five">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_one"
+                    android:layout_marginBottom="@dimen/dp_five"
+                    android:layout_marginLeft="@dimen/dp_twenty"
+                    android:layout_marginRight="@dimen/dp_twenty"
+                    android:background="@color/split_color" />
+
+                <com.xbb.la.xbbemployee.widget.CustomGridView
+
+                    android:id="@+id/diy_group_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="@dimen/dp_ten"
+                    android:numColumns="3"
+                    android:paddingLeft="@dimen/dp_twenty"
+                    android:paddingRight="@dimen/dp_twenty"
+                    android:verticalSpacing="@dimen/dp_ten"></com.xbb.la.xbbemployee.widget.CustomGridView>
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:layout_height="@dimen/dp_thirty_eight"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/recommand_car_lable"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
 
             <LinearLayout
-                android:paddingLeft="@dimen/dp_twenty"
-                android:paddingRight="@dimen/dp_twenty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_twenty"
+                android:paddingRight="@dimen/dp_twenty">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,15 +121,16 @@
                     android:id="@+id/diy_describe_gv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_twenty"
-                    android:horizontalSpacing="@dimen/dp_five"
-                    android:verticalSpacing="@dimen/dp_five"
-                    android:layout_marginRight="@dimen/dp_twenty"
                     android:layout_marginBottom="@dimen/dp_five"
+                    android:layout_marginLeft="@dimen/dp_twenty"
+                    android:layout_marginRight="@dimen/dp_twenty"
                     android:layout_marginTop="@dimen/dp_five"
-                    android:numColumns="3">
+                    android:horizontalSpacing="@dimen/dp_five"
+                    android:numColumns="3"
+                    android:verticalSpacing="@dimen/dp_five">
 
                 </com.xbb.la.xbbemployee.widget.CustomGridView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -124,54 +139,70 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_one"
-                        android:background="@color/dark_gray" />
+                        android:background="@color/split_color" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/dp_ten"
+                        android:paddingTop="@dimen/dp_ten">
 
-                        <Button
+                        <TextView
                             android:id="@+id/edit_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/label_edit" />
+                            android:background="@drawable/transaction_op_bg"
+                            android:paddingBottom="@dimen/dp_five"
+                            android:paddingLeft="@dimen/dp_fifteen"
+                            android:paddingRight="@dimen/dp_fifteen"
+                            android:paddingTop="@dimen/dp_five"
+                            android:text="@string/label_edit"
+                            android:textSize="@dimen/sp_twelve" />
 
-                        <Button
+                        <TextView
                             android:id="@+id/preview_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_five"
-                            android:text="@string/label_preview" />
+                            android:background="@drawable/transaction_op_bg"
+                            android:paddingBottom="@dimen/dp_five"
+                            android:paddingLeft="@dimen/dp_fifteen"
+                            android:paddingRight="@dimen/dp_fifteen"
+                            android:paddingTop="@dimen/dp_five"
+                            android:text="@string/label_preview"
+                            android:textSize="@dimen/sp_twelve" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:layout_height="@dimen/dp_thirty_eight"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/recommand_remark_lable"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty">
 
                 <EditText
-                    android:padding="@dimen/dp_five"
-                    android:gravity="top"
                     android:id="@+id/add_remark_et"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_hundred_thirty" />
+                    android:layout_height="@dimen/dp_hundred_thirty"
+                    android:gravity="top"
+                    android:background="@null"
+                    android:padding="@dimen/dp_five" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -194,14 +225,19 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <Button
                 android:id="@+id/add_ensure_btn"
-                android:layout_margin="@dimen/dp_twenty"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_sixty"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_twenty"
+                android:layout_marginRight="@dimen/dp_twenty"
+                android:layout_marginTop="@dimen/dp_fourty"
+                android:layout_marginBottom="@dimen/dp_thirty"
+                android:background="@drawable/btn_solid_s_bg"
                 android:text="@string/recommand_ensure_lable"
-                android:textSize="@dimen/sp_sixteen"
-                />
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_sixteen" />
 
 
         </LinearLayout>

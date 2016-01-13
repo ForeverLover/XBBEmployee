@@ -24,6 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/dp_five"
-        android:textColor="@color/main_text"
+        android:textColor="@color/main_text_color"
         android:textSize="@dimen/sp_sixteen" />
 </LinearLayout>

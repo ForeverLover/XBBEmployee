@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <include
-        android:id="@+id/recommand_title_layout"
-        layout="@layout/page_title_layout"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/label_bg">
+
     <ListView
-        android:layout_below="@+id/recommand_title_layout"
-        android:layout_above="@+id/recommand_op_layout"
-        android:scrollbars="none"
         android:id="@+id/recommand_list_lv"
-        android:dividerHeight="@dimen/dp_five"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/recommand_op_layout"
+        android:dividerHeight="@dimen/dp_ten"
+        android:headerDividersEnabled="true"
+        android:divider="@android:color/transparent"
+        android:scrollbars="none">
 
     </ListView>
+
     <LinearLayout
         android:id="@+id/recommand_op_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_sixty"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_twenty"
+        android:layout_marginRight="@dimen/dp_twenty"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/recommand_skip_btn"
             android:layout_width="@dimen/dp_zero"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/recommand_skip_label"/>
+            android:background="@drawable/btn_hollow_s_bg"
+            android:text="@string/recommand_skip_label"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/sp_sixteen" />
+
+        <View
+            android:layout_width="@dimen/dp_ten"
+            android:layout_height="match_parent" />
+
         <Button
             android:id="@+id/recommand_submit_btn"
             android:layout_width="@dimen/dp_zero"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/recommand_submit_label"/>
+            android:background="@drawable/btn_solid_s_bg"
+            android:text="@string/recommand_submit_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_sixteen" />
     </LinearLayout>
 
 </RelativeLayout>

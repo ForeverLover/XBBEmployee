@@ -101,7 +101,7 @@ public class TitleActivity extends BaseActivity {
 
     @Override
     public void setTitle(int titleId) {
-        txtTitle.setText(titleId);
+        txtTitle.setText(getString(titleId));
     }
 
     public void setRightText(CharSequence rightText){

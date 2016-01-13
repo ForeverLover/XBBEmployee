@@ -11,80 +11,104 @@
         android:id="@+id/employee_main_title_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_sixty"
-        android:background="#ff000f"
+        android:background="@color/bg_title"
         android:paddingLeft="@dimen/dp_twenty"
         android:paddingRight="@dimen/dp_twenty">
-
-        <com.xbb.la.xbbemployee.widget.RoundImageView
-            android:id="@+id/employee_head_img"
-            android:layout_width="@dimen/dp_fifty"
-            android:layout_height="@dimen/dp_fifty"
+        <RelativeLayout
             android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="@dimen/dp_fourty"
+            android:layout_height="wrap_content">
+            <com.xbb.la.xbbemployee.widget.RoundImageView
+                android:id="@+id/employee_head_img"
+                android:layout_width="@dimen/dp_fourty"
+                android:layout_height="@dimen/dp_fourty"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/main_avatar_default_img"
+                android:scaleType="centerCrop" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/dp_two"
+                android:id="@+id/point_new_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/point_new_img"/>
+        </RelativeLayout>
 
-        <TextView
+        <ImageView
             android:id="@+id/main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_nineteen" />
+            android:src="@mipmap/logo_img" />
     </RelativeLayout>
 
-    <RadioGroup
-        android:id="@+id/employee_orderstate_group"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_fourty"
-        android:layout_alignParentBottom="true"
-        android:background="@color/light_gray"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/employee_order_noAccept"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radio_btn_selector"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/main_order_noAccept"
-            android:textSize="@dimen/sp_sixteen" />
-
-        <RadioButton
-            android:id="@+id/employee_order_ing"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radio_btn_selector"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/main_order_ing"
-            android:textSize="@dimen/sp_sixteen" />
-
-        <RadioButton
-            android:id="@+id/employee_order_finished"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radio_btn_selector"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/main_order_finish"
-            android:textSize="@dimen/sp_sixteen" />
-    </RadioGroup>
-
-
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/order_list_lv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadingEdge="none"
-        android:fastScrollEnabled="false"
-        android:footerDividersEnabled="false"
-        android:smoothScrollbar="true" />
+        android:background="#f1f1f1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <RadioGroup
+                android:id="@+id/employee_orderstate_group"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_fourty"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/employee_order_noAccept"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/main_order_noAccept"
+                    android:textColor="@color/color_rb_selector"
+                    android:textSize="@dimen/sp_sixteen" />
+
+                <RadioButton
+                    android:id="@+id/employee_order_ing"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/main_order_ing"
+                    android:textColor="@color/color_rb_selector"
+                    android:textSize="@dimen/sp_sixteen" />
+
+                <RadioButton
+                    android:id="@+id/employee_order_finished"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/main_order_finish"
+                    android:textColor="@color/color_rb_selector"
+                    android:textSize="@dimen/sp_sixteen" />
+            </RadioGroup>
+
+            <com.xbb.la.xbbemployee.widget.PageIndicator
+                android:id="@+id/mission_content_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/page_indicator_height"
+                app:fades="false" />
+        </LinearLayout>
+
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mission_content_vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></android.support.v4.view.ViewPager>
         <!--android:headerDividersEnabled="false"-->
+    </LinearLayout>
 
 
 </LinearLayout>

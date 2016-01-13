@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/sp_fourteen" />
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/sp_forteen" />
 
         <TextView
             android:id="@+id/order_title_tv"
@@ -27,15 +29,16 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_five"
             android:layout_marginRight="@dimen/dp_five"
+            android:textColor="@color/main_text_color"
             android:layout_toLeftOf="@+id/order_deal_time_tv"
-            android:textSize="@dimen/sp_seventeen" />
+            android:textSize="@dimen/sp_sixteen" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_one"
-        android:background="@color/dark_gray" />
+        android:background="@color/split_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,6 +48,26 @@
         android:paddingLeft="@dimen/dp_twenty"
         android:paddingRight="@dimen/dp_twenty"
         android:paddingTop="@dimen/dp_five">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_orderNo"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/sp_forteen" />
+
+            <TextView
+                android:id="@+id/order_no_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_three"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/sp_forteen" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,14 +78,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_serviceTime"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/sp_forteen" />
 
             <TextView
                 android:id="@+id/order_service_time_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_three"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,17 +97,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_car_location"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:id="@+id/order_car_location_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_three"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,17 +119,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_car_driver"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:id="@+id/order_driver_name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_three"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,17 +141,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_car_info"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
 
             <TextView
                 android:id="@+id/order_car_info_tv"
+                android:textColor="@color/main_text_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_three"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
         <LinearLayout
@@ -132,17 +163,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_car_type"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:id="@+id/order_car_type_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_three"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
         <LinearLayout
@@ -152,38 +185,39 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_car_plateNo"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:id="@+id/order_plate_no_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_three"
-                android:textSize="@dimen/sp_sixteen" />
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
     </LinearLayout>
 
     <RelativeLayout
-        android:visibility="gone"
+      android:visibility="gone"
         android:id="@+id/order_op_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_fifty">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_one"
-            android:background="@color/dark_gray" />
         <TextView
+            android:gravity="center"
+            android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:id="@+id/order_op_tv"
-            android:padding="@dimen/dp_ten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_seventeen"
+            android:textSize="@dimen/sp_eighteen"
+
+            android:background="@drawable/btn_solid_s_bg"
             android:text="@string/order_setOut"/>
     </RelativeLayout>
 

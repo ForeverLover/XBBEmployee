@@ -2,19 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include
-        android:id="@+id/end_car_titleLayout"
-        layout="@layout/page_title_layout" />
+    android:orientation="vertical"
+    android:background="@color/label_bg">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@+id/end_car_nextBtn"
-        android:layout_below="@+id/end_car_titleLayout"
+        android:fillViewport="true"
         android:scrollbars="none">
-        <!--android:fillViewport="true"-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,16 +18,17 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:layout_height="@dimen/dp_fourty_three"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/end_car_normal_label"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
 
             <LinearLayout
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -56,21 +53,35 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_one"
-                        android:background="@color/dark_gray" />
+                        android:background="@color/split_color" />
 
                     <LinearLayout
+                        android:paddingBottom="@dimen/dp_ten"
+                        android:paddingTop="@dimen/dp_ten"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:orientation="horizontal">
 
-                        <Button
+                        <TextView
+                            android:textSize="@dimen/sp_twelve"
+                            android:paddingLeft="@dimen/dp_fifteen"
+                            android:paddingRight="@dimen/dp_fifteen"
+                            android:paddingTop="@dimen/dp_five"
+                            android:paddingBottom="@dimen/dp_five"
+                            android:background="@drawable/transaction_op_bg"
                             android:id="@+id/body_edit_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_edit" />
 
-                        <Button
+                        <TextView
+                            android:textSize="@dimen/sp_twelve"
+                            android:paddingLeft="@dimen/dp_fifteen"
+                            android:paddingRight="@dimen/dp_fifteen"
+                            android:paddingTop="@dimen/dp_five"
+                            android:paddingBottom="@dimen/dp_five"
+                            android:background="@drawable/transaction_op_bg"
                             android:id="@+id/body_preview_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -83,16 +94,17 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:layout_height="@dimen/dp_fourty_three"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/end_car_damage_label"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
 
             <LinearLayout
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -117,21 +129,35 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_one"
-                        android:background="@color/dark_gray" />
+                        android:background="@color/split_color" />
 
                     <LinearLayout
+                        android:paddingBottom="@dimen/dp_ten"
+                        android:paddingTop="@dimen/dp_ten"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:orientation="horizontal">
 
-                        <Button
+                        <TextView
+                            android:textSize="@dimen/sp_twelve"
+                            android:paddingLeft="@dimen/dp_fifteen"
+                            android:paddingRight="@dimen/dp_fifteen"
+                            android:paddingTop="@dimen/dp_five"
+                            android:paddingBottom="@dimen/dp_five"
+                            android:background="@drawable/transaction_op_bg"
                             android:id="@+id/nick_edit_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_edit" />
 
-                        <Button
+                        <TextView
+                            android:textSize="@dimen/sp_twelve"
+                            android:paddingLeft="@dimen/dp_fifteen"
+                            android:paddingRight="@dimen/dp_fifteen"
+                            android:paddingTop="@dimen/dp_five"
+                            android:paddingBottom="@dimen/dp_five"
+                            android:background="@drawable/transaction_op_bg"
                             android:id="@+id/nick_preview_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -148,9 +174,11 @@
     <Button
         android:id="@+id/end_car_nextBtn"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:background="@color/label_bg_color"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_sixteen"
+        android:background="@drawable/btn_solid_s_bg"
         android:text="@string/btn_next_text" />
 </RelativeLayout>

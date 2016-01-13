@@ -2,67 +2,89 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include
-        android:id="@+id/route_plan_titleLayout"
-        layout="@layout/page_title_layout" />
+    android:orientation="vertical"
+    android:background="#f1f1f1">
 
 
+
+
+ <!--       &lt;!&ndash;android:layout_below="@+id/route_plan_info"&ndash;&gt;
+    android:layout_above="@+id/map_op_layout"
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/map_op_layout"
-        android:layout_below="@+id/route_plan_titleLayout">
+       >-->
 
         <com.baidu.mapapi.map.MapView
             android:id="@+id/route_plan_map"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/dp_fifteen"
-            android:layout_marginBottom="@dimen/dp_thirty"
+            android:layout_height="match_parent" />
+
+
+    <!--</RelativeLayout>-->
+    <TextView
+        android:layout_margin="@dimen/dp_ten"
+        android:id="@+id/route_plan_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/theme_color"
+        android:background="@mipmap/route_info_bg"/>
+    <LinearLayout
+        android:layout_above="@+id/map_op_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_marginBottom="@dimen/dp_ten"
+        android:layout_marginLeft="@dimen/dp_fifteen"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/route_plan_targetImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/route_plan_targetImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
-                android:layout_marginTop="@dimen/dp_ten"
-                android:id="@+id/route_plan_selfImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-        </LinearLayout>
-    </RelativeLayout>
+            android:src="@mipmap/route_target_img" />
+
+        <ImageView
+            android:id="@+id/route_plan_selfImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_ten"
+            android:src="@mipmap/route_self_img" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/map_op_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_fifty"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:background="#30ffffff"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_ten">
 
         <Button
             android:id="@+id/arrived_btn"
             android:layout_width="@dimen/dp_zero"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/btn_hollow_s_bg"
             android:gravity="center"
             android:text="@string/order_arrive"
+            android:textColor="@color/theme_color"
             android:textSize="@dimen/sp_sixteen" />
+
+        <View
+            android:layout_width="@dimen/dp_five"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/navigate_btn"
             android:layout_width="@dimen/dp_zero"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/btn_solid_s_bg"
             android:gravity="center"
             android:text="@string/order_do_navigation"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_sixteen" />
     </LinearLayout>
 </RelativeLayout>

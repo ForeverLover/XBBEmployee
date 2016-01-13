@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="default_page_indicator_selected_color">#00b285</color>
+    <color name="default_page_indicator_selected_color">#4f90d4</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
@@ -9,11 +9,17 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="dark_gray">#666666</color>
-    <color name="main_text">#333333</color>
+    <color name="main_text_color">#222222</color>
     <color name="light_gray">#999999</color>
 
-    <color name="bg_title">#db3839</color>
-    <color name="label_bg_color">#eaeaea</color>
+    <color name="bg_title">#4f90d4</color>
+    <color name="theme_color">#4f90d4</color>
 
     <color name="et_hint_color">#cccccc</color>
+    <color name="et_hint_color_two">#dddddd</color>
+    <color name="split_color">#f4f4f4</color>
+    <color name="label_bg">#f1f1f1</color>
+
+    <color name="color_wheelview_div">#F4F4F4</color>
+    <color name="color_wheelview_center">#ffffff</color>
 </resources>

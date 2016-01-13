@@ -42,7 +42,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         String currentTime=System.currentTimeMillis()+"";
         Log.v("Tag","currentTime:"+currentTime);
         map.put("timeline", currentTime);
-        requestAfterSigned(XRequestCallBack, Task.LOGIN, "login", map);
+
+        requestAfterSigned(XRequestCallBack, Task.LOGIN, "login", map,null);
     }
 
     public void getDIYProducts() {
@@ -73,7 +74,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         params.addBodyParameter("p", pageIndex + "");
         params.addBodyParameter("orderstate", type + "");*/
 
-        requestByGet(XRequestCallBack, Task.ORDER_LIST, "orderlist" + "/uid/" + userId + "/p/" + pageIndex + "/orderstate/" + type + "/sign/" + StringUtil.getMD5(StringUtil.getSignedParams(map))+ "/timeline/" + currentTime, null);
+        requestByGet(XRequestCallBack, Task.ORDER_LIST, "orderlist" + "/uid/" + userId + "/p/" + pageIndex + "/orderstate/" + type + "/sign/" + StringUtil.getMD5(StringUtil.getSignedParams(map))+ "/timeline/" + currentTime, null,null);
     }
 
     @Override
@@ -87,7 +88,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                 });
         map.put("orderid", orderId);
         map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.ORDER, "orderDetail", map);
+        requestAfterSigned(XRequestCallBack, Task.ORDER, "orderDetail", map,orderId);
     }
 
     @Override
@@ -103,7 +104,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("state", "1");
         map.put("uid", uid);
         map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.ACCEPT, "changeState", map);
+        requestAfterSigned(XRequestCallBack, Task.ACCEPT, "changeState", map,orderId);
     }
 
     @Override
@@ -119,7 +120,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("state", "2");
         map.put("uid", uid);
         map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.SET_OUT, "changeState", map);
+        requestAfterSigned(XRequestCallBack, Task.SET_OUT, "changeState", map,orderId);
     }
 
     @Override
@@ -135,7 +136,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("state", "3");
         map.put("uid", uid);
         map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.ARRIVE, "changeState", map);
+        requestAfterSigned(XRequestCallBack, Task.ARRIVE, "changeState", map,orderId);
     }
 
     @Override
@@ -206,7 +207,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                     }
                 }
             }
-        request(XRequestCallBack, Task.MISSION_COMPLETE, "uploadimg", params);
+        request(XRequestCallBack, Task.MISSION_COMPLETE, "uploadimg", params,null);
     }
 
     @Override
@@ -223,7 +224,97 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("lat", lat);
         map.put("lng", lng);
         map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.LOCATION_UPLOAD, "addpoint", map);
+        requestAfterSigned(XRequestCallBack, Task.LOCATION_UPLOAD, "addpoint", map,null);
+    }
+
+    @Override
+    public void changeAvatar(String uid, File file) {
+        RequestParams params = createRequestParams();
+        params.addBodyParameter("uid", uid);
+        params.addBodyParameter("file", file);
+        request(XRequestCallBack, Task.AVATAR_CHANGED, "updateHeadImg", params, null);
+    }
+
+    @Override
+    public void changeAge(String uid, String age) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("age", age);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.AGE_CHANGED, "updateUserInfo", map, null);
+    }
+
+    @Override
+    public void chageGender(String uid, String gender) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("sex", gender);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.GENDER_CHANGED, "updateUserInfo", map, null);
+
+    }
+
+    @Override
+    public void changeName(String uid, String name) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("emp_name", name);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.ALTER_NAME, "updateUserInfo", map, null);
+    }
+
+    @Override
+    public void changePwd(String uid, String oldpwd, String newpwd) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("oldpwd", StringUtil.getMD5(oldpwd));
+        map.put("newpwd", StringUtil.getMD5(newpwd));
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.ALTER_PWD, "updatePwd", map, null);
+    }
+
+    @Override
+    public void feedback(String uid, String feedback) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("content", feedback);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.FEEDBACK, "feedback", map, null);
     }
 
 }

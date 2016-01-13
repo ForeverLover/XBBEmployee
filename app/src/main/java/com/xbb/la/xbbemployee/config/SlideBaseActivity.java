@@ -127,7 +127,17 @@ public class SlideBaseActivity extends SlidingActivity implements View.OnClickLi
     }
 
     @Override
+    public void onSuccess(int taskId, String flag, Object... params) {
+
+    }
+
+    @Override
     public void onEnd(int taskId) {
+
+    }
+
+    @Override
+    public void onFailed(int taskId, int errorCode, String errorMsg) {
 
     }
 

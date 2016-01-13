@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/select_title_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp_fifteen"
+            android:textColor="#646464"
+            android:textSize="@dimen/sp_seventeen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/select_area_bg"
+            android:orientation="horizontal">
+
+            <com.xbb.la.xbbemployee.widget.WheelView.widget.WheelView
+                android:id="@+id/select_wheel1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.xbb.la.xbbemployee.widget.WheelView.widget.WheelView
+                android:id="@+id/select_wheel2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.xbb.la.xbbemployee.widget.WheelView.widget.WheelView
+                android:id="@+id/select_wheel3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_twenty">
+
+            <Button
+                android:id="@+id/select_cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_hollow_s_bg"
+
+                android:text="@string/dialog_cancel"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/sp_sixteen" />
+
+            <View
+                android:layout_width="@dimen/dp_ten"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/select_confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_solid_s_bg"
+                android:text="@string/dialog_ensure"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_sixteen" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

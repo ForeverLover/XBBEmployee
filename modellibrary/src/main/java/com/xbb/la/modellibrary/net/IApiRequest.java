@@ -2,6 +2,8 @@ package com.xbb.la.modellibrary.net;
 
 import com.xbb.la.modellibrary.bean.UploadTransaction;
 
+import java.io.File;
+
 /**
  * 项目:XBBEmployee
  * 作者：Templar
@@ -75,4 +77,47 @@ public interface IApiRequest {
      * @param lng
      */
     void uploadLocation(String userId,String orderId,String lat,String lng);
+
+    /**
+     * 修改头像
+     * @param uid
+     * @param file
+     */
+    void changeAvatar(String uid, File file);
+
+    /**
+     * 修改年龄
+     * @param uid
+     * @param age
+     */
+    void changeAge(String uid, String age);
+
+    /**
+     * 修改性别
+     * @param uid
+     * @param gender
+     */
+    void chageGender(String uid, String gender);
+
+    /**
+     * 修改姓名
+     * @param uid
+     * @param name
+     */
+    void changeName(String uid, String name);
+
+    /**
+     * 修改密码
+     * @param uid
+     * @param oldpwd
+     * @param newpwd
+     */
+    void changePwd(String uid, String oldpwd, String newpwd);
+
+    /**
+     * 反馈
+     * @param uid
+     * @param feedback
+     */
+    void feedback(String uid, String feedback);
 }

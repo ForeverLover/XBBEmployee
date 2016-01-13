@@ -10,8 +10,8 @@
         <com.xbb.la.xbbemployee.widget.RoundImageView
             android:id="@+id/employee_head_img"
             android:layout_gravity="center_horizontal"
-            android:layout_width="@dimen/dp_hundred_thirty"
-            android:layout_height="@dimen/dp_hundred_twenty"
+            android:layout_width="@dimen/dp_hundred"
+            android:layout_height="@dimen/dp_hundred"
             android:scaleType="center"
             android:layout_marginTop="@dimen/dp_eighty"
             android:src="@mipmap/login_head_default_img" />
@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/login_user_img"/>
                 <EditText
+                    android:textCursorDrawable="@null"
                     android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/dp_ten"
                     android:textColorHint="@color/et_hint_color"
@@ -58,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/login_pwd_img"/>
                 <EditText
+                    android:textCursorDrawable="@null"
                     android:textColor="@color/white"
                     android:textColorHint="@color/et_hint_color"
                     android:background="@null"

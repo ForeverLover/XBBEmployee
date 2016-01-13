@@ -73,6 +73,7 @@ public class BaseApplication extends Application {
         stopLocate();
     }
 
+
     private void initLocate() {
         mLocationClient = new LocationClient(this.getApplicationContext());
 

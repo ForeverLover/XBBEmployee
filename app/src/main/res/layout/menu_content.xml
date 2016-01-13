@@ -2,73 +2,147 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <com.xbb.la.xbbemployee.widget.RoundImageView
-        android:layout_centerHorizontal="true"
-        android:id="@+id/pc_head_img"
-        android:layout_width="@dimen/dp_hundred"
-        android:layout_height="@dimen/dp_hundred"
-        android:layout_marginTop="@dimen/dp_fifty"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/head_img"/>
+    android:orientation="vertical"
+    android:background="@mipmap/menu_bg">
     <LinearLayout
-        android:layout_marginTop="@dimen/dp_thirty"
-        android:layout_below="@+id/pc_head_img"
-        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_eighty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_marginTop="@dimen/dp_ten"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="点击登录"
-            android:textColor="@color/light_gray"
-            android:textSize="@dimen/sp_eighteen"/>
-        <TextView
-            android:layout_marginTop="@dimen/dp_ten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="个人中心"
-            android:textColor="@color/light_gray"
-            android:textSize="@dimen/sp_eighteen"/>
-        <TextView
-            android:layout_marginTop="@dimen/dp_ten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="消息"
-            android:textColor="@color/light_gray"
-            android:textSize="@dimen/sp_eighteen"/>
-        <TextView
-            android:layout_marginTop="@dimen/dp_ten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"
-            android:textColor="@color/light_gray"
-            android:textSize="@dimen/sp_eighteen"/>
+            android:orientation="vertical">
+            <com.xbb.la.xbbemployee.widget.RoundImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/menu_head_img"
+                android:layout_width="@dimen/dp_hundred"
+                android:layout_height="@dimen/dp_hundred"
+                android:layout_marginTop="@dimen/dp_fifty"
+                android:scaleType="center"
+                android:src="@mipmap/login_head_default_img"/>
+            <TextView
+                android:layout_marginTop="@dimen/dp_ten"
+                android:id="@+id/menu_nickname_tv"
+                android:textSize="@dimen/sp_sixteen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_text_color"/>
+            <TextView
+                android:layout_marginTop="@dimen/dp_five"
+                android:id="@+id/menu_tel_tv"
+                android:textSize="@dimen/sp_sixteen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_text_color"/>
+            <View
+                android:layout_marginTop="@dimen/dp_fifteen"
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/dp_sixty"
+                android:layout_height="@dimen/dp_one"
+                android:background="#dddddd"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_thirty"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/menu_mine_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/menu_mine_img"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_ten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_mine_text"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/sp_sixteen"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_msg_layout"
+                android:layout_marginTop="@dimen/dp_twenty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/menu_message_img"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_ten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_msg_text"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/sp_sixteen"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_other_layout"
+                android:layout_marginTop="@dimen/dp_twenty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/menu_other_img"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_ten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_other_text"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/sp_sixteen"/>
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
+        android:layout_marginLeft="@dimen/dp_eighty"
         android:layout_marginBottom="@dimen/dp_thirty"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-        <TextView
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/menu_logout_layout"
             android:layout_marginTop="@dimen/dp_ten"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退出"
-            android:textColor="@color/light_gray"
-            android:textSize="@dimen/sp_eighteen"/>
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/menu_logout_img"/>
+            <TextView
+                android:layout_marginLeft="@dimen/dp_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_logout_text"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/sp_sixteen"/>
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/menu_version_tv"
+            android:layout_marginLeft="@dimen/dp_twenty"
             android:layout_marginTop="@dimen/dp_ten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="v1.0"
-            android:textColor="@color/light_gray"
-            android:textSize="@dimen/sp_eighteen"/>
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/sp_sixteen"/>
     </LinearLayout>
+
 </RelativeLayout>

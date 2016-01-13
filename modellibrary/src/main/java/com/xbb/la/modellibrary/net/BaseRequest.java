@@ -20,19 +20,21 @@ public class BaseRequest {
      */
     public static final String URL_API = "http://captainoak.cn/Api/worker/";
 
+
     protected static void request(XRequestCallBack XRequestCallBack, int taskId, String doUrl) {
-        request(XRequestCallBack, taskId, doUrl, null);
+        request(XRequestCallBack, taskId, doUrl, null,null);
     }
 
     protected static void request(XRequestCallBack XRequestCallBack, int taskId, String doUrl,
-                                  RequestParams requestParams) {
-        XHttpRequest xHttpRequest = new XHttpRequest(taskId, XRequestCallBack, URL_API + doUrl);
+                                  RequestParams requestParams,String flag) {
+        XHttpRequest xHttpRequest = new XHttpRequest(taskId, XRequestCallBack, URL_API + doUrl,flag);
         xHttpRequest.requestPost(requestParams);
     }
 
+
     protected static void requestAfterSigned(XRequestCallBack XRequestCallBack, int taskId, String doUrl,
-                                             Map<String, String> map) {
-        XHttpRequest xHttpRequest = new XHttpRequest(taskId, XRequestCallBack, URL_API + doUrl);
+                                             Map<String, String> map,String flag) {
+        XHttpRequest xHttpRequest = new XHttpRequest(taskId, XRequestCallBack, URL_API + doUrl,flag);
         RequestParams params = new RequestParams();
         params.addBodyParameter("sign", StringUtil.getMD5(StringUtil.getSignedParams(map)));
         Log.v("Tag","sign:"+StringUtil.getSignedParams(map));
@@ -43,9 +45,9 @@ public class BaseRequest {
     }
 
     protected static void requestByGet(XRequestCallBack XRequestCallBack, int taskId, String doUrl,
-                                       RequestParams requestParams) {
+                                       RequestParams requestParams,String flag) {
         Log.v("Tag", "url:" + URL_API + doUrl);
-        XHttpRequest xHttpRequest = new XHttpRequest(taskId, XRequestCallBack, URL_API + doUrl);
+        XHttpRequest xHttpRequest = new XHttpRequest(taskId, XRequestCallBack, URL_API + doUrl,flag);
         xHttpRequest.requestGet(requestParams);
     }
 

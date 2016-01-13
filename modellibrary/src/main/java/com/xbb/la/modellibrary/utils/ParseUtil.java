@@ -3,6 +3,7 @@ package com.xbb.la.modellibrary.utils;
 import android.util.Log;
 
 import com.xbb.la.modellibrary.bean.DIYProduct;
+import com.xbb.la.modellibrary.bean.Employee;
 import com.xbb.la.modellibrary.bean.OrderInfo;
 import com.xbb.la.modellibrary.bean.Reminder;
 
@@ -270,5 +271,59 @@ public class ParseUtil {
             e.printStackTrace();
         }
         return orderInfo;
+    }
+
+    public Employee parseEmployeeInfo(String json){
+        if (StringUtil.isEmpty(json)) return null;
+        Employee employee=null;
+        try {
+            JSONObject jsonObject=new JSONObject(json);
+            if (jsonObject!=null){
+                employee=new Employee();
+                if (jsonObject.has("id")&&!jsonObject.isNull("id")&&!StringUtil.isEmpty(jsonObject.getString("id"))){
+                    employee.setUid(jsonObject.getString("id"));
+                }
+                if (jsonObject.has("identiy_id")&&!jsonObject.isNull("identiy_id")&&!StringUtil.isEmpty(jsonObject.getString("identiy_id"))){
+                    employee.setEmpNo(jsonObject.getString("identiy_id"));
+                }
+                if (jsonObject.has("emp_name")&&!jsonObject.isNull("emp_name")&&!StringUtil.isEmpty(jsonObject.getString("emp_name"))){
+                    employee.setNickname(jsonObject.getString("emp_name"));
+                }
+                if (jsonObject.has("emp_img")&&!jsonObject.isNull("emp_img")&&!StringUtil.isEmpty(jsonObject.getString("emp_img"))){
+                    employee.setAvatar(jsonObject.getString("emp_img"));
+                }
+                if (jsonObject.has("age")&&!jsonObject.isNull("age")&&!StringUtil.isEmpty(jsonObject.getString("age"))){
+                    employee.setAge(jsonObject.getString("age"));
+                }
+                if (jsonObject.has("sex")&&!jsonObject.isNull("sex")&&!StringUtil.isEmpty(jsonObject.getString("sex"))){
+                    employee.setGender(jsonObject.getString("sex"));
+                }
+                if (jsonObject.has("emp_iphone")&&!jsonObject.isNull("emp_iphone")&&!StringUtil.isEmpty(jsonObject.getString("emp_iphone"))){
+                    employee.setTel(jsonObject.getString("emp_iphone"));
+                }
+                if (jsonObject.has("emp_wx")&&!jsonObject.isNull("emp_wx")&&!StringUtil.isEmpty(jsonObject.getString("emp_wx"))){
+                    employee.setWx(jsonObject.getString("emp_wx"));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return employee;
+    }
+
+    public String parseAvatarPath(String json){
+        if (StringUtil.isEmpty(json)) return null;
+        String avatarPath="";
+        try {
+            JSONObject jsonObject=new JSONObject(json);
+            if (jsonObject!=null){
+                if (jsonObject.has("emp_img")&&!jsonObject.isNull("emp_img")&&!StringUtil.isEmpty(jsonObject.getString("emp_img"))){
+                    avatarPath=jsonObject.getString("emp_img");
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return avatarPath;
     }
 }

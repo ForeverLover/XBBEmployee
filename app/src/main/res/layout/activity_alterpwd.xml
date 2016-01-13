@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/label_bg"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/old_pwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_fourty_eight"
+        android:layout_marginTop="@dimen/dp_ten"
+        android:background="@color/white"
+        android:hint="@string/alter_oldpwd_hint"
+        android:maxLength="12"
+        android:paddingLeft="@dimen/dp_twenty"
+        android:inputType="textPassword"
+        android:paddingRight="@dimen/dp_twenty"
+        android:textColor="@color/main_text_color"
+        android:textColorHint="@color/et_hint_color_two"
+        android:textSize="@dimen/sp_sixteen" />
+
+    <EditText
+        android:id="@+id/new_pwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_fourty_eight"
+        android:layout_marginTop="@dimen/dp_ten"
+        android:background="@color/white"
+        android:hint="@string/alter_newpwd_hint"
+        android:inputType="textPassword"
+        android:maxLength="12"
+        android:paddingLeft="@dimen/dp_twenty"
+        android:paddingRight="@dimen/dp_twenty"
+        android:textColor="@color/main_text_color"
+        android:textColorHint="@color/et_hint_color_two"
+        android:textSize="@dimen/sp_sixteen" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_one" />
+
+    <EditText
+        android:id="@+id/conf_pwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_fourty_eight"
+        android:background="@color/white"
+        android:hint="@string/alter_confpwd_hint"
+        android:maxLength="12"
+        android:inputType="textPassword"
+        android:paddingLeft="@dimen/dp_twenty"
+        android:paddingRight="@dimen/dp_twenty"
+        android:textColor="@color/main_text_color"
+        android:textColorHint="@color/et_hint_color_two"
+        android:textSize="@dimen/sp_sixteen" />
+
+    <Button
+        android:id="@+id/alterpwd_ensure_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_thirty"
+        android:layout_marginRight="@dimen/dp_thirty"
+        android:layout_marginTop="@dimen/dp_sixty"
+        android:background="@drawable/btn_solid_s_bg"
+        android:text="@string/dialog_ensure"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_sixteen" />
+
+</LinearLayout>

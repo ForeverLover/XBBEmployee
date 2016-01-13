@@ -7,7 +7,10 @@ import com.xbb.la.modellibrary.bean.Employee;
 import com.xbb.la.modellibrary.bean.LocationBean;
 import com.xbb.la.modellibrary.bean.LocationUploadOrder;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
+
+import java.util.Map;
 
 /**
  * 项目:XBBEmployee
@@ -42,9 +45,16 @@ public class SharePreferenceUtil {
         SharedPreferences sp = context.getSharedPreferences(Constant.SP.UserInfo,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("u_id", employee.getId());
-        editor.putString("name", employee.getName());
-        editor.putString("phone", employee.getPhone());
+        editor.putString("u_id", employee.getUid());
+        editor.putString("name", employee.getNickname());
+        editor.putString("age", employee.getAge());
+        editor.putString("gender", employee.getGender());
+        editor.putString("empno", employee.getEmpNo());
+        editor.putString("tel", employee.getTel());
+        editor.putString("wx", employee.getWx());
+        editor.putString("pwd", employee.getPwd());
+        editor.putString("avatar", employee.getAvatar());
+        editor.putBoolean("islogin", employee.isLogin());
         editor.commit();
     }
 
@@ -58,9 +68,16 @@ public class SharePreferenceUtil {
         SharedPreferences sp = context.getSharedPreferences(Constant.SP.UserInfo,
                 Context.MODE_PRIVATE);
         Employee employee = new Employee();
-        employee.setId(sp.getString("u_id", "-1"));
-        employee.setName(sp.getString("name", ""));
-        employee.setPhone(sp.getString("phone", ""));
+        employee.setUid(sp.getString("u_id", "-1"));
+        employee.setAvatar(sp.getString("avatar", "-1"));
+        employee.setNickname(sp.getString("name", ""));
+        employee.setTel(sp.getString("tel", ""));
+        employee.setAge(sp.getString("age", ""));
+        employee.setGender(sp.getString("gender", ""));
+        employee.setEmpNo(sp.getString("empno", ""));
+        employee.setWx(sp.getString("wx", ""));
+        employee.setPwd(sp.getString("pwd", ""));
+        employee.setLogin(sp.getBoolean("islogin", false));
         return employee;
 
     }
@@ -174,4 +191,5 @@ public class SharePreferenceUtil {
         }
         return null;
     }
+
 }

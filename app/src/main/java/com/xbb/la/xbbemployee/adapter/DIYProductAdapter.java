@@ -65,14 +65,14 @@ public class DIYProductAdapter extends BaseAdapter {
         DIYProduct diyProduct = diyProductList.get(position);
         if (diyProduct != null) {
             if (diyProduct.isSelected()) {
-                convertView.setBackgroundResource(R.drawable.diy_selected_bg);
+                convertView.setBackgroundResource(R.drawable.btn_solid_s_bg);
                 holder.diy_grid_name.setTextColor(activity.getResources().getColor(R.color.white));
             } else if (hasChecked) {
-                convertView.setBackgroundResource(R.drawable.diy_unselect_bg);
+                convertView.setBackgroundResource(R.drawable.transaction_op_bg);
                 holder.diy_grid_name.setTextColor(Color.parseColor("#b3b3b3"));
             } else {
-                convertView.setBackgroundResource(R.drawable.diy_unselect_bg);
-                holder.diy_grid_name.setTextColor(activity.getResources().getColor(R.color.main_text));
+                convertView.setBackgroundResource(R.drawable.transaction_op_bg);
+                holder.diy_grid_name.setTextColor(activity.getResources().getColor(R.color.main_text_color));
             }
             holder.diy_grid_name.setText(diyProduct.getP_name());
         }

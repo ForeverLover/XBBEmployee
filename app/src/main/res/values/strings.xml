@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">XBBEmployee</string>
+    <string name="app_name">洗白白</string>
     <string name="action_settings">Settings</string>
 
     <string name="btn_next_text">下一步</string>
+    <string name="btn_back">返回</string>
     <string name="exit_back">再点一次退出程序</string>
 
     <string name="no_more_data">暂无更多数据</string>
@@ -46,7 +47,9 @@
     <string name="end_car_damage_label">洗车后划痕照</string>
 
     <!--选择图片-->
+    <string name="take_photo_cancel">取消</string>
     <string name="take_photo_label">拍照</string>
+    <string name="pic_photo_label_o">从手机相册选择</string>
     <string name="pic_photo_label">图片</string>
     <string name="no_sdcard">存储卡不可用</string>
     <string name="pic_error">所选图片文件格式有误</string>
@@ -63,6 +66,7 @@
     <string name="recommand_addPic_lable">添加照片</string>
     <string name="recommand_num_lable">1~3张</string>
     <string name="recommand_diy_null">请添加建议的diy套餐</string>
+    <string name="recommand_diy_tip">diy名称</string>
 
     <string name="dialog_title_tip">提示</string>
     <string name="dialog_content_tip">你将放弃已编辑的内容，是否确定？</string>
@@ -73,6 +77,7 @@
     <string name="recommand_submit_label">提交</string>
     <string name="recommand_layout_label">建议图</string>
     <string name="recommand_describe_label">说明图</string>
+    <string name="recommand_content">建议内容：</string>
 
     <!--温馨提示-->
     <string name="reminder_selection">请选择</string>
@@ -81,12 +86,13 @@
     <string name="reminder_ensure_btn">确 定</string>
 
     <!--订单列表-->
+    <string name="order_orderNo">订单编号：</string>
     <string name="order_serviceTime">服务时间：</string>
     <string name="order_car_location">车辆位置：</string>
     <string name="order_car_driver">车主姓名：</string>
     <string name="order_car_info">车辆信息：</string>
-    <string name="order_car_type">车\t\t\t型：</string>
-    <string name="order_car_plateNo">车\t\t\t牌：</string>
+    <string name="order_car_type">车&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;型：</string>
+    <string name="order_car_plateNo">车&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;牌：</string>
     <string name="order_accept">接受派单</string>
     <string name="order_setOut">出发</string>
     <string name="order_mission_continue">继续作业</string>
@@ -100,7 +106,7 @@
     <!--订单详情-->
     <string name="order_info_title">订单详情</string>
     <string name="orderinfo_order_label">订单信息</string>
-    <string name="orderinfo_order_no">订单编号：</string>
+    <string name="orderinfo_order_no">订单编号:</string>
     <string name="orderinfo_order_time">订单时间：</string>
     <string name="orderinfo_order_content">订单内容：</string>
     <string name="orderinfo_order_total">订单总价：</string>
@@ -110,11 +116,11 @@
     <string name="orderinfo_order_state">订单状态：</string>
     <string name="orderinfo_order_finishTime">完成时间：</string>
     <string name="orderinfo_customer_label">顾客信息</string>
-    <string name="orderinfo_customer_driver">车主名称:</string>
-    <string name="orderinfo_customer_tel">客户电话:</string>
-    <string name="orderinfo_customer_carinfo">车辆信息:</string>
-    <string name="orderinfo_customer_cartype">类\t\t\t型:</string>
-    <string name="orderinfo_customer_plateNo">车\t\t\t牌:</string>
+    <string name="orderinfo_customer_driver">车主名称：</string>
+    <string name="orderinfo_customer_tel">客户电话：</string>
+    <string name="orderinfo_customer_carinfo">车辆信息：</string>
+    <string name="orderinfo_customer_cartype">类&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;型：</string>
+    <string name="orderinfo_customer_plateNo">车&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;牌：</string>
     <string name="orderinfo_customer_carlocation">车辆位置：</string>
     <string name="orderinfo_customer_loc_audio">地址录音：</string>
     <string name="order_tel_error">顾客电话信息有误</string>
@@ -123,4 +129,76 @@
     <string name="order_arrive">到达</string>
 
     <string name="order_submit_info">本地缓存数据异常</string>
+
+    <!--菜单-->
+    <string name="menu_mine_text">我的</string>
+    <string name="menu_msg_text">消息</string>
+    <string name="menu_other_text">其他</string>
+    <string name="menu_logout_text">退出</string>
+
+    <string name="navigate_end">您已达到目的地附近，导航结束</string>
+
+    <!--提交任务-->
+    <string name="transaction_submit_tip">确定上传之前的所有操作?\n请在有网的环节下提交</string>
+    <string name="dialog_ensure">确认</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="transaction_uploading">当前数据上传中，请耐心等待</string>
+
+    <!--个人中心-->
+    <string name="pc_info_label">基本信息</string>
+    <string name="pc_avatar_label">头像</string>
+    <string name="pc_name_label">姓名</string>
+    <string name="pc_gender_label">性别</string>
+    <string name="pc_age_label">年龄</string>
+    <string name="pc_no_label">员工编号</string>
+    <string name="pc_link_label">联系方式</string>
+    <string name="pc_tel_label">手机</string>
+    <string name="pc_wx_label">微信</string>
+    <string name="pc_safe_label">安全</string>
+    <string name="pc_alterpwd_label">修改密码</string>
+    <string name="pc_alteravatar_succeed">头像修改成功</string>
+    <string name="pc_alteravatar_failed">头像保存失败</string>
+    <string name="pc_altername_succeed">姓名修改成功</string>
+    <string name="pc_alterage_succeed">年龄修改成功</string>
+    <string name="pc_altersex_succeed">性别修改成功</string>
+    <string name="pc_alterpwd_succeed">密码修改成功</string>
+
+    <string-array name="gender">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+    <string name="ed_pc_age_title">请选择年龄</string>
+    <string name="ed_pc_gender_title">请选择性别</string>
+
+    <!--修改密码-->
+    <string name="alter_oldpwd_hint">请输入原密码</string>
+    <string name="alter_newpwd_hint">请确认新密码</string>
+    <string name="alter_confpwd_hint">请输入原密码</string>
+    <string name="alter_oldpwd_error">原密码应为6~12位</string>
+    <string name="alter_newpwd_error">新密码应为6~12位</string>
+    <string name="alter_confpwd_error">确认密码应为6~12位</string>
+    <string name="alter_pwd_error">两次新密码输入不一致</string>
+
+    <string name="alter_name_title">修改姓名</string>
+    <string name="alter_name_hint">请输入姓名</string>
+    <string name="alter_save_label">保存</string>
+    <string name="alter_no_change">您未做任何修改</string>
+    <string name="alter_tip_message">确认放弃本次修改吗？</string>
+
+    <!--其他-->
+    <string name="other_link">联系我们</string>
+    <string name="other_feedback">意见反馈</string>
+    <string name="feedback_submit">提交</string>
+    <string name="feedback_et_hint">请在此输入您的宝贵意见，谢谢~</string>
+    <string name="feedback_null">请在此输入您的宝贵意见，谢谢~</string>
+    <string name="feedback_error">请在此输入您的宝贵意见，谢谢~</string>
+    <string name="feedback_succeed">反馈成功</string>
+    <string name="call_info_label">呼叫</string>
+
+    <!--消息-->
+    <string name="msg_details_title">消息详情</string>
+
+    <string name="dialog_logout_tip">是否确认退出登录？</string>
+
 </resources>

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/page_title_layout" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,12 +19,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/reminder_selection"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
 
             <com.xbb.la.xbbemployee.widget.CustomListView
@@ -40,12 +39,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_fourty"
-                android:background="@color/label_bg_color"
+                android:background="@color/label_bg"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp_twenty"
                 android:paddingRight="@dimen/dp_twenty"
                 android:text="@string/reminder_other"
-                android:textColor="@color/main_text"
+                android:textColor="@color/main_text_color"
                 android:textSize="@dimen/sp_sixteen" />
             <LinearLayout
                 android:layout_width="match_parent"

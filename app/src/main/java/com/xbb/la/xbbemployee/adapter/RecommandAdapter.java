@@ -66,10 +66,6 @@ public class RecommandAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.recommand_list_item, null);
-            holder.recommand_describe_content = (TextView) convertView.findViewById(R.id.recommand_describe_content);
-            holder.recommand_describe_content_one = (TextView) convertView.findViewById(R.id.recommand_describe_content_one);
-            holder.recommand_describe_content_two = (TextView) convertView.findViewById(R.id.recommand_describe_content_two);
-            holder.recommand_describe_content_three = (TextView) convertView.findViewById(R.id.recommand_describe_content_three);
             holder.recommand_describe_img = (ImageView) convertView.findViewById(R.id.recommand_describe_img);
             holder.recommand_describe_img_one = (ImageView) convertView.findViewById(R.id.recommand_describe_img_one);
             holder.recommand_describe_img_two = (ImageView) convertView.findViewById(R.id.recommand_describe_img_two);
@@ -77,6 +73,7 @@ public class RecommandAdapter extends BaseAdapter {
             holder.recommand_describe_layout = (LinearLayout) convertView.findViewById(R.id.recommand_describe_layout);
             holder.recommand_remark_layout = (LinearLayout) convertView.findViewById(R.id.recommand_remark_layout);
             holder.recommand_remark_content = (TextView) convertView.findViewById(R.id.recommand_remark_content);
+            holder.recommand_diy_name = (TextView) convertView.findViewById(R.id.recommand_diy_name);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -85,8 +82,8 @@ public class RecommandAdapter extends BaseAdapter {
         if (recommand != null) {
             DIYProduct diyProduct = recommand.getSelectedDIYProduct();
             if (diyProduct != null) {
+                holder.recommand_diy_name.setText(diyProduct.getP_name());
                 MImageLoader.getInstance(context).displayImageM(recommand.getSelectedDIYProduct().getP_ximg(), holder.recommand_describe_img);
-                holder.recommand_describe_content.setText(diyProduct.getP_name());
                 Log.v("Tag", "diy-img:(width,height)---->(" + holder.recommand_describe_img.getWidth() + "," + holder.recommand_describe_img.getHeight());
             }
             List<String> select = recommand.getIntroAlbum();
@@ -98,14 +95,11 @@ public class RecommandAdapter extends BaseAdapter {
                     switch (i) {
                         case 0:
                             holder.recommand_describe_img_one.setImageBitmap(bitmap);
-                            holder.recommand_describe_content_one.setText("1");
                             break;
                         case 1:
-                            holder.recommand_describe_content_two.setText("2");
                             holder.recommand_describe_img_two.setImageBitmap(bitmap);
                             break;
                         case 2:
-                            holder.recommand_describe_content_three.setText("3");
                             holder.recommand_describe_img_three.setImageBitmap(bitmap);
                             break;
                     }
@@ -130,15 +124,12 @@ public class RecommandAdapter extends BaseAdapter {
         private LinearLayout recommand_describe_layout;
         private LinearLayout recommand_remark_layout;
 
-        private TextView recommand_describe_content_three;
-        private TextView recommand_describe_content_two;
-        private TextView recommand_describe_content_one;
         private ImageView recommand_describe_img_three;
         private ImageView recommand_describe_img_two;
         private ImageView recommand_describe_img_one;
 
         private ImageView recommand_describe_img;
-        private TextView recommand_describe_content;
         private TextView recommand_remark_content;
+        private TextView recommand_diy_name;
     }
 }

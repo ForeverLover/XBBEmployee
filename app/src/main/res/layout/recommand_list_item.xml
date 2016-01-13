@@ -2,14 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+    <LinearLayout
+        android:paddingRight="@dimen/dp_twenty"
+        android:paddingTop="@dimen/dp_ten"
+        android:paddingBottom="@dimen/dp_ten"
+        android:paddingLeft="@dimen/dp_twenty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_sixteen"
+            android:textColor="@color/main_text_color"
+            android:text="@string/recommand_content"/>
+        <TextView
+            android:id="@+id/recommand_diy_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_sixteen"
+            android:textColor="@color/main_text_color"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingRight="@dimen/dp_twenty"
-        android:paddingTop="@dimen/dp_twenty"
+        android:paddingTop="@dimen/dp_ten"
         android:paddingBottom="@dimen/dp_ten"
         android:paddingLeft="@dimen/dp_twenty">
 
@@ -19,11 +41,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/recommand_layout_label"
-                android:textSize="@dimen/sp_sixteen" />
 
             <ImageView
                 android:layout_marginLeft="@dimen/dp_two"
@@ -36,12 +53,14 @@
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
+                android:textColor="@color/main_text_color"
                 android:id="@+id/recommand_describe_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_five"
                 android:singleLine="true"
-                android:textSize="@dimen/sp_sixteen" />
+                android:text="@string/recommand_layout_label"
+                android:textSize="@dimen/sp_forteen" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,20 +73,15 @@
             <View
                 android:layout_width="@dimen/dp_one"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/dp_ten"
-                android:background="@color/dark_gray" />
+                android:layout_marginLeft="@dimen/dp_ten"
+                android:layout_marginRight="@dimen/dp_ten"
+                android:background="@color/split_color" />
 
             <LinearLayout
                 android:layout_width="@dimen/dp_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/recommand_describe_label"
-                    android:textSize="@dimen/sp_sixteen" />
 
                 <ImageView
                     android:id="@+id/recommand_describe_img_one"
@@ -77,12 +91,13 @@
                     android:scaleType="centerCrop" />
 
                 <TextView
+                    android:textColor="@color/main_text_color"
                     android:id="@+id/recommand_describe_content_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_five"
-                    android:gravity="center_horizontal"
-                    android:textSize="@dimen/sp_sixteen" />
+                    android:text="@string/recommand_describe_label"
+                    android:textSize="@dimen/sp_forteen" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,12 +107,6 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_sixteen"
-                    android:visibility="invisible" />
-
                 <ImageView
                     android:id="@+id/recommand_describe_img_two"
                     android:layout_width="match_parent"
@@ -106,6 +115,7 @@
                     android:scaleType="centerCrop" />
 
                 <TextView
+                    android:textColor="@color/main_text_color"
                     android:id="@+id/recommand_describe_content_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,12 +131,6 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_sixteen"
-                    android:visibility="invisible" />
-
                 <ImageView
                     android:id="@+id/recommand_describe_img_three"
                     android:layout_width="match_parent"
@@ -135,6 +139,7 @@
                     android:scaleType="centerCrop" />
 
                 <TextView
+                    android:textColor="@color/main_text_color"
                     android:id="@+id/recommand_describe_content_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,28 +157,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
-        android:paddingLeft="@dimen/dp_twenty"
-        android:paddingRight="@dimen/dp_twenty">
+       >
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_one"
-            android:background="@color/dark_gray" />
+            android:background="@color/split_color"
+            android:visibility="gone"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_ten"
+            android:textColor="@color/main_text_color"
+            android:paddingLeft="@dimen/dp_twenty"
+            android:paddingRight="@dimen/dp_twenty"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_thirty_eight"
             android:text="@string/recommand_remark_lable"
-            android:textSize="@dimen/sp_seventeen" />
+            android:gravity="center_vertical"
+            android:textSize="@dimen/sp_sixteen" />
 
         <TextView
+            android:textColor="@color/main_text_color"
+            android:layout_marginLeft="@dimen/dp_twenty"
+            android:layout_marginRight="@dimen/dp_twenty"
             android:id="@+id/recommand_remark_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_five"
             android:text="@string/recommand_remark_lable"
-            android:textSize="@dimen/sp_sixteen" />
+            android:textSize="@dimen/sp_forteen" />
     </LinearLayout>
 </LinearLayout>

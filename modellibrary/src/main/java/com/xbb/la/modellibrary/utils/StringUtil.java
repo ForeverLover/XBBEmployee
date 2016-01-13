@@ -1,6 +1,10 @@
 package com.xbb.la.modellibrary.utils;
 
+import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 
 import com.xbb.la.modellibrary.config.Constant;
@@ -131,7 +135,7 @@ public class StringUtil {
         byte[] hash;
         try {
             hash = MessageDigest.getInstance("MD5").digest(
-                    val.getBytes(/*"utf-8"*/"gb2312"));
+                    val.getBytes("utf-8"/*"gb2312"*/));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Huh, MD5 should be supported?", e);
         } catch (UnsupportedEncodingException e) {
@@ -377,5 +381,28 @@ public class StringUtil {
         for (int i=0;i<source.size();i++)
             if (!source.get(i).equals(target.get(i))) return false;
         return true;
+    }
+
+    public static CharSequence getDiffStr(String source, int splitIndex, Context context, int firstSize, int secondSize) {
+        if (isEmpty(source))
+            return "";
+        Spannable wordtoSpan = new SpannableString(source);
+
+        wordtoSpan.setSpan(new AbsoluteSizeSpan(DensityUtil.sp2px(context, firstSize), false), 0, splitIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wordtoSpan.setSpan(new AbsoluteSizeSpan(DensityUtil.sp2px(context, secondSize), false), splitIndex, source.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return wordtoSpan;
+    }
+
+    /**
+     * 获取年龄数组
+     *
+     * @return
+     */
+    public static String[] getAgeArray() {
+        String[] ageArray = new String[101];
+        for (int i = 0; i < 101; i++) {
+            ageArray[i] = i + "";
+        }
+        return ageArray;
     }
 }

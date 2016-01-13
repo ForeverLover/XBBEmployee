@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/label_bg"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/nickname_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_fourty_eight"
+        android:layout_marginTop="@dimen/dp_ten"
+        android:background="@color/white"
+        android:hint="@string/alter_name_hint"
+        android:maxLength="12"
+        android:paddingLeft="@dimen/dp_twenty"
+        android:paddingRight="@dimen/dp_twenty"
+        android:textColor="@color/main_text_color"
+        android:textColorHint="@color/et_hint_color_two"
+        android:textCursorDrawable="@mipmap/theme_drawable"
+        android:textSize="@dimen/sp_sixteen" />
+    <Button
+        android:id="@+id/nickname_ensure_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_thirty"
+        android:layout_marginRight="@dimen/dp_thirty"
+        android:layout_marginTop="@dimen/dp_sixty"
+        android:background="@drawable/btn_solid_s_bg"
+        android:text="@string/alter_save_label"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_sixteen" />
+
+</LinearLayout>

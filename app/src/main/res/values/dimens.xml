@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="page_indicator_height">3dp</dimen>
+    <dimen name="page_label_height">38dp</dimen>
 
     <!--dp-->
     <dimen name="dp_zero">0dp</dimen>
@@ -18,11 +20,16 @@
     <dimen name="dp_twenty">20dp</dimen>
     <dimen name="dp_twenty_five">25dp</dimen>
     <dimen name="dp_thirty">30dp</dimen>
+    <dimen name="dp_thirty_eight">38dp</dimen>
     <dimen name="dp_fourty">40dp</dimen>
+    <dimen name="dp_fourty_three">43dp</dimen>
+    <dimen name="dp_fourty_eight">48dp</dimen>
     <dimen name="dp_fifty">50dp</dimen>
+    <dimen name="dp_fifty_six">56dp</dimen>
     <dimen name="dp_sixty">60dp</dimen>
     <dimen name="dp_eighty">80dp</dimen>
     <dimen name="dp_ninety">90dp</dimen>
+    <dimen name="dp_ninety_six">96dp</dimen>
     <dimen name="dp_hundred">100dp</dimen>
     <dimen name="dp_hundred_twenty">120dp</dimen>
     <dimen name="dp_hundred_thirty">130dp</dimen>
@@ -30,7 +37,7 @@
     <!--sp-->
     <dimen name="sp_ten">10sp</dimen>
     <dimen name="sp_twelve">12sp</dimen>
-    <dimen name="sp_fourteen">14sp</dimen>
+    <dimen name="sp_forteen">14sp</dimen>
     <dimen name="sp_fifteen">15sp</dimen>
     <dimen name="sp_sixteen">16sp</dimen>
     <dimen name="sp_seventeen">17sp</dimen>
@@ -46,5 +53,5 @@
     <dimen name="header_footer_top_bottom_padding">12dp</dimen>
 
     <dimen name="shadow_width">15dp</dimen>
-    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="slidingmenu_offset">70dp</dimen>
 </resources>

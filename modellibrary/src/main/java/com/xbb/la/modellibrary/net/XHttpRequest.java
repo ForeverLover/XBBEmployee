@@ -27,12 +27,13 @@ public class XHttpRequest extends RequestCallBack<String> {
     private int taskId;
     protected XRequestCallBack XRequestCallBack;
     private String url;// 请求地址
-
-    public XHttpRequest(int taskId, XRequestCallBack XRequestCallBack, String url) {
+private String flag;
+    public XHttpRequest(int taskId, XRequestCallBack XRequestCallBack, String url,String flag) {
         super();
         this.taskId = taskId;
         this.XRequestCallBack = XRequestCallBack;
         this.url = url;
+        this.flag=flag;
     }
 
     public void requestPost(RequestParams requestParams) {
@@ -53,7 +54,7 @@ public class XHttpRequest extends RequestCallBack<String> {
 
     @Override
     public void onStart() {
-        Log.i("Tag", "onStrat");
+        Log.i(TAG, "onStrat");
 
         if (XRequestCallBack != null && XRequestCallBack.isCallBack())
             XRequestCallBack.onPrepare(taskId);
@@ -61,14 +62,14 @@ public class XHttpRequest extends RequestCallBack<String> {
 
     @Override
     public void onLoading(long total, long current, boolean isUploading) {
-        Log.i("Tag", "onLoading");
+        Log.i(TAG, "onLoading");
         if (XRequestCallBack != null)
             XRequestCallBack.onLoading(taskId, total, current);
     }
 
     @Override
     public void onSuccess(ResponseInfo<String> responseInfo) {
-        Log.i("Tag", "onSuccess: " + responseInfo.result.toString());
+        Log.i(TAG, "onSuccess: " + responseInfo.result.toString());
         // 非活动状态,不对数据进行处理..
         if (XRequestCallBack == null || !XRequestCallBack.isCallBack()) {
             return;
@@ -77,10 +78,13 @@ public class XHttpRequest extends RequestCallBack<String> {
         if (!StringUtil.isEmpty(responseInfo.result.toString())) {
             try {
                 ResponseJson responseJson = JSON.parseObject(responseInfo.result.toString(), ResponseJson.class);
-                Log.i("Tag", "onSuccess:code " + responseJson.getCode());
+                Log.i(TAG, "onSuccess:code " + responseJson.getCode());
                 if (responseJson.getCode() == 1) {
-                    Log.i("Tag", "onSuccess:success ");
-                    XRequestCallBack.onSuccess(taskId, responseJson);
+                    Log.i(TAG, "onSuccess:success ");
+                    if (StringUtil.isEmpty(flag) || "null".equals(flag))
+                        XRequestCallBack.onSuccess(taskId, responseJson);
+                    else
+                        XRequestCallBack.onSuccess(taskId, flag, responseJson);
                 } else {
                     XRequestCallBack.onFailed(taskId,
                             responseJson.getMsg());
@@ -96,7 +100,7 @@ public class XHttpRequest extends RequestCallBack<String> {
 
     @Override
     public void onFailure(HttpException e, String msg) {
-        Log.i("Tag", "onFailure: " + msg);
+        Log.i(TAG, "onFailure: " + msg);
         if (TextUtils.isEmpty(msg)) {
             msg = REMIND_DEFAULTFAILINFO;
         }

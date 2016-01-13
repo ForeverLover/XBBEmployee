@@ -3,6 +3,7 @@ package com.xbb.la.xbbemployee.adapter;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class OrderAdapter extends BaseAdapter {
     private Context context;
 
     private Handler mHandler;
+
 
     /**
      * 订单列表类型
@@ -76,6 +78,7 @@ public class OrderAdapter extends BaseAdapter {
             holder.order_car_type_tv = (TextView) convertView.findViewById(R.id.order_car_type_tv);
             holder.order_plate_no_tv = (TextView) convertView.findViewById(R.id.order_plate_no_tv);
             holder.order_op_tv = (TextView) convertView.findViewById(R.id.order_op_tv);
+            holder.order_no_tv = (TextView) convertView.findViewById(R.id.order_no_tv);
             holder.order_op_layout = (RelativeLayout) convertView.findViewById(R.id.order_op_layout);
             convertView.setTag(holder);
         } else {
@@ -90,6 +93,7 @@ public class OrderAdapter extends BaseAdapter {
             holder.order_car_type_tv.setText(orderInfo.getCarType());
             holder.order_car_location_tv.setText(orderInfo.getCarLocation());
             holder.order_plate_no_tv.setText(orderInfo.getPlateNo());
+            holder.order_no_tv.setText(orderInfo.getOrderNo());
             String str = "";
             switch (type) {
                 case 0:
@@ -161,5 +165,6 @@ public class OrderAdapter extends BaseAdapter {
         private TextView order_plate_no_tv;
         private TextView order_op_tv;
         private RelativeLayout order_op_layout;
+        private TextView order_no_tv;
     }
 }

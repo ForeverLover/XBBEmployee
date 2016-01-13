@@ -1,8 +1,13 @@
 package com.xbb.la.modellibrary.config;
 
 import android.os.Environment;
+import android.util.SparseArray;
+
+import com.xbb.la.modellibrary.bean.OrderInfo;
 
 import java.io.File;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 项目:XBBEmployee
@@ -16,7 +21,7 @@ public class Constant {
     public interface IntentAction {
         public static String START_LOCATION_UPLOAD = "com.xbb.la.employee.start_location_upload";
         public static String STOP_LOCATION_UPLOAD = "com.xbb.la.employee.stop_location_upload";
-        public static String STOP_LOCATION_UPDATE= "com.xbb.la.employee.stop_location_update";
+        public static String STOP_LOCATION_UPDATE = "com.xbb.la.employee.stop_location_update";
         public static String TRANSACTION_TO_FINISH = "com.xbb.la.employee.transaction_to_finish";
         public static String LOCATION_DATA = "com.xbb.la.employee.update_user_location";
         /**
@@ -26,22 +31,26 @@ public class Constant {
 
         public static final String ROUTE_PLAN_NODE = "com.xbb.la.employee.routePlanNode";
 
-        public static final String CHANGE_STATE="com.xbb.la.employee.change_state";
+        public static final String CHANGE_STATE = "com.xbb.la.employee.change_state";
 
-        public static final String MISSION_COMPLETE="com.xbb.la.employee.mission_complete";
+        public static final String MISSION_COMPLETE = "com.xbb.la.employee.mission_complete";
+
+        public static final String AVATAR_CHANGED = "com.xbb.la.employee.avatar_changed";
+
+        public static final String NAME_CHANGED = "com.xbb.la.employee.name_changed";
 
     }
 
-    public interface IntentVariable{
-        public static final String DESTINATION_LOCATION="destination_location";
+    public interface IntentVariable {
+        public static final String DESTINATION_LOCATION = "destination_location";
 
-        public static final String ORDER_ID="order_id";
+        public static final String ORDER_ID = "order_id";
 
-        public static final String PARAMS_KEY="123456";
+        public static final String PARAMS_KEY = "123456";
     }
 
-    public interface Keys{
-        public static final String OneAPM="5001BC9F21163A753F97A6908C68DFB249";
+    public interface Keys {
+        public static final String OneAPM = "5001BC9F21163A753F97A6908C68DFB249";
     }
 
     public interface Path {
@@ -81,7 +90,7 @@ public class Constant {
          */
         public static final String PHOTO_SYS_PATH = APP_ROOT_PATH + "/DCIM/Camera/";
 
-        String ADD_PIC_Path ="file:///android_asset/add";
+        String ADD_PIC_Path = "file:///android_asset/add";
     }
 
     public interface SP {
@@ -109,7 +118,8 @@ public class Constant {
             public static final String CURRENT_STEP = "currentStep";
         }
 
-        public static final  String TABLE_DIY="diy";
+        public static final String TABLE_DIY = "diy";
+
         interface DIYColumns {
             public static final String _ID = "_id";
             public static final String DIY_ID = "diy_id";
@@ -119,7 +129,8 @@ public class Constant {
 
         }
 
-        public static final  String TABLE_REMINDER="reminder";
+        public static final String TABLE_REMINDER = "reminder";
+
         interface ReminderColumns {
             public static final String _ID = "_id";
             public static final String NOTICE_ID = "notice_id";
@@ -129,7 +140,8 @@ public class Constant {
 
         }
 
-        public static final  String TABLE_RECOMMAND="recommand";
+        public static final String TABLE_RECOMMAND = "recommand";
+
         interface RecommandColumns {
             public static final String _ID = "_id";
             public static final String RECOMMAND_ID = "recommand_id";
@@ -144,11 +156,12 @@ public class Constant {
 
         }
 
-        public static final  String TABLE_POSITION="position";
+        public static final String TABLE_POSITION = "position";
+
         interface PositionColumns {
             public static final String _ID = "_id";
             public static final String POSITION_LAT = "lat";
-            public static final String POSITION_LNG= "lng";
+            public static final String POSITION_LNG = "lng";
             public static final String POSITION_ORDERID = "orderid";
             public static final String POSITION_UID = "userid";
 
@@ -176,8 +189,32 @@ public class Constant {
      */
     public static final int USER_LOCATION = 11;
 
-    public interface Url{
+    public interface Url {
         String BASE_URL = "http://captainoak.cn";
+    }
+
+    public interface TempSet {
+        public static TreeMap<String, OrderInfo> operateOrderMap = new TreeMap<String, OrderInfo>();
+        public static SparseArray<Boolean> orderUpdateArray = new SparseArray<>();
+    }
+
+    public interface RequestCode {
+        public static final int ALTER_PWD = 110;
+        public static final int ALTER_NAME = 111;
+
+        /**
+         * 修改头像
+         */
+        public static final int GET_PORTRAIT = 112;
+        /**
+         * 选择性别
+         */
+        public static final int GET_GENDER = 113;
+        /**
+         * 选择年龄
+         */
+        public static final int GET_AGE = 114;
+
     }
 
 }

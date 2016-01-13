@@ -21,7 +21,6 @@
         android:id="@+id/title_left_text"
         android:layout_width="wrap_content"
         android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:minWidth="?attr/actionBarSize"
         android:paddingLeft="12dp"
@@ -29,7 +28,8 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:text="@string/btn_back"/>
     <TextView
         android:id="@+id/title_center_txt"
         android:layout_marginLeft="60dp"

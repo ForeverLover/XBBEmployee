@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 
 import java.io.File;
 
@@ -78,6 +79,34 @@ public class MImageLoader {
     public void displayImage(String uri, ImageView imageView,
                              DisplayImageOptions displayImageOptions) {
         imageLoader.displayImage(uri, imageView);
+    }
+
+    public void displayImageByAbsoluteUrl(String uri, ImageView imageView, int defaultImgId, ImageLoadingListener listener) {
+        DisplayImageOptions myOptions = new DisplayImageOptions.Builder()
+                // .showImageOnFail(R.drawable.icon_test)
+                // .showImageForEmptyUri(R.drawable.icon_test)
+                .showImageForEmptyUri(defaultImgId)
+                .showImageOnFail(defaultImgId)
+                .showImageOnLoading(defaultImgId)
+                .cacheOnDisk(true).cacheInMemory(false)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        imageLoader.displayImage(uri, imageView, myOptions, listener);
+    }
+
+    public void displayImageByHalfUrl(String uri, ImageView imageView, int defaultImgId, ImageLoadingListener listener) {
+        DisplayImageOptions myOptions = new DisplayImageOptions.Builder()
+                // .showImageOnFail(R.drawable.icon_test)
+                // .showImageForEmptyUri(R.drawable.icon_test)
+                .showImageForEmptyUri(defaultImgId)
+                .showImageOnFail(defaultImgId)
+                .showImageOnLoading(defaultImgId)
+                .cacheOnDisk(true).cacheInMemory(false)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        imageLoader.displayImage(getAbsoluteURL(uri), imageView, myOptions, listener);
     }
 
     public void loadImage(String uri) {

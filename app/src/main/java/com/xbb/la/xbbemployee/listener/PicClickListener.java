@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.xbb.la.xbbemployee.ui.BigImageActivity;
+import com.xbb.la.xbbemployee.ui.activity.BigImageActivity;
 
 import java.util.ArrayList;
 

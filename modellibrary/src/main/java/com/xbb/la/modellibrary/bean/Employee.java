@@ -10,31 +10,97 @@ import java.io.Serializable;
  */
 
 public class Employee implements Serializable{
-    private String id;
-    private String name;
-    private String phone;
+    private String uid;
+    private String avatar;
+    private String nickname;
+    private String age;
+    private String gender;
+    private String empNo;
 
-    public String getId() {
-        return id;
+    private String tel;
+    private String wx;
+
+    private String pwd;
+
+    private boolean login;
+
+    public boolean isLogin() {
+        return login;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLogin(boolean login) {
+        this.login = login;
     }
 
-    public String getName() {
-        return name;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUid() {
+        return uid;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEmpNo() {
+        return empNo;
+    }
+
+    public void setEmpNo(String empNo) {
+        this.empNo = empNo;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getWx() {
+        return wx;
+    }
+
+    public void setWx(String wx) {
+        this.wx = wx;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

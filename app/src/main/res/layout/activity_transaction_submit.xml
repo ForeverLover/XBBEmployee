@@ -1,16 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/page_title_layout"/>
-    <Button
-        android:id="@+id/transaction_commit_btn"
-        android:layout_margin="@dimen/dp_sixty"
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:paddingTop="@dimen/dp_thirty"
+        android:paddingBottom="@dimen/dp_fourty"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_sixty"
-        android:text="提交"
-        android:layout_gravity="center"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_bg"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/submit_tip_tv"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_thirty"
+            android:paddingRight="@dimen/dp_thirty"
+            android:textColor="@color/main_text_color" />
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_fourty"
+            android:paddingLeft="@dimen/dp_fourty"
+            android:paddingRight="@dimen/dp_fourty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="@dimen/sp_sixteen"
+                android:gravity="center"
+                android:background="@drawable/btn_hollow_s_bg"
+                android:id="@+id/transaction_cancel_btn"
+                android:layout_width="@dimen/dp_zero"
+                android:layout_weight="1"
+                android:textColor="@color/theme_color"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/dialog_cancel" />
+            <View
+                android:layout_width="@dimen/dp_twenty"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:textSize="@dimen/sp_sixteen"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_solid_s_bg"
+                android:layout_weight="1"
+                android:id="@+id/transaction_submit_btn"
+                android:layout_width="@dimen/dp_zero"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/dialog_ensure" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

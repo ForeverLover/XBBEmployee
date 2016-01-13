@@ -30,4 +30,12 @@ public interface Task {
 
     public static int LOCATION_UPLOAD = 0x10;
 
+    public static int ALTER_PWD = 0x11;
+    public static int ALTER_NAME = 0x12;
+    public static int FEEDBACK = 0x13;
+    public static int GET_MESSAGE = 0x14;
+    public static int AVATAR_CHANGED = 0x15;
+    public static int GENDER_CHANGED = 0x16;
+    public static int AGE_CHANGED = 0x17;
+
 }
