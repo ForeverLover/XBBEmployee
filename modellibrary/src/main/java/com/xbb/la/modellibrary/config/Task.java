@@ -31,11 +31,42 @@ public interface Task {
     public static int LOCATION_UPLOAD = 0x10;
 
     public static int ALTER_PWD = 0x11;
+    /**
+     *
+     */
     public static int ALTER_NAME = 0x12;
+    /**
+     * 反馈
+     */
     public static int FEEDBACK = 0x13;
+    /**
+     * 获取消息列表
+     */
     public static int GET_MESSAGE = 0x14;
+    /**
+     * 修改头像
+     */
     public static int AVATAR_CHANGED = 0x15;
+    /**
+     * 修改性别
+     */
     public static int GENDER_CHANGED = 0x16;
+    /**
+     * 修改年龄
+     */
     public static int AGE_CHANGED = 0x17;
+    /**
+     * 上传推送的消息通道信息
+     */
+    public static int INSERT_PUSH = 0x18;
+    /**
+     * 消息详情
+     */
+    public static int GET_MESSAGE_DETAIL = 0x19;
+    /**
+     * 未读消息
+     */
+    public static int UNREAD_MESSAGE = 0x20;
+
 
 }

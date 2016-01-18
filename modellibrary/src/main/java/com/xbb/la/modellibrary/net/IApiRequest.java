@@ -15,8 +15,11 @@ public interface IApiRequest {
      * 登录
      * @param user 用户名
      * @param pwd  密码
+     * @param channelId
+     * @param userId 百度user_id
+     * @param device
      */
-    void login(String user,String pwd);
+    void login(String user,String pwd,String channelId,String userId,String device);
 
     /**
      * 获取diy产品
@@ -120,4 +123,34 @@ public interface IApiRequest {
      * @param feedback
      */
     void feedback(String uid, String feedback);
+
+
+    /**
+     * uid		用户uid
+     *user_id		百度user_id
+     *channel_id		百度channel_id
+     *device	1-android 2-ios
+     */
+    void insertPushChannel(String uid,String userId,String channelId,String device);
+
+    /**
+     * 获取消息列表
+     * @param uid
+     * @param pageIndex
+     * @param pageSize
+     */
+    void getMessageList(String uid,int pageIndex,int pageSize);
+
+    /**
+     * 获取消息详情
+     * @param uid
+     * @param messageId
+     */
+    void getMessageDetail(String uid,String messageId);
+
+    /**
+     * 获取技师未读消息数量
+     * @param uid
+     */
+    void getUnreadMessage(String uid);
 }

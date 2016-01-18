@@ -73,13 +73,15 @@
                 <TextView
                     android:id="@+id/pc_name_tv"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/pc_name_right_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp_ten"
+                    android:layout_alignParentRight="true"
                     android:textColor="@color/main_text_color"
                     android:textSize="@dimen/sp_forteen"/>
+                    <!--android:layout_marginRight="@dimen/dp_ten"-->
+                    <!--android:layout_toLeftOf="@+id/pc_name_right_img"-->
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/pc_name_right_img"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -106,13 +108,15 @@
                 <TextView
                     android:id="@+id/pc_gender_tv"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/pc_gender_right_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp_ten"
                     android:textColor="@color/main_text_color"
+                    android:layout_alignParentRight="true"
                     android:textSize="@dimen/sp_forteen"/>
+                    <!--android:layout_marginRight="@dimen/dp_ten"-->
+                    <!--android:layout_toLeftOf="@+id/pc_gender_right_img"-->
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/pc_gender_right_img"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -139,13 +143,15 @@
                 <TextView
                     android:id="@+id/pc_age_tv"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/pc_age_right_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp_ten"
                     android:textColor="@color/main_text_color"
+                    android:layout_alignParentRight="true"
                     android:textSize="@dimen/sp_forteen"/>
+                    <!--android:layout_marginRight="@dimen/dp_ten"-->
+                    <!--android:layout_toLeftOf="@+id/pc_age_right_img"-->
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/pc_age_right_img"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -220,8 +226,10 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_one"
+                android:visibility="gone"
                 android:background="@color/split_color"/>
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/pc_wx_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_fourty_eight"

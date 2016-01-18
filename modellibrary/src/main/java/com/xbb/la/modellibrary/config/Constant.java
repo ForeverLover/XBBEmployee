@@ -1,5 +1,6 @@
 package com.xbb.la.modellibrary.config;
 
+import android.app.Activity;
 import android.os.Environment;
 import android.util.SparseArray;
 
@@ -24,6 +25,7 @@ public class Constant {
         public static String STOP_LOCATION_UPDATE = "com.xbb.la.employee.stop_location_update";
         public static String TRANSACTION_TO_FINISH = "com.xbb.la.employee.transaction_to_finish";
         public static String LOCATION_DATA = "com.xbb.la.employee.update_user_location";
+        public static String NEW_MESSAGE = "com.xbb.la.employee.new_message";
         /**
          * 从Intent获取图片路径的KEY
          */
@@ -47,6 +49,11 @@ public class Constant {
         public static final String ORDER_ID = "order_id";
 
         public static final String PARAMS_KEY = "123456";
+
+        public static final String MESSAGE_ID = "messageId";
+        public static final String MESSAGE_TYPE = "messageType";
+        public static final String MESSAGE_ISREAD = "message_isread";
+
     }
 
     public interface Keys {
@@ -96,6 +103,22 @@ public class Constant {
     public interface SP {
         public static String PREFERENCES = "remember";
         public static String UserInfo = "remember";
+        /**
+         * 位置
+         */
+        public static String Location = "Location";
+        /**
+         * 版本更新
+         */
+        public static String VERSION_UPDATE = "UpateVersion";
+
+        public static String VERSION_TIME = "VersionTime";
+
+        /**
+         * 推送
+         */
+        public static String PUSH = "PUSH";
+
     }
 
     public interface DB {
@@ -190,6 +213,15 @@ public class Constant {
     public static final int USER_LOCATION = 11;
 
     public interface Url {
+        /**
+         * 接口地址
+         */
+     String URL_API = "http://captainoak.cn/Api/worker/";
+        /**
+         * 本地地址
+         */
+//        String URL_API = "http://192.168.0.105/xbbnew/Api/worker/";
+
         String BASE_URL = "http://captainoak.cn";
     }
 
@@ -199,21 +231,26 @@ public class Constant {
     }
 
     public interface RequestCode {
-        public static final int ALTER_PWD = 110;
-        public static final int ALTER_NAME = 111;
+         int ALTER_PWD = 110;
+         int ALTER_NAME = 111;
 
         /**
          * 修改头像
          */
-        public static final int GET_PORTRAIT = 112;
+         int GET_PORTRAIT = 112;
         /**
          * 选择性别
          */
-        public static final int GET_GENDER = 113;
+         int GET_GENDER = 113;
         /**
          * 选择年龄
          */
-        public static final int GET_AGE = 114;
+         int GET_AGE = 114;
+
+        /**
+         * 阅读消息
+         */
+         int READ_MSG = 115;
 
     }
 

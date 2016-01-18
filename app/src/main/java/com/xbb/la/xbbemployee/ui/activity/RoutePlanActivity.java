@@ -34,6 +34,7 @@ import com.xbb.la.modellibrary.bean.LocationBean;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.modellibrary.config.Task;
 import com.xbb.la.modellibrary.net.ApiRequest;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
@@ -274,7 +275,7 @@ public class RoutePlanActivity extends BaseActivity implements LocateProcessList
 
                     public void initFailed() {
                     }
-                }, new BNOuterTTSPlayerCallback() {
+                }, /*new BNOuterTTSPlayerCallback() {
 
                     @Override
                     public void stopTTS() {
@@ -294,7 +295,8 @@ public class RoutePlanActivity extends BaseActivity implements LocateProcessList
                     @Override
                     public int playTTSText(String speech, int bPreempt) {
                         // TODO Auto-generated method stub
-                        return 0;
+                        MLog.v("Tag"," ttsplayer play");
+                        return 1;
                     }
 
                     @Override
@@ -315,14 +317,15 @@ public class RoutePlanActivity extends BaseActivity implements LocateProcessList
                     @Override
                     public void initTTSPlayer() {
                         // TODO Auto-generated method stub
+                        MLog.v("Tag","init ttsplayer");
                     }
 
                     @Override
                     public int getTTSState() {
                         // TODO Auto-generated method stub
-                        return 0;
+                        return 1;
                     }
-                });
+                }*/null);
 
     }
 
@@ -357,6 +360,7 @@ public class RoutePlanActivity extends BaseActivity implements LocateProcessList
             Bundle bundle = new Bundle();
             bundle.putSerializable(Constant.IntentAction.ROUTE_PLAN_NODE, (BNRoutePlanNode) mBNRoutePlanNode);
             intent.putExtras(bundle);
+            MLog.v("Tag","prepare to jump to navigator");
             startActivity(intent);
         }
 

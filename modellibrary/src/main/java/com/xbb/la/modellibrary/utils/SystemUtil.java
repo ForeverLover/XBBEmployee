@@ -302,7 +302,7 @@ public class SystemUtil {
         Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
         int quality = 100;
         FileOutputStream stream = null;
-        String path = getSDCardPath() + "/CAMPUS/head.png";
+        String path = getSDCardPath() + "/XBBEMPLOYEE/head.png";
         File file;
         try {
             file = new File(path);

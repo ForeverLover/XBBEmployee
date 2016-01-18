@@ -14,6 +14,9 @@
     <string name="login_forgetpwd_label">忘记密码</string>
     <string name="login_password_hint">密码</string>
     <string name="login_submit_btn">登 录</string>
+    <string name="login_user_null">请输入用户名</string>
+    <string name="login_pwd_null">请输入密码</string>
+    <string name="login_pwd_error">密码输入错误，请核实</string>
 
     <!--主页-->
     <string name="main_order_noAccept">未完成</string>
@@ -69,7 +72,7 @@
     <string name="recommand_diy_tip">diy名称</string>
 
     <string name="dialog_title_tip">提示</string>
-    <string name="dialog_content_tip">你将放弃已编辑的内容，是否确定？</string>
+    <string name="dialog_content_tip">是否确定放弃当前编辑操作？</string>
     <string name="dialog_ensure_tip">放弃编辑</string>
     <string name="dialog_cancel_tip">继续编辑</string>
 
@@ -139,7 +142,7 @@
     <string name="navigate_end">您已达到目的地附近，导航结束</string>
 
     <!--提交任务-->
-    <string name="transaction_submit_tip">确定上传之前的所有操作?\n请在有网的环节下提交</string>
+    <string name="transaction_submit_tip">确定上传之前的所有操作?\n请在有网的环境下提交</string>
     <string name="dialog_ensure">确认</string>
     <string name="dialog_cancel">取消</string>
     <string name="transaction_uploading">当前数据上传中，请耐心等待</string>
@@ -173,8 +176,8 @@
 
     <!--修改密码-->
     <string name="alter_oldpwd_hint">请输入原密码</string>
-    <string name="alter_newpwd_hint">请确认新密码</string>
-    <string name="alter_confpwd_hint">请输入原密码</string>
+    <string name="alter_newpwd_hint">请输入新密码</string>
+    <string name="alter_confpwd_hint">请输入确认密码</string>
     <string name="alter_oldpwd_error">原密码应为6~12位</string>
     <string name="alter_newpwd_error">新密码应为6~12位</string>
     <string name="alter_confpwd_error">确认密码应为6~12位</string>
@@ -198,7 +201,12 @@
 
     <!--消息-->
     <string name="msg_details_title">消息详情</string>
+    <string name="msg_details_to_order">查看订单</string>
+    <string name="orderinfo_error_order">查无此订单信息，请核实</string>
 
     <string name="dialog_logout_tip">是否确认退出登录？</string>
 
+    <!--年龄选择-->
+<string name="select_cancel">取消</string>
+<string name="select_ensure">确认</string>
 </resources>

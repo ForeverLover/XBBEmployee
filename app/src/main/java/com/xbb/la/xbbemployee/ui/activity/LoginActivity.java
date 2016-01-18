@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.alibaba.fastjson.JSON;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Employee;
+import com.xbb.la.modellibrary.bean.PushServiceBean;
 import com.xbb.la.modellibrary.bean.ResponseJson;
 import com.xbb.la.modellibrary.config.Constant;
 import com.xbb.la.modellibrary.config.Task;
@@ -55,20 +56,22 @@ public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.employee_head_img)
     private RoundImageView employee_head_img;
     private Employee employee;
+    private PushServiceBean pushServiceBean;
+    private boolean hasChannel;
+
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            if (Constant.IntentAction.AVATAR_CHANGED.equals(action)){
-                employee=SharePreferenceUtil.getInstance().getUserInfo(LoginActivity.this);
-                if (employee!=null){
+            if (Constant.IntentAction.AVATAR_CHANGED.equals(action)) {
+                employee = SharePreferenceUtil.getInstance().getUserInfo(LoginActivity.this);
+                if (employee != null) {
                     MImageLoader.getInstance(LoginActivity.this).displayImageByHalfUrl(employee.getAvatar(), employee_head_img, R.mipmap.main_avatar_default_img, new AnimateFirstDisplayListener());
                 }
 
             }
-
 
 
         }
@@ -107,18 +110,26 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_submit_btn:
+                pushServiceBean = SharePreferenceUtil.getInstance().getPushServiceBean(this);
                 account = login_user_et.getText() != null ? login_user_et.getText().toString() : "";
                 password = login_pwd_et.getText() != null ? login_pwd_et.getText().toString() : "";
                 if (StringUtil.isEmpty(account)) {
+                    showToast(R.string.login_user_null);
                     return;
                 }
                 if (StringUtil.isEmpty(password)) {
+                    showToast(R.string.login_pwd_null);
                     return;
                 }
-                if (password.length() < 6 || password.length() < 20) {
-
+                if (password.length() < 6 || password.length() > 20) {
+                    showToast(R.string.login_pwd_error);
+                    return;
                 }
-                apiRequest.login(account, password);
+                if (pushServiceBean != null) {
+                    hasChannel = true;
+                    apiRequest.login(account, password, pushServiceBean.getChannelId(), pushServiceBean.getUserId(), "1");
+                } else
+                    apiRequest.login(account, password, "", "", "1");
 //                startActivity(MainActivity.class);
 //                finish();
                 break;
@@ -130,12 +141,19 @@ public class LoginActivity extends BaseActivity {
         ResponseJson responseJson = (ResponseJson) params[0];
         switch (taskId) {
             case Task.LOGIN:
-                Employee employee = ParseUtil.getInstance().parseEmployeeInfo(responseJson.getResult().toString());
+                employee = ParseUtil.getInstance().parseEmployeeInfo(responseJson.getResult().toString());
                 employee.setLogin(true);
+                employee.setChannel(hasChannel);
                 SharePreferenceUtil.getInstance().saveUserInfo(this, employee);
                 startActivity(MainActivity.class);
                 finish();
                 break;
+           /* case Task.INSERT_PUSH:
+                if (employee == null)
+                    employee = SharePreferenceUtil.getInstance().getUserInfo(this);
+                employee.setChannel(true);
+                SharePreferenceUtil.getInstance().saveUserInfo(this, employee);
+                break;*/
         }
     }
 }

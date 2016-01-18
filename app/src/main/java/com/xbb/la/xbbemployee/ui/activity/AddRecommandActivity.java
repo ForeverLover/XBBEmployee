@@ -20,6 +20,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.DIYProduct;
 import com.xbb.la.modellibrary.bean.Recommand;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.CameraPhotoAdapter;
@@ -155,8 +156,8 @@ public class AddRecommandActivity extends TitleActivity {
                 if (introAlbum != null && introAlbum.size() < 3) {
                     if (position == introAlbum.size() - 1) {
                         flag = true;
-
-                    }
+                    }else
+                        flag=false;
                 } else if (introAlbum != null && introAlbum.size() == 3 && !isFinished) {
                     flag = true;
                 } else {
@@ -237,7 +238,7 @@ public class AddRecommandActivity extends TitleActivity {
                     showToast(getString(R.string.recommand_diy_null));
                     return;
                 }
-                Log.v("Tag", "judge diy");
+                MLog.v("Tag", "judge diy");
                 if (!isFinished) {
                     if (introAlbum.size() < 2) {
                         return;
@@ -245,7 +246,7 @@ public class AddRecommandActivity extends TitleActivity {
                     introAlbum.remove(introAlbum.size() - 1);
 //                    lastAlbum = introAlbum.subList(0, introAlbum.size() - 1);
                 }
-                Log.v("Tag", "init album succeed");
+                MLog.v("Tag", "init album succeed");
                 lastAlbum = introAlbum;
                 remark = add_remark_et.getText() != null ? add_remark_et.getText().toString() : "";
                 if (recommand == null)
@@ -259,7 +260,7 @@ public class AddRecommandActivity extends TitleActivity {
                     returnIntent.putExtra("change", hasChangedRecommand());
                 setResult(RESULT_OK, returnIntent);
                 finish();
-                Log.v("Tag", "recommand succeed");
+                MLog.v("Tag", "recommand succeed");
                 break;
             case R.id.preview_btn:
                 showAlbum(introAlbum);
@@ -276,7 +277,7 @@ public class AddRecommandActivity extends TitleActivity {
                     }
                     editable = !editable;
                 }
-                Log.v("Tag", "isfinished" + isFinished + " size:" + introAlbum.size());
+                MLog.v("Tag", "isfinished" + isFinished + " size:" + introAlbum.size());
                 if (isFinished && introAlbum.size() < 3) {
                     isFinished = false;
                     introAlbum.add(path);
@@ -295,7 +296,6 @@ public class AddRecommandActivity extends TitleActivity {
             picList.addAll(dataList.subList(0, dataList.size() - 1));
         else
             picList.addAll(dataList);
-        showToast("size:" + picList.size());
         Intent intent = new Intent(this,
                 BigImageActivity.class);
 
@@ -316,7 +316,7 @@ public class AddRecommandActivity extends TitleActivity {
                     Bitmap bitmap = null;
                     if (!StringUtil.isEmpty(path)) {
                         File file = new File(path);
-                        Log.i("Tag", "fileSize=" + file.length());
+                        MLog.i("Tag", "fileSize=" + file.length());
                         double picSize = file.length() / (1024 * 1024);
                         if (picSize >= 3) {
                             showToast(getString(R.string.green_pic_size));

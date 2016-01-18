@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,6 +27,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.xbb.la.modellibrary.bean.DIYProduct;
 import com.xbb.la.modellibrary.bean.Employee;
 import com.xbb.la.modellibrary.bean.OrderInfo;
+import com.xbb.la.modellibrary.bean.PushServiceBean;
 import com.xbb.la.modellibrary.bean.Reminder;
 import com.xbb.la.modellibrary.bean.ResponseJson;
 import com.xbb.la.modellibrary.config.Constant;
@@ -34,6 +36,7 @@ import com.xbb.la.modellibrary.net.ApiRequest;
 import com.xbb.la.modellibrary.utils.DensityUtil;
 import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.ParseUtil;
+import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.modellibrary.utils.SystemUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.MissionPagerAdapter;
@@ -52,6 +55,7 @@ import com.xbb.la.xbbemployee.widget.PageIndicator;
 import com.xbb.la.xbbemployee.widget.RoundImageView;
 
 import java.util.List;
+import java.util.logging.SocketHandler;
 
 
 public class MainActivity extends SlideBaseActivity implements RadioGroup.OnCheckedChangeListener {
@@ -61,6 +65,9 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
 
     private RoundImageView employee_head_img;
     private RoundImageView menu_head_img;
+
+    private ImageView point_new_img;
+    private ImageView menu_message_img;
 
 
     private int noConfirmPageIndex;
@@ -87,6 +94,7 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
     private MissionPagerAdapter missionPagerAdapter;
     private ViewPager mission_content_vp;
     private PageIndicator mission_content_indicator;
+
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -99,6 +107,11 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
                 uploadInstantLocation(orderId);
 
             }
+            if (Constant.IntentAction.NEW_MESSAGE.equals(action)) {
+                if (apiRequest == null)
+                    apiRequest = new ApiRequest(MainActivity.this);
+                apiRequest.getUnreadMessage(userId);
+            }
             if (Constant.IntentAction.MISSION_COMPLETE.equals(action)) {
                 employee_orderstate_group.check(R.id.employee_order_finished);
                 for (Fragment fragment : getSupportFragmentManager().getFragments()) {
@@ -108,19 +121,19 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
                     }
                 }
             }
-            if (Constant.IntentAction.AVATAR_CHANGED.equals(action)){
-                employee=SharePreferenceUtil.getInstance().getUserInfo(MainActivity.this);
-                if (employee!=null){
+            if (Constant.IntentAction.AVATAR_CHANGED.equals(action)) {
+                employee = SharePreferenceUtil.getInstance().getUserInfo(MainActivity.this);
+                if (employee != null) {
                     MImageLoader.getInstance(MainActivity.this).displayImageByHalfUrl(employee.getAvatar(), employee_head_img, R.mipmap.main_avatar_default_img, new AnimateFirstDisplayListener());
                     MImageLoader.getInstance(MainActivity.this).displayImageByHalfUrl(employee.getAvatar(), menu_head_img, R.mipmap.login_head_default_img, new AnimateFirstDisplayListener());
                 }
 
             }
 
-            if (Constant.IntentAction.NAME_CHANGED.equals(action)){
-                employee=SharePreferenceUtil.getInstance().getUserInfo(MainActivity.this);
-                if (employee!=null) {
-                menu_nickname_tv.setText(employee.getNickname());
+            if (Constant.IntentAction.NAME_CHANGED.equals(action)) {
+                employee = SharePreferenceUtil.getInstance().getUserInfo(MainActivity.this);
+                if (employee != null) {
+                    menu_nickname_tv.setText(employee.getNickname());
                 }
             }
 
@@ -167,7 +180,7 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
         employee_order_finished = (RadioButton) findViewById(R.id.employee_order_finished);
         mission_content_indicator = (PageIndicator) findViewById(R.id.mission_content_indicator);
         mission_content_vp = (ViewPager) findViewById(R.id.mission_content_vp);
-
+        point_new_img = (ImageView) findViewById(R.id.point_new_img);
         //初始化滑动菜单
         initSlidingMenu(savedInstanceState);
         initLogoutDialog();
@@ -180,12 +193,19 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
         intentFilter = new IntentFilter();
         intentFilter.addAction(Constant.IntentAction.STOP_LOCATION_UPLOAD);
         intentFilter.addAction(Constant.IntentAction.START_LOCATION_UPLOAD);
+        intentFilter.addAction(Constant.IntentAction.NEW_MESSAGE);
         intentFilter.addAction(Constant.IntentAction.MISSION_COMPLETE);
         intentFilter.addAction(Constant.IntentAction.AVATAR_CHANGED);
         intentFilter.addAction(Constant.IntentAction.NAME_CHANGED);
         localBroadcastManager.registerReceiver(receiver, intentFilter);
         apiRequest = new ApiRequest(this);
         userId = SharePreferenceUtil.getInstance().getUserId(this);
+        employee = SharePreferenceUtil.getInstance().getUserInfo(this);
+        if (employee != null && !employee.hasChannel()) {
+            PushServiceBean pushServiceBean = SharePreferenceUtil.getInstance().getPushServiceBean(this);
+            if (pushServiceBean != null) ;
+            apiRequest.insertPushChannel(userId, pushServiceBean.getUserId(), pushServiceBean.getChannelId(), "1");
+        }
         apiRequest.getDIYProducts();
         apiRequest.getKindReminders();
         showLoading = true;
@@ -227,7 +247,7 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
 
         });
 
-        if (employee!=null)
+        if (employee != null)
             MImageLoader.getInstance(this).displayImageByHalfUrl(employee.getAvatar(), employee_head_img, R.mipmap.main_avatar_default_img, new AnimateFirstDisplayListener());
     }
 
@@ -239,15 +259,16 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
             employee = SharePreferenceUtil.getInstance().getUserInfo(this);
         View v = LayoutInflater.from(this).inflate(R.layout.menu_content, null);
         ((TextView) v.findViewById(R.id.menu_version_tv)).setText("v" + SystemUtils.getClientVersion(this));
-        menu_nickname_tv= (TextView) v.findViewById(R.id.menu_nickname_tv);
+        menu_nickname_tv = (TextView) v.findViewById(R.id.menu_nickname_tv);
         menu_nickname_tv.setText(employee.getNickname());
+        menu_message_img = (ImageView) v.findViewById(R.id.menu_message_img);
         ((TextView) v.findViewById(R.id.menu_tel_tv)).setText(employee.getTel());
-        v.findViewById(R.id.menu_mine_layout).setOnClickListener(this);
+        v.findViewById(R.id.menu_personalinfo_layout).setOnClickListener(this);
         v.findViewById(R.id.menu_msg_layout).setOnClickListener(this);
         v.findViewById(R.id.menu_other_layout).setOnClickListener(this);
         v.findViewById(R.id.menu_logout_layout).setOnClickListener(this);
-        menu_head_img= (RoundImageView) v.findViewById(R.id.menu_head_img);
-        if (employee!=null)
+        menu_head_img = (RoundImageView) v.findViewById(R.id.menu_head_img);
+        if (employee != null)
             MImageLoader.getInstance(this).displayImageByHalfUrl(employee.getAvatar(), menu_head_img, R.mipmap.login_head_default_img, new AnimateFirstDisplayListener());
         // 设置滑动菜单的视图
         setBehindContentView(v);
@@ -290,19 +311,26 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
             case R.id.menu_msg_layout:
                 startActivity(MessageListActivity.class);
                 break;
-            case R.id.menu_mine_layout:
+            case R.id.menu_personalinfo_layout:
                 startActivity(PersonalCenterActivity.class);
                 break;
             case R.id.menu_other_layout:
                 startActivity(OtherActivity.class);
                 break;
             case R.id.menu_logout_layout:
-                if (logoutDialog!=null&&!logoutDialog.isShowing())
+                if (logoutDialog != null && !logoutDialog.isShowing())
                     logoutDialog.show();
                 break;
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (apiRequest == null)
+            apiRequest = new ApiRequest(this);
+        apiRequest.getUnreadMessage(userId);
+    }
 
     @Override
     protected void onDestroy() {
@@ -343,6 +371,24 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
             case Task.REMINDER:
                 List<Reminder> reminderList = ParseUtil.getInstance().parseKindReminders(responseJson.getResult().toString());
                 DBHelperMethod.getInstance().insertRemminders(reminderList);
+                break;
+            case Task.UNREAD_MESSAGE:
+                if (StringUtil.isNumeric(responseJson.getResult().toString())) {
+                    int count = Integer.parseInt(responseJson.getResult().toString());
+                    if (count > 0) {
+                        point_new_img.setVisibility(View.VISIBLE);
+                        menu_message_img.setImageResource(R.mipmap.menu_newmsg_img);
+                    } else {
+                        menu_message_img.setImageResource(R.mipmap.menu_message_img);
+                        point_new_img.setVisibility(View.GONE);
+                    }
+                }
+                break;
+            case Task.INSERT_PUSH:
+                if (employee == null)
+                    employee = SharePreferenceUtil.getInstance().getUserInfo(this);
+                employee.setChannel(true);
+                SharePreferenceUtil.getInstance().saveUserInfo(this, employee);
                 break;
 
         }
@@ -419,7 +465,7 @@ public class MainActivity extends SlideBaseActivity implements RadioGroup.OnChec
     public void uploadInstantLocation(String orderId) {
         serviceIntent = new Intent(this, LocationService.class);
         serviceIntent.putExtra(Constant.IntentVariable.ORDER_ID, orderId);
-        serviceIntent.putExtra("uid", SharePreferenceUtil.getInstance().getUserId(this));
+        serviceIntent.putExtra("uid", userId);
         serviceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startService(serviceIntent);
     }

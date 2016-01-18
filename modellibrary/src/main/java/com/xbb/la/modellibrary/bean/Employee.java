@@ -24,6 +24,16 @@ public class Employee implements Serializable{
 
     private boolean login;
 
+    private boolean channel;
+
+    public boolean hasChannel() {
+        return channel;
+    }
+
+    public void setChannel(boolean channel) {
+        this.channel = channel;
+    }
+
     public boolean isLogin() {
         return login;
     }

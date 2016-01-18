@@ -85,6 +85,13 @@ public class FeedBackActivity extends TitleActivity {
         });
     }
 
+    @Override
+    protected void onClickTitleLeft(View v) {
+        hideSoftInputView();
+        super.onClickTitleLeft(v);
+
+    }
+
     @OnClick(R.id.feedback_submit_btn)
     private void submitFeedback(View v) {
         feedback = feedback_content_et.getText() != null ? feedback_content_et.getText().toString() : "";
@@ -96,7 +103,7 @@ public class FeedBackActivity extends TitleActivity {
             showToast(R.string.feedback_error);
             return;
         }
-        apiRequest.feedback(uid,feedback);
+        apiRequest.feedback(uid, feedback);
     }
 
     @Override
@@ -105,6 +112,7 @@ public class FeedBackActivity extends TitleActivity {
         switch (taskId) {
             case Task.FEEDBACK:
                 showToast(R.string.feedback_succeed);
+                hideSoftInputView();
                 finish();
                 break;
         }

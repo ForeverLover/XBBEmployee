@@ -103,6 +103,12 @@ public class AlterpwdActivity extends TitleActivity {
     }
 
     @Override
+    protected void onClickTitleLeft(View v) {
+        hideSoftInputView();
+        super.onClickTitleLeft(v);
+    }
+
+    @Override
     public void onSuccess(int taskId, Object... params) {
         super.onSuccess(taskId, params);
         switch (taskId) {
@@ -112,6 +118,7 @@ public class AlterpwdActivity extends TitleActivity {
                 employee.setPwd(newpwd);
                 SharePreferenceUtil.getInstance().saveUserInfo(this,employee);
                 showToast(R.string.pc_alterpwd_succeed);
+                hideSoftInputView();
                 finish();
                 break;
         }

@@ -34,6 +34,7 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
 
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.widget.WheelView.adapter.WheelViewAdapter;
 
@@ -55,8 +56,10 @@ public class WheelView extends View {
 	private int[] SHADOWS_COLORS = new int[] { 0xFF111111,
 			0x00AAAAAA, 0x00AAAAAA };
 	//*/
-    private int[] SHADOWS_COLORS = new int[]{0x00E0E0E0,
-            0x00E0E0E0, 0x00E0E0E0};
+    /*private int[] SHADOWS_COLORS = new int[]{0x00E0E0E0,
+            0x00E0E0E0, 0x00E0E0E0};*/
+    private int[] SHADOWS_COLORS = new int[]{0x00ffffff,
+            0x00ffffff, 0x00ffffff};
 
     /**
      * Top and bottom items offset (to hide that)
@@ -805,6 +808,7 @@ public class WheelView extends View {
      * @param time        scrolling duration
      */
     public void scroll(int itemsToScroll, int time) {
+       MLog.v("Tag","scroll:"+itemsToScroll );
         int distance = itemsToScroll * getItemHeight() - scrollingOffset;
         scroller.scroll(distance, time);
     }

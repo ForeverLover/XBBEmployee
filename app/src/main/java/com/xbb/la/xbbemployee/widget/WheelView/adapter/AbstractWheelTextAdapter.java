@@ -16,6 +16,7 @@
 package com.xbb.la.xbbemployee.widget.WheelView.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -43,7 +44,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     
     /** Default text size */
     public static final int DEFAULT_TEXT_SIZE = 22;
-    
+    public static final int SELECT_TEXT_SIZE = 12;
+
     // Text settings
     private int textColor = DEFAULT_TEXT_COLOR;
     private int textSize = DEFAULT_TEXT_SIZE;
@@ -192,6 +194,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
                     text = "";
                 }
                 textView.setText(text);
+
     
                 if (itemResourceId == TEXT_VIEW_ITEM_RESOURCE) {
                     configureTextView(textView);
@@ -219,9 +222,9 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
      * @param view the text view to be configured
      */
     protected void configureTextView(TextView view) {
-        view.setTextColor(textColor);
+        view.setTextColor(Color.parseColor("#222222"));
         view.setGravity(Gravity.CENTER);
-        view.setTextSize(textSize);
+        view.setTextSize(SELECT_TEXT_SIZE);
         view.setEllipsize(TextUtils.TruncateAt.END);
         view.setLines(1);
 //        view.setCompoundDrawablePadding(20);

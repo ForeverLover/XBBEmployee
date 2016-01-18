@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Transaction;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.CameraPhotoAdapter;
@@ -96,7 +97,6 @@ public class TransactionStartActivity extends TitleActivity {
     }
 
 
-
     @Override
     public void initData() {
         setTitle(getString(R.string.transaction_start));
@@ -133,8 +133,8 @@ public class TransactionStartActivity extends TitleActivity {
                 if (startnormalList != null && startnormalList.size() < 4) {
                     if (position == startnormalList.size() - 1) {
                         normalFlag = true;
-
-                    }
+                    } else
+                        normalFlag = false;
                 } else if (startnormalList != null && startnormalList.size() == 4 && !normalIsFinished) {
                     normalFlag = true;
                 } else {
@@ -252,19 +252,19 @@ public class TransactionStartActivity extends TitleActivity {
                     Toast(getString(R.string.local_cache_failed));*/
                 break;
             case R.id.body_edit_btn:
-                if (normalAdapter != null){
+                if (normalAdapter != null) {
                     normalAdapter.editAlbum(normalEditable);
-                    if (normalEditable){
+                    if (normalEditable) {
                         body_edit_btn.setText(getString(R.string.label_edit_finish));
-                    }else {
+                    } else {
                         body_edit_btn.setText(getString(R.string.label_edit));
                         startnormalList = normalAdapter.getDataSet();
                     }
                     normalEditable = !normalEditable;
                 }
-                Log.v("Tag","isfinished"+normalIsFinished+" size:"+startnormalList.size());
+                MLog.v("Tag", "isfinished" + normalIsFinished + " size:" + startnormalList.size());
                 if (normalIsFinished && startnormalList.size() < 4) {
-                    normalIsFinished=false;
+                    normalIsFinished = false;
                     startnormalList.add(path);
                 }
                 break;
@@ -275,9 +275,9 @@ public class TransactionStartActivity extends TitleActivity {
             case R.id.nick_edit_btn:
                 if (damageAdapter != null) {
                     damageAdapter.editAlbum(damageEditable);
-                    if (damageEditable){
+                    if (damageEditable) {
                         nick_edit_btn.setText(getString(R.string.label_edit_finish));
-                    }else {
+                    } else {
                         startdamageList = damageAdapter.getDataSet();
                         nick_edit_btn.setText(getString(R.string.label_edit));
                     }
@@ -292,16 +292,20 @@ public class TransactionStartActivity extends TitleActivity {
     }
 
     private void showAlbum(List<String> dataList) {
-        if (dataList == null || dataList.isEmpty()) {
+        /*if (dataList == null || dataList.isEmpty()) {
             showToast(getString(R.string.tost_no_pic));
             return;
-        }
+        }*/
+
         ArrayList<String> picList = new ArrayList<String>();
-        if (dataList.contains(Constant.Path.ADD_PIC_Path) && dataList.size() > 1)
+        if (dataList.contains(Constant.Path.ADD_PIC_Path) && dataList.size() >= 1)
             picList.addAll(dataList.subList(0, dataList.size() - 1));
         else
             picList.addAll(dataList);
-        showToast("size:" + picList.size());
+        if (picList == null || picList.isEmpty()) {
+            showToast(getString(R.string.tost_no_pic));
+            return;
+        }
         Intent intent = new Intent(this,
                 BigImageActivity.class);
 
@@ -329,7 +333,7 @@ public class TransactionStartActivity extends TitleActivity {
                     Bitmap bitmap = null;
                     if (!StringUtil.isEmpty(path)) {
                         File file = new File(path);
-                        Log.i("Tag", "fileSize=" + file.length());
+                        MLog.i("Tag", "fileSize=" + file.length());
                         double picSize = file.length() / (1024 * 1024);
                         if (picSize >= 3) {
                             showToast(getString(R.string.green_pic_size));

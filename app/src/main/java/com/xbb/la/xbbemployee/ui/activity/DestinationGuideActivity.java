@@ -10,8 +10,12 @@ import com.baidu.navisdk.adapter.BNRouteGuideManager;
 import com.baidu.navisdk.adapter.BNRouteGuideManager.OnNavigationListener;
 import com.baidu.navisdk.adapter.BNRoutePlanNode;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.config.BaseActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 项目:XBBEmployee
@@ -34,7 +38,13 @@ public class DestinationGuideActivity extends BaseActivity {
             @Override
             public void onNaviGuideEnd() {
                 showToast(getString(R.string.navigate_end));
-                finish();
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 3 * 1000);
+
             }
 
             @Override
@@ -54,6 +64,7 @@ public class DestinationGuideActivity extends BaseActivity {
                 mBNRoutePlanNode = (BNRoutePlanNode) bundle.getSerializable(Constant.IntentAction.ROUTE_PLAN_NODE);
             }
         }
+        BNRouteGuideManager.getInstance().setVoiceModeInNavi(BNRouteGuideManager.VoiceMode.Novice);
 
     }
 

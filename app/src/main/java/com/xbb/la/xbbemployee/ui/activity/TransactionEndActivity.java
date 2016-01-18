@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Transaction;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.CameraPhotoAdapter;
@@ -132,8 +133,8 @@ public class TransactionEndActivity extends TitleActivity {
                 if (endNormalList != null && endNormalList.size() < 4) {
                     if (position == endNormalList.size() - 1) {
                         normalFlag = true;
-
-                    }
+                    } else
+                    normalFlag = false;
                 } else if (endNormalList != null && endNormalList.size() == 4 && !normalIsFinished) {
                     normalFlag = true;
                 } else {
@@ -294,7 +295,6 @@ public class TransactionEndActivity extends TitleActivity {
             picList.addAll(dataList.subList(0, dataList.size() - 1));
         else
             picList.addAll(dataList);
-        showToast("size:" + picList.size());
         Intent intent = new Intent(this,
                 BigImageActivity.class);
 
@@ -322,7 +322,7 @@ public class TransactionEndActivity extends TitleActivity {
                     Bitmap bitmap = null;
                     if (!StringUtil.isEmpty(path)) {
                         File file = new File(path);
-                        Log.i("Tag", "fileSize=" + file.length());
+                        MLog.i("Tag", "fileSize=" + file.length());
                         double picSize = file.length() / (1024 * 1024);
                         if (picSize >= 3) {
                             showToast(getString(R.string.green_pic_size));

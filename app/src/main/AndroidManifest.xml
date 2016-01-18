@@ -152,6 +152,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/DialogStyleBottom"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+            <!--android:theme="@android:style/Theme.Translucent"-->
         <!-- 图片选择页面 -->
         <activity
             android:name=".ui.activity.SelectPictureActivity"

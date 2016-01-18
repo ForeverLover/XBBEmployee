@@ -77,6 +77,7 @@
                 android:background="@mipmap/login_split_img"/>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/login_forget_layout"
                 android:layout_gravity="right"
                 android:layout_marginTop="@dimen/dp_fifteen"
@@ -100,7 +101,7 @@
 
             <Button
                 android:background="@mipmap/login_btn_bg"
-                android:layout_marginTop="@dimen/dp_thirty"
+                android:layout_marginTop="@dimen/dp_sixty"
                 android:id="@+id/login_submit_btn"
                 android:layout_width="match_parent"
                 android:textSize="@dimen/sp_sixteen"

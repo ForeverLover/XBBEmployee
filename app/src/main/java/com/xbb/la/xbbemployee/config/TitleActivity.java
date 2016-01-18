@@ -17,7 +17,7 @@ import com.xbb.la.xbbemployee.R;
  */
 public class TitleActivity extends BaseActivity {
 
-    private View vTitle;
+    protected View vTitle;
 
     private TextView txtTitle;// title文字
     private TextView txtLeft;// title文字

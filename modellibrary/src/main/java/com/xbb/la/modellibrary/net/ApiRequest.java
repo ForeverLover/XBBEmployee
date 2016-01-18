@@ -6,6 +6,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.xbb.la.modellibrary.bean.UploadRecommand;
 import com.xbb.la.modellibrary.bean.UploadTransaction;
 import com.xbb.la.modellibrary.config.Task;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
 
 import java.io.File;
@@ -29,7 +30,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
     }
 
     @Override
-    public void login(String user, String pwd) {
+    public void login(String user, String pwd, String channelId, String userId, String device) {
+        String currentTime=System.currentTimeMillis()+"";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -39,11 +41,11 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                 });
         map.put("phone", user);
         map.put("password", StringUtil.getMD5(pwd));
-        String currentTime=System.currentTimeMillis()+"";
-        Log.v("Tag","currentTime:"+currentTime);
+        map.put("user_id", userId);
+        map.put("channel_id", channelId);
+        map.put("device", device);
         map.put("timeline", currentTime);
-
-        requestAfterSigned(XRequestCallBack, Task.LOGIN, "login", map,null);
+        requestAfterSigned(XRequestCallBack, Task.LOGIN, "login", map, null);
     }
 
     public void getDIYProducts() {
@@ -69,12 +71,14 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("p", pageIndex + "");
         map.put("orderstate", type + "");
         map.put("timeline", currentTime);
+
         /*RequestParams params = createRequestParams();
         params.addBodyParameter("uid", userId);
         params.addBodyParameter("p", pageIndex + "");
         params.addBodyParameter("orderstate", type + "");*/
 
-        requestByGet(XRequestCallBack, Task.ORDER_LIST, "orderlist" + "/uid/" + userId + "/p/" + pageIndex + "/orderstate/" + type + "/sign/" + StringUtil.getMD5(StringUtil.getSignedParams(map))+ "/timeline/" + currentTime, null,null);
+//        requestByGet(XRequestCallBack, Task.ORDER_LIST, "orderlist" + "/uid/" + userId + "/p/" + pageIndex + "/orderstate/" + type + "/sign/" + StringUtil.getMD5(StringUtil.getSignedParams(map))+ "/timeline/" + currentTime, null,null);
+        requestAfterSigned(XRequestCallBack, Task.ORDER_LIST, "orderlist", map, null);
     }
 
     @Override
@@ -315,6 +319,71 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("content", feedback);
         map.put("timeline", currentTime);
         requestAfterSigned(XRequestCallBack, Task.FEEDBACK, "feedback", map, null);
+    }
+
+    @Override
+    public void insertPushChannel(String uid, String userId, String channelId,String device) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("user_id", userId);
+        map.put("channel_id", channelId);
+        map.put("device", device);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.INSERT_PUSH, "saveChannelId", map, null);
+    }
+
+    @Override
+    public void getMessageList(String uid, int pageIndex, int pageSize) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("p", pageIndex+"");
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.GET_MESSAGE, "message", map, null);
+    }
+
+    @Override
+    public void getMessageDetail(String uid, String messageId) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("id", messageId);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.GET_MESSAGE_DETAIL, "messageDetail", map, null);
+    }
+
+    @Override
+    public void getUnreadMessage(String uid) {
+        String currentTime=System.currentTimeMillis()+"";
+        Map<String, String> map = new TreeMap<String, String>(
+                new Comparator<String>() {
+                    public int compare(String obj1, String obj2) {
+                        // 降序排序
+                        return obj1.compareTo(obj2);
+                    }
+                });
+        map.put("uid", uid);
+        map.put("timeline", currentTime);
+        requestAfterSigned(XRequestCallBack, Task.UNREAD_MESSAGE, "messageCount", map, null);
     }
 
 }

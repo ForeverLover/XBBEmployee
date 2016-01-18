@@ -231,8 +231,8 @@ public class StringUtil {
     public static String getTimeFromStamp(String source) {
         String timeStr = "";
         if (isNumeric(source)) {
-            Date date = new Date(Long.parseLong(source));
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date(Long.parseLong(source) * 1000);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             timeStr = formatter.format(date);
         }
         return timeStr;
@@ -376,9 +376,9 @@ public class StringUtil {
         }
     }
 
-    public static  boolean compareStringList(List<String> source, List<String> target) {
+    public static boolean compareStringList(List<String> source, List<String> target) {
         if (source.size() != target.size()) return false;
-        for (int i=0;i<source.size();i++)
+        for (int i = 0; i < source.size(); i++)
             if (!source.get(i).equals(target.get(i))) return false;
         return true;
     }
@@ -405,4 +405,53 @@ public class StringUtil {
         }
         return ageArray;
     }
+
+    public static int getIndexofStringInArray(String[] strArray, String str) {
+        if (strArray == null || strArray.length == 0) return -1;
+        for (int i = 0; i < strArray.length; i++) {
+            MLog.v("Tag","index:"+i+ "  value:"+strArray[i]);
+            if (str.equals(strArray[i]))
+                return i;
+        }
+        return -1;
+    }
+
+    public static String getDealTimeByStamp(String timeStamp) {
+        if (!isNumeric(timeStamp)) return timeStamp;
+        Date date = new Date(Long.parseLong(timeStamp) * 1000);
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+        Calendar current = Calendar.getInstance();
+
+        Calendar today = Calendar.getInstance();    //今天
+
+        today.set(Calendar.YEAR, current.get(Calendar.YEAR));
+        today.set(Calendar.MONTH, current.get(Calendar.MONTH));
+        today.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH));
+        //  Calendar.HOUR——12小时制的小时数 Calendar.HOUR_OF_DAY——24小时制的小时数
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+
+        Calendar yesterday = Calendar.getInstance();    //昨天
+
+        yesterday.set(Calendar.YEAR, current.get(Calendar.YEAR));
+        yesterday.set(Calendar.MONTH, current.get(Calendar.MONTH));
+        yesterday.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH) - 1);
+        yesterday.set(Calendar.HOUR_OF_DAY, 0);
+        yesterday.set(Calendar.MINUTE, 0);
+        yesterday.set(Calendar.SECOND, 0);
+
+        current.setTime(date);
+
+        if (current.after(today)) {
+            return "今天 " + time.split(" ")[1];
+        } else if (current.before(today) && current.after(yesterday)) {
+
+            return "昨天 " + time.split(" ")[1];
+        } else {
+            return time.split(" ")[0];
+        }
+
+    }
+
 }

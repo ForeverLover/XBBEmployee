@@ -51,7 +51,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SDKInitializer.initialize(getApplicationContext());
+        SDKInitializer.initialize(this);
         uiListeners = new HashMap<Class<? extends BaseUIListener>, Collection<? extends BaseUIListener>>();
         if (activities == null) {
             activities = new Vector<Activity>();

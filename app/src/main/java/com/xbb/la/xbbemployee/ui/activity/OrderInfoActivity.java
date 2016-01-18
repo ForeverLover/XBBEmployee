@@ -126,17 +126,22 @@ public class OrderInfoActivity extends TitleActivity {
     public void initData() {
         setTitle(getString(R.string.order_info_title));
         orderId = getIntent().getStringExtra(Constant.IntentVariable.ORDER_ID);
-        userId = SharePreferenceUtil.getInstance().getUserId(this);
-        apiRequest = new ApiRequest(this);
-        apiRequest.getOrderInfo(orderId);
-        intentFilter = new IntentFilter(Constant.IntentAction.STOP_LOCATION_UPLOAD);
-        intentFilter.addAction(Constant.IntentAction.CHANGE_STATE);
-        intentFilter.addAction(Constant.IntentAction.MISSION_COMPLETE);
-        localBroadcastManager.registerReceiver(receiver, intentFilter);
-        orderInfo_call_img.setOnClickListener(this);
-        orderInfo_op_btn.setOnClickListener(this);
-        orderInfo_arrive_btn.setOnClickListener(this);
-        orderInfo_navigate_btn.setOnClickListener(this);
+        if (StringUtil.isNumeric(orderId)&&Integer.parseInt(orderId)>0) {
+            userId = SharePreferenceUtil.getInstance().getUserId(this);
+            apiRequest = new ApiRequest(this);
+            apiRequest.getOrderInfo(orderId);
+            intentFilter = new IntentFilter(Constant.IntentAction.STOP_LOCATION_UPLOAD);
+            intentFilter.addAction(Constant.IntentAction.CHANGE_STATE);
+            intentFilter.addAction(Constant.IntentAction.MISSION_COMPLETE);
+            localBroadcastManager.registerReceiver(receiver, intentFilter);
+            orderInfo_call_img.setOnClickListener(this);
+            orderInfo_op_btn.setOnClickListener(this);
+            orderInfo_arrive_btn.setOnClickListener(this);
+            orderInfo_navigate_btn.setOnClickListener(this);
+        }else {
+            showToast(R.string.orderinfo_error_order);
+            finish();
+        }
 
     }
 

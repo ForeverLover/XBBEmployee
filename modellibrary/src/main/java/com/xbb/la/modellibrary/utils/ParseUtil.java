@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.xbb.la.modellibrary.bean.DIYProduct;
 import com.xbb.la.modellibrary.bean.Employee;
+import com.xbb.la.modellibrary.bean.Message;
 import com.xbb.la.modellibrary.bean.OrderInfo;
 import com.xbb.la.modellibrary.bean.Reminder;
 
@@ -273,35 +274,35 @@ public class ParseUtil {
         return orderInfo;
     }
 
-    public Employee parseEmployeeInfo(String json){
+    public Employee parseEmployeeInfo(String json) {
         if (StringUtil.isEmpty(json)) return null;
-        Employee employee=null;
+        Employee employee = null;
         try {
-            JSONObject jsonObject=new JSONObject(json);
-            if (jsonObject!=null){
-                employee=new Employee();
-                if (jsonObject.has("id")&&!jsonObject.isNull("id")&&!StringUtil.isEmpty(jsonObject.getString("id"))){
+            JSONObject jsonObject = new JSONObject(json);
+            if (jsonObject != null) {
+                employee = new Employee();
+                if (jsonObject.has("id") && !jsonObject.isNull("id") && !StringUtil.isEmpty(jsonObject.getString("id"))) {
                     employee.setUid(jsonObject.getString("id"));
                 }
-                if (jsonObject.has("identiy_id")&&!jsonObject.isNull("identiy_id")&&!StringUtil.isEmpty(jsonObject.getString("identiy_id"))){
+                if (jsonObject.has("identiy_id") && !jsonObject.isNull("identiy_id") && !StringUtil.isEmpty(jsonObject.getString("identiy_id"))) {
                     employee.setEmpNo(jsonObject.getString("identiy_id"));
                 }
-                if (jsonObject.has("emp_name")&&!jsonObject.isNull("emp_name")&&!StringUtil.isEmpty(jsonObject.getString("emp_name"))){
+                if (jsonObject.has("emp_name") && !jsonObject.isNull("emp_name") && !StringUtil.isEmpty(jsonObject.getString("emp_name"))) {
                     employee.setNickname(jsonObject.getString("emp_name"));
                 }
-                if (jsonObject.has("emp_img")&&!jsonObject.isNull("emp_img")&&!StringUtil.isEmpty(jsonObject.getString("emp_img"))){
+                if (jsonObject.has("emp_img") && !jsonObject.isNull("emp_img") && !StringUtil.isEmpty(jsonObject.getString("emp_img"))) {
                     employee.setAvatar(jsonObject.getString("emp_img"));
                 }
-                if (jsonObject.has("age")&&!jsonObject.isNull("age")&&!StringUtil.isEmpty(jsonObject.getString("age"))){
+                if (jsonObject.has("age") && !jsonObject.isNull("age") && !StringUtil.isEmpty(jsonObject.getString("age"))) {
                     employee.setAge(jsonObject.getString("age"));
                 }
-                if (jsonObject.has("sex")&&!jsonObject.isNull("sex")&&!StringUtil.isEmpty(jsonObject.getString("sex"))){
+                if (jsonObject.has("sex") && !jsonObject.isNull("sex") && !StringUtil.isEmpty(jsonObject.getString("sex"))) {
                     employee.setGender(jsonObject.getString("sex"));
                 }
-                if (jsonObject.has("emp_iphone")&&!jsonObject.isNull("emp_iphone")&&!StringUtil.isEmpty(jsonObject.getString("emp_iphone"))){
+                if (jsonObject.has("emp_iphone") && !jsonObject.isNull("emp_iphone") && !StringUtil.isEmpty(jsonObject.getString("emp_iphone"))) {
                     employee.setTel(jsonObject.getString("emp_iphone"));
                 }
-                if (jsonObject.has("emp_wx")&&!jsonObject.isNull("emp_wx")&&!StringUtil.isEmpty(jsonObject.getString("emp_wx"))){
+                if (jsonObject.has("emp_wx") && !jsonObject.isNull("emp_wx") && !StringUtil.isEmpty(jsonObject.getString("emp_wx"))) {
                     employee.setWx(jsonObject.getString("emp_wx"));
                 }
             }
@@ -311,19 +312,100 @@ public class ParseUtil {
         return employee;
     }
 
-    public String parseAvatarPath(String json){
+    public String parseAvatarPath(String json) {
         if (StringUtil.isEmpty(json)) return null;
-        String avatarPath="";
+        String avatarPath = "";
         try {
-            JSONObject jsonObject=new JSONObject(json);
-            if (jsonObject!=null){
-                if (jsonObject.has("emp_img")&&!jsonObject.isNull("emp_img")&&!StringUtil.isEmpty(jsonObject.getString("emp_img"))){
-                    avatarPath=jsonObject.getString("emp_img");
+            JSONObject jsonObject = new JSONObject(json);
+            if (jsonObject != null) {
+                if (jsonObject.has("emp_img") && !jsonObject.isNull("emp_img") && !StringUtil.isEmpty(jsonObject.getString("emp_img"))) {
+                    avatarPath = jsonObject.getString("emp_img");
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return avatarPath;
+    }
+
+    public List<Message> parseMessageList(String json) {
+        if (StringUtil.isEmpty(json)) return null;
+        List<Message> messageList = null;
+        try {
+            JSONArray mArray = new JSONArray(json);
+            if (mArray != null && mArray.length() > 0) {
+                messageList = new ArrayList<>();
+                for (int i = 0; i < mArray.length(); i++) {
+                    JSONObject mObject = mArray.getJSONObject(i);
+                    if (mObject != null) {
+                        Message message = new Message();
+                        if (mObject.has("id") && !mObject.isNull("id") && !StringUtil.isEmpty(mObject.getString("id"))) {
+                            message.setMsgId(mObject.getString("id"));
+                        }
+                        if (mObject.has("type") && !mObject.isNull("type") && StringUtil.isNumeric(mObject.getString("type"))) {
+                            message.setType(Integer.parseInt(mObject.getString("type")));
+                        }
+                        if (mObject.has("title") && !mObject.isNull("title") && !StringUtil.isEmpty(mObject.getString("title"))) {
+                            message.setTitle(mObject.getString("title"));
+                        }
+                        if (mObject.has("content") && !mObject.isNull("content") && !StringUtil.isEmpty(mObject.getString("content"))) {
+                            message.setContent(mObject.getString("content"));
+                        }
+                        if (mObject.has("pushed_time") && !mObject.isNull("pushed_time") && !StringUtil.isEmpty(mObject.getString("pushed_time"))) {
+                            message.setTime(mObject.getString("pushed_time"));
+                        }
+                        if (mObject.has("order_id") && !mObject.isNull("order_id") && !StringUtil.isEmpty(mObject.getString("order_id"))) {
+                            message.setExtraId(mObject.getString("order_id"));
+                        }
+                        if (mObject.has("is_readed") && !mObject.isNull("is_readed") && !StringUtil.isEmpty(mObject.getString("is_readed"))) {
+                            if (!"0".equals(mObject.getString("is_readed"))) {
+                                message.setRead(true);
+                            }
+                        }
+                        messageList.add(message);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return messageList;
+    }
+
+    public Message parserMessageInfo(String json) {
+        if (StringUtil.isEmpty(json)) return null;
+        Message message = null;
+        try {
+            JSONObject mObject = new JSONObject(json);
+            if (mObject != null) {
+                message = new Message();
+                if (mObject.has("id") && !mObject.isNull("id") && !StringUtil.isEmpty(mObject.getString("id"))) {
+                    message.setMsgId(mObject.getString("id"));
+                }
+                if (mObject.has("type") && !mObject.isNull("type") && StringUtil.isNumeric(mObject.getString("type"))) {
+                    message.setType(Integer.parseInt(mObject.getString("type")));
+                }
+                if (mObject.has("order_id") && !mObject.isNull("order_id") && !StringUtil.isEmpty(mObject.getString("order_id"))) {
+                    message.setExtraId(mObject.getString("order_id"));
+                }
+                if (mObject.has("title") && !mObject.isNull("title") && !StringUtil.isEmpty(mObject.getString("title"))) {
+                    message.setTitle(mObject.getString("title"));
+                }
+                if (mObject.has("content") && !mObject.isNull("content") && !StringUtil.isEmpty(mObject.getString("content"))) {
+                    message.setContent(mObject.getString("content"));
+                }
+                if (mObject.has("pushed_time") && !mObject.isNull("pushed_time") && !StringUtil.isEmpty(mObject.getString("pushed_time"))) {
+                    message.setTime(mObject.getString("pushed_time"));
+                }
+                if (mObject.has("is_readed") && !mObject.isNull("is_readed") && !StringUtil.isEmpty(mObject.getString("is_readed"))) {
+                    if ("0".equals(mObject.getString("is_readed"))) {
+                        message.setRead(true);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return message;
     }
 }

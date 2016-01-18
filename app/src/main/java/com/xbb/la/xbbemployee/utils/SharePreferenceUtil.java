@@ -6,11 +6,9 @@ import android.content.SharedPreferences;
 import com.xbb.la.modellibrary.bean.Employee;
 import com.xbb.la.modellibrary.bean.LocationBean;
 import com.xbb.la.modellibrary.bean.LocationUploadOrder;
+import com.xbb.la.modellibrary.bean.PushServiceBean;
 import com.xbb.la.modellibrary.config.Constant;
-import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
-
-import java.util.Map;
 
 /**
  * 项目:XBBEmployee
@@ -55,6 +53,7 @@ public class SharePreferenceUtil {
         editor.putString("pwd", employee.getPwd());
         editor.putString("avatar", employee.getAvatar());
         editor.putBoolean("islogin", employee.isLogin());
+        editor.putBoolean("hasChannel", employee.hasChannel());
         editor.commit();
     }
 
@@ -78,6 +77,7 @@ public class SharePreferenceUtil {
         employee.setWx(sp.getString("wx", ""));
         employee.setPwd(sp.getString("pwd", ""));
         employee.setLogin(sp.getBoolean("islogin", false));
+        employee.setChannel(sp.getBoolean("hasChannel", false));
         return employee;
 
     }
@@ -90,7 +90,7 @@ public class SharePreferenceUtil {
      */
     public LocationBean getLocationInfo(Context context) {
         SharedPreferences defaultSharedPreferences = context
-                .getSharedPreferences("Location", Context.MODE_PRIVATE);
+                .getSharedPreferences(Constant.SP.Location, Context.MODE_PRIVATE);
         String lon = defaultSharedPreferences.getString("lon", null);
         String lat = defaultSharedPreferences.getString("lat", null);
         String city = defaultSharedPreferences.getString("city", null);
@@ -115,7 +115,7 @@ public class SharePreferenceUtil {
     public void setLocationInfo(Context context,
                                 LocationBean locationBean) {
         SharedPreferences defaultSharedPreferences = context
-                .getSharedPreferences("Location", Context.MODE_PRIVATE);
+                .getSharedPreferences(Constant.SP.Location, Context.MODE_PRIVATE);
         if (null == locationBean) {
         } else {
             SharedPreferences.Editor editor = defaultSharedPreferences.edit();
@@ -136,7 +136,7 @@ public class SharePreferenceUtil {
      */
     public static void clearLocationInfo(Context context) {
         SharedPreferences defaultSharedPreferences = context
-                .getSharedPreferences("Location", Context.MODE_PRIVATE);
+                .getSharedPreferences(Constant.SP.Location, Context.MODE_PRIVATE);
         defaultSharedPreferences.edit().clear().commit();
     }
 
@@ -144,52 +144,91 @@ public class SharePreferenceUtil {
      * 版本更新状态
      ***/
     public static void saveState(Context con, boolean state) {
-        SharedPreferences sp = con.getSharedPreferences("UpdateState",
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_UPDATE,
                 Context.MODE_PRIVATE);
         sp.edit().putBoolean("state", state).commit();
     }
 
     public static boolean getStateIsUpdating(Context con) {
-        SharedPreferences sp = con.getSharedPreferences("UpdateState",
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_UPDATE,
                 Context.MODE_PRIVATE);
         return sp.getBoolean("state", false);
     }
 
     public static void clear(Context con) {
-        SharedPreferences sp = con.getSharedPreferences("UpdateState",
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_UPDATE,
                 Context.MODE_PRIVATE);
         sp.edit().clear().commit();
     }
 
     public static long getVersionTime(Context con) {
-        SharedPreferences sp = con.getSharedPreferences("VersionTime",
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_TIME,
                 Context.MODE_PRIVATE);
         return sp.getLong("time", 0);
     }
 
     public static void setVersionTime(Context con, long time) {
-        SharedPreferences sp = con.getSharedPreferences("VersionTime",
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_TIME,
                 Context.MODE_PRIVATE);
         sp.edit().putLong("time", time).commit();
     }
 
-    public void setLocationUploadOrder(Context con,String orderId, String uid) {
-        SharedPreferences sp = con.getSharedPreferences("VersionTime",
+    public void setLocationUploadOrder(Context con, String orderId, String uid) {
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_TIME,
                 Context.MODE_PRIVATE);
         sp.edit().putString("orderId", orderId).putString("uid", uid).commit();
     }
+
     public LocationUploadOrder getLocationUploadOrder(Context con) {
-        SharedPreferences sp = con.getSharedPreferences("VersionTime",
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.VERSION_TIME,
                 Context.MODE_PRIVATE);
-        String orderId=sp.getString("orderId", "");
-        String uid=sp.getString("uid","");
-        if (!StringUtil.isEmpty(orderId)&&!StringUtil.isEmpty(uid)){
-            LocationUploadOrder locationUploadOrder=new LocationUploadOrder();
+        String orderId = sp.getString("orderId", "");
+        String uid = sp.getString("uid", "");
+        if (!StringUtil.isEmpty(orderId) && !StringUtil.isEmpty(uid)) {
+            LocationUploadOrder locationUploadOrder = new LocationUploadOrder();
             locationUploadOrder.setOrderId(orderId);
             locationUploadOrder.setOrderId(uid);
-            return  locationUploadOrder;
+            return locationUploadOrder;
         }
         return null;
+    }
+
+    /**
+     * 获取推送服务相关信息
+     *
+     * @param con
+     * @return
+     */
+    public PushServiceBean getPushServiceBean(Context con) {
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.PUSH,
+                Context.MODE_PRIVATE);
+        PushServiceBean pushServiceBean = null;
+        String appId = sp.getString("push_appId", "");
+        String channelId = sp.getString("push_channelId", "");
+        String requestId = sp.getString("push_requestId", "");
+        String pushuId = sp.getString("push_userId", "");
+        if (!StringUtil.isEmpty(channelId) && !StringUtil.isEmpty(pushuId)) {
+            pushServiceBean = new PushServiceBean();
+            pushServiceBean.setAppId(appId);
+            pushServiceBean.setChannelId(channelId);
+            pushServiceBean.setRequestId(requestId);
+            pushServiceBean.setUserId(pushuId);
+        }
+        return pushServiceBean;
+    }
+
+    public void savePushService(Context con, PushServiceBean pushServiceBean) {
+        if (pushServiceBean == null) return;
+        SharedPreferences sp = con.getSharedPreferences(Constant.SP.PUSH,
+                Context.MODE_PRIVATE);
+        if (pushServiceBean != null&&!StringUtil.isEmpty(pushServiceBean.getChannelId())&&!StringUtil.isEmpty(pushServiceBean.getUserId())) {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("push_appId", pushServiceBean.getAppId());
+            editor.putString("push_channelId", pushServiceBean.getChannelId());
+            editor.putString("push_requestId", pushServiceBean.getRequestId());
+            editor.putString("push_userId", pushServiceBean.getUserId());
+            editor.commit();
+        }
     }
 
 }

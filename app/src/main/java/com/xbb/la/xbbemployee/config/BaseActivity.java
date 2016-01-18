@@ -9,6 +9,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,7 @@ import com.xbb.la.xbbemployee.widget.CustomProgressDialog;
  * 描述：基类
  */
 
-public class BaseActivity extends Activity implements View.OnClickListener, XRequestCallBack,Init {
+public class BaseActivity extends Activity implements View.OnClickListener, XRequestCallBack, Init {
     protected LocalBroadcastManager localBroadcastManager;
     protected BaseApplication application;
 
@@ -48,10 +51,12 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
 
     public LocationClient mLocationClient;
 
+    public static Activity activityContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityContext = this;
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         BlueWare.withApplicationToken(Constant.Keys.OneAPM).start(this.getApplication());
 
@@ -126,6 +131,7 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
     protected void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
     protected void showToast(int resId) {
         Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show();
     }
@@ -223,5 +229,34 @@ public class BaseActivity extends Activity implements View.OnClickListener, XReq
     @Override
     public void initListener() {
 
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideSoftInputView() {
+        InputMethodManager manager = ((InputMethodManager) this
+                .getSystemService(Activity.INPUT_METHOD_SERVICE));
+        if (this.getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
+            if (this.getCurrentFocus() != null) {
+                manager.hideSoftInputFromWindow(this.getCurrentFocus()
+                        .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
+    /**
+     * 展开键盘
+     * @param editText
+     */
+    protected void openSoftInputView(EditText editText) {
+        InputMethodManager inputManager = ((InputMethodManager) this
+                .getSystemService(Activity.INPUT_METHOD_SERVICE));
+        editText.requestFocus();
+        if (this.getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE) {
+            if (this.getCurrentFocus() != null) {
+                inputManager.showSoftInput(editText, 0);
+            }
+        }
     }
 }
