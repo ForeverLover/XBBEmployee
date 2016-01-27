@@ -377,6 +377,7 @@ public class StringUtil {
     }
 
     public static boolean compareStringList(List<String> source, List<String> target) {
+        MLog.v("Tag","compare:src'xize:"+source.size()+" target:"+target.size());
         if (source.size() != target.size()) return false;
         for (int i = 0; i < source.size(); i++)
             if (!source.get(i).equals(target.get(i))) return false;

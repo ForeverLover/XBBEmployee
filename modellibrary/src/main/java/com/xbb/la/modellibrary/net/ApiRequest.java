@@ -3,11 +3,14 @@ package com.xbb.la.modellibrary.net;
 import android.util.Log;
 
 import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.client.multipart.MultipartEntity;
 import com.xbb.la.modellibrary.bean.UploadRecommand;
 import com.xbb.la.modellibrary.bean.UploadTransaction;
 import com.xbb.la.modellibrary.config.Task;
 import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.modellibrary.utils.StringUtil;
+
+import org.apache.http.NameValuePair;
 
 import java.io.File;
 import java.util.Comparator;
@@ -31,7 +34,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void login(String user, String pwd, String channelId, String userId, String device) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -59,7 +62,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void getOrderList(String userId, int type, int pageIndex, int pageSize) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -91,8 +94,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                     }
                 });
         map.put("orderid", orderId);
-        map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.ORDER, "orderDetail", map,orderId);
+        map.put("timeline", System.currentTimeMillis() + "");
+        requestAfterSigned(XRequestCallBack, Task.ORDER, "orderDetail", map, orderId);
     }
 
     @Override
@@ -107,8 +110,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("orderid", orderId);
         map.put("state", "1");
         map.put("uid", uid);
-        map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.ACCEPT, "changeState", map,orderId);
+        map.put("timeline", System.currentTimeMillis() + "");
+        requestAfterSigned(XRequestCallBack, Task.ACCEPT, "changeState", map, orderId);
     }
 
     @Override
@@ -123,8 +126,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("orderid", orderId);
         map.put("state", "2");
         map.put("uid", uid);
-        map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.SET_OUT, "changeState", map,orderId);
+        map.put("timeline", System.currentTimeMillis() + "");
+        requestAfterSigned(XRequestCallBack, Task.SET_OUT, "changeState", map, orderId);
     }
 
     @Override
@@ -139,8 +142,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("orderid", orderId);
         map.put("state", "3");
         map.put("uid", uid);
-        map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.ARRIVE, "changeState", map,orderId);
+        map.put("timeline", System.currentTimeMillis() + "");
+        requestAfterSigned(XRequestCallBack, Task.ARRIVE, "changeState", map, orderId);
     }
 
     @Override
@@ -171,47 +174,48 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                  i++) {
                 params.addBodyParameter("before_body" + (i + 1), normal_before_fileList.get(i));
             }
-//                Log.v("Tag", "normal_before_list:" + normal_before_fileList.size());
+//                MLog.v("Tag", "normal_before_list:" + normal_before_fileList.size());
         }
         if (damage_before_fileList != null && !damage_before_fileList.isEmpty()) {
             for (int i = 0; i < damage_before_fileList.size();
                  i++) {
                 params.addBodyParameter("before_nick" + (i + 1), damage_before_fileList.get(i));
             }
-//                Log.v("Tag", "damage_before_list:" + damage_before_fileList.size());
+//                MLog.v("Tag", "damage_before_list:" + damage_before_fileList.size());
         }
         if (damage_after_fileList != null && !damage_after_fileList.isEmpty()) {
             for (int i = 0; i < damage_after_fileList.size();
                  i++) {
                 params.addBodyParameter("after_nick" + (i + 1), damage_after_fileList.get(i));
             }
-//                Log.v("Tag", "damage_after_list:" + damage_after_fileList.size());
+            MLog.v("data", "damage_after_list:" + damage_after_fileList.size());
         }
         if (normal_after_fileList != null && !normal_after_fileList.isEmpty()) {
             for (int i = 0; i < normal_after_fileList.size();
                  i++) {
                 params.addBodyParameter("after_body" + (i + 1), normal_after_fileList.get(i));
             }
-//                Log.v("Tag", "normal_after_list:" + normal_after_fileList.size());
+            MLog.v("data", "normal_after_list:" + normal_after_fileList.size());
         }
         if (uploadRecommandList != null && !uploadRecommandList.isEmpty())
-//                Log.v("Tag", "recommand_list:" + uploadRecommandList.size());
-            for (int i = 0; i < uploadRecommandList.size(); i++) {
-                UploadRecommand uploadRecommand = uploadRecommandList.get(i);
-                if (uploadRecommand != null) {
+            MLog.v("data", "recommand_list:" + uploadRecommandList.size());
+        for (int i = 0; i < uploadRecommandList.size(); i++) {
+            UploadRecommand uploadRecommand = uploadRecommandList.get(i);
+            if (uploadRecommand != null) {
 //                    params.addBodyParameter("diy[" + (i + 1) + "]['id']", uploadRecommand.getDiyID());
-                    params.addBodyParameter("diyremark[" + uploadRecommand.getDiyID() + "]", uploadRecommand.getRecommandRemark());
-                    List<File> recommandFileList = uploadRecommand.getRecommandFileAlbum();
-                    if (recommandFileList != null && !recommandFileList.isEmpty()) {
-                        for (int j = 0; j < recommandFileList.size();
-                             j++) {
-                            params.addBodyParameter("diy_img_" + uploadRecommand.getDiyID() + "_img" + (j + 1), recommandFileList.get(j));
-                        }
-//                        Log.v("Tag", "recommand_img_list:" + recommandFileList.size());
+                params.addBodyParameter("diyremark[" + uploadRecommand.getDiyID() + "]", uploadRecommand.getRecommandRemark());
+                List<File> recommandFileList = uploadRecommand.getRecommandFileAlbum();
+                if (recommandFileList != null && !recommandFileList.isEmpty()) {
+                    for (int j = 0; j < recommandFileList.size();
+                         j++) {
+                        params.addBodyParameter("diy_img_" + uploadRecommand.getDiyID() + "_img" + (j + 1), recommandFileList.get(j));
                     }
+                    MLog.v("data", "recommand_img_list:" + recommandFileList.size());
                 }
             }
-        request(XRequestCallBack, Task.MISSION_COMPLETE, "uploadimg", params,null);
+        }
+        MLog.v("data",uid+" "+orderId+""+ uploadTransaction.getStartTime()+" "+uploadTransaction.getEndTime());
+        request(XRequestCallBack, Task.MISSION_COMPLETE, "uploadimg", params, null);
     }
 
     @Override
@@ -227,8 +231,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
         map.put("uid", userId);
         map.put("lat", lat);
         map.put("lng", lng);
-        map.put("timeline", System.currentTimeMillis()+"");
-        requestAfterSigned(XRequestCallBack, Task.LOCATION_UPLOAD, "addpoint", map,null);
+        map.put("timeline", System.currentTimeMillis() + "");
+        requestAfterSigned(XRequestCallBack, Task.LOCATION_UPLOAD, "addpoint", map, null);
     }
 
     @Override
@@ -241,7 +245,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void changeAge(String uid, String age) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -257,7 +261,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void chageGender(String uid, String gender) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -274,7 +278,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void changeName(String uid, String name) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -290,7 +294,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void changePwd(String uid, String oldpwd, String newpwd) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -307,7 +311,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void feedback(String uid, String feedback) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -322,8 +326,8 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
     }
 
     @Override
-    public void insertPushChannel(String uid, String userId, String channelId,String device) {
-        String currentTime=System.currentTimeMillis()+"";
+    public void insertPushChannel(String uid, String userId, String channelId, String device) {
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -341,7 +345,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void getMessageList(String uid, int pageIndex, int pageSize) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -350,14 +354,14 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
                     }
                 });
         map.put("uid", uid);
-        map.put("p", pageIndex+"");
+        map.put("p", pageIndex + "");
         map.put("timeline", currentTime);
         requestAfterSigned(XRequestCallBack, Task.GET_MESSAGE, "message", map, null);
     }
 
     @Override
     public void getMessageDetail(String uid, String messageId) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {
@@ -373,7 +377,7 @@ public class ApiRequest extends BaseRequest implements IApiRequest {
 
     @Override
     public void getUnreadMessage(String uid) {
-        String currentTime=System.currentTimeMillis()+"";
+        String currentTime = System.currentTimeMillis() + "";
         Map<String, String> map = new TreeMap<String, String>(
                 new Comparator<String>() {
                     public int compare(String obj1, String obj2) {

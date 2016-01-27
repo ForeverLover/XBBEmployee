@@ -136,7 +136,10 @@ public class TransactionEndActivity extends TitleActivity {
                     } else
                     normalFlag = false;
                 } else if (endNormalList != null && endNormalList.size() == 4 && !normalIsFinished) {
-                    normalFlag = true;
+                    if (position == endNormalList.size() - 1) {
+                        normalFlag = true;
+                    } else
+                        normalFlag = false;
                 } else {
                     normalFlag = false;
                 }
@@ -286,15 +289,19 @@ public class TransactionEndActivity extends TitleActivity {
     }
 
     private void showAlbum(List<String> dataList) {
-        if (dataList == null || dataList.isEmpty()) {
+       /* if (dataList == null || dataList.isEmpty()) {
             showToast(getString(R.string.tost_no_pic));
             return;
-        }
+        }*/
         ArrayList<String> picList = new ArrayList<String>();
-        if (dataList.contains(Constant.Path.ADD_PIC_Path) && dataList.size() > 1)
+        if (dataList.contains(Constant.Path.ADD_PIC_Path) && dataList.size() > 0)
             picList.addAll(dataList.subList(0, dataList.size() - 1));
         else
             picList.addAll(dataList);
+        if (picList == null || picList.isEmpty()) {
+            showToast(getString(R.string.tost_no_pic));
+            return;
+        }
         Intent intent = new Intent(this,
                 BigImageActivity.class);
 

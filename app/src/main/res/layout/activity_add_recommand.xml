@@ -45,7 +45,7 @@
                         android:layout_width="@dimen/dp_eighty"
                         android:layout_height="@dimen/dp_sixty"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/no_diy_selected" />
 
                     <TextView
                         android:textColor="@color/main_text_color"

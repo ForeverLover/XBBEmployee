@@ -19,6 +19,7 @@ import com.xbb.la.modellibrary.bean.Recommand;
 import com.xbb.la.modellibrary.utils.StringUtil;
 import com.xbb.la.modellibrary.utils.SystemUtil;
 import com.xbb.la.xbbemployee.R;
+import com.xbb.la.xbbemployee.listener.AnimateFirstDisplayListener;
 import com.xbb.la.xbbemployee.utils.MImageLoader;
 
 import java.util.List;
@@ -77,13 +78,16 @@ public class RecommandAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
+            holder.recommand_describe_img_one.setVisibility(View.INVISIBLE);
+            holder.recommand_describe_img_two.setVisibility(View.INVISIBLE);
+            holder.recommand_describe_img_three.setVisibility(View.INVISIBLE);
         }
         Recommand recommand = recommandList.get(position);
         if (recommand != null) {
             DIYProduct diyProduct = recommand.getSelectedDIYProduct();
             if (diyProduct != null) {
                 holder.recommand_diy_name.setText(diyProduct.getP_name());
-                MImageLoader.getInstance(context).displayImageM(recommand.getSelectedDIYProduct().getP_ximg(), holder.recommand_describe_img);
+                MImageLoader.getInstance(context).displayImageByHalfUrl(recommand.getSelectedDIYProduct().getP_ximg(), holder.recommand_describe_img, R.mipmap.diy_img_error, new AnimateFirstDisplayListener());
                 Log.v("Tag", "diy-img:(width,height)---->(" + holder.recommand_describe_img.getWidth() + "," + holder.recommand_describe_img.getHeight());
             }
             List<String> select = recommand.getIntroAlbum();
@@ -95,12 +99,15 @@ public class RecommandAdapter extends BaseAdapter {
                     switch (i) {
                         case 0:
                             holder.recommand_describe_img_one.setImageBitmap(bitmap);
+                            holder.recommand_describe_img_one.setVisibility(View.VISIBLE);
                             break;
                         case 1:
                             holder.recommand_describe_img_two.setImageBitmap(bitmap);
+                            holder.recommand_describe_img_two.setVisibility(View.VISIBLE);
                             break;
                         case 2:
                             holder.recommand_describe_img_three.setImageBitmap(bitmap);
+                            holder.recommand_describe_img_three.setVisibility(View.VISIBLE);
                             break;
                     }
                 }

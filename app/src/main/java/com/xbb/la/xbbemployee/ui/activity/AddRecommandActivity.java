@@ -27,6 +27,7 @@ import com.xbb.la.xbbemployee.adapter.CameraPhotoAdapter;
 import com.xbb.la.xbbemployee.adapter.DIYProductAdapter;
 import com.xbb.la.xbbemployee.config.BaseActivity;
 import com.xbb.la.xbbemployee.config.TitleActivity;
+import com.xbb.la.xbbemployee.listener.AnimateFirstDisplayListener;
 import com.xbb.la.xbbemployee.provider.DBHelperMethod;
 import com.xbb.la.xbbemployee.utils.MImageLoader;
 import com.xbb.la.xbbemployee.widget.CustomGridView;
@@ -120,11 +121,11 @@ public class AddRecommandActivity extends TitleActivity {
             if (sourceRecommand != null) {
                 selectedDIY = sourceRecommand.getSelectedDIYProduct();
                 remark = sourceRecommand.getRemark();
-                introAlbum = sourceRecommand.getIntroAlbum();
                 select_diy_name.setText(selectedDIY.getP_name());
                 add_remark_et.setText(remark);
                 if (introAlbum == null)
                     introAlbum = new ArrayList<String>();
+                introAlbum.addAll(sourceRecommand.getIntroAlbum());
                 if (introAlbum.isEmpty() || introAlbum.size() < 3) {
                     introAlbum.add(path);
                     isFinished = false;
@@ -135,7 +136,7 @@ public class AddRecommandActivity extends TitleActivity {
                         diyProduct.setSelected(true);
                 }
                 diyProductAdapter.update(true);
-                MImageLoader.getInstance(AddRecommandActivity.this).displayImageM(selectedDIY.getP_ximg(), selected_diy_img);
+                MImageLoader.getInstance(this).displayImageByHalfUrl(selectedDIY.getP_ximg(), selected_diy_img, R.mipmap.diy_img_error, new AnimateFirstDisplayListener());
             }
         } else {
             setTitle(getString(R.string.recommand_add_lable));
@@ -156,10 +157,13 @@ public class AddRecommandActivity extends TitleActivity {
                 if (introAlbum != null && introAlbum.size() < 3) {
                     if (position == introAlbum.size() - 1) {
                         flag = true;
-                    }else
-                        flag=false;
+                    } else
+                        flag = false;
                 } else if (introAlbum != null && introAlbum.size() == 3 && !isFinished) {
-                    flag = true;
+                    if (position == introAlbum.size() - 1) {
+                        flag = true;
+                    } else
+                        flag = false;
                 } else {
                     flag = false;
                 }
@@ -177,13 +181,13 @@ public class AddRecommandActivity extends TitleActivity {
                     target.setSelected(true);
                     selectedDIY = target;
                     diyProductAdapter.update(true);
-                    MImageLoader.getInstance(AddRecommandActivity.this).displayImageM(target.getP_ximg(), selected_diy_img);
+                    MImageLoader.getInstance(AddRecommandActivity.this).displayImageByHalfUrl(target.getP_ximg(), selected_diy_img, R.mipmap.diy_img_error, new AnimateFirstDisplayListener());
                 } else {
                     if (selectedDIY.getId().equals(target.getId())) {
                         target.setSelected(false);
                         selectedDIY = null;
                         select_diy_name.setText("");
-                        selected_diy_img.setImageResource(R.mipmap.ic_launcher);
+                        selected_diy_img.setImageResource(R.mipmap.no_diy_selected);
                         diyProductAdapter.update(false);
                     }
                 }
@@ -247,7 +251,9 @@ public class AddRecommandActivity extends TitleActivity {
 //                    lastAlbum = introAlbum.subList(0, introAlbum.size() - 1);
                 }
                 MLog.v("Tag", "init album succeed");
-                lastAlbum = introAlbum;
+                if (lastAlbum == null)
+                    lastAlbum = new ArrayList<>();
+                lastAlbum.addAll(introAlbum);
                 remark = add_remark_et.getText() != null ? add_remark_et.getText().toString() : "";
                 if (recommand == null)
                     recommand = new Recommand();
@@ -259,6 +265,7 @@ public class AddRecommandActivity extends TitleActivity {
                 if (2 == type)
                     returnIntent.putExtra("change", hasChangedRecommand());
                 setResult(RESULT_OK, returnIntent);
+                hideSoftInputView();
                 finish();
                 MLog.v("Tag", "recommand succeed");
                 break;
@@ -287,15 +294,16 @@ public class AddRecommandActivity extends TitleActivity {
     }
 
     private void showAlbum(List<String> dataList) {
-        if (dataList == null || dataList.isEmpty()) {
-            showToast(getString(R.string.tost_no_pic));
-            return;
-        }
+
         ArrayList<String> picList = new ArrayList<String>();
-        if (dataList.contains(Constant.Path.ADD_PIC_Path) && dataList.size() > 1)
+        if (dataList.contains(Constant.Path.ADD_PIC_Path) && dataList.size() > 0)
             picList.addAll(dataList.subList(0, dataList.size() - 1));
         else
             picList.addAll(dataList);
+        if (picList == null || picList.isEmpty()) {
+            showToast(getString(R.string.tost_no_pic));
+            return;
+        }
         Intent intent = new Intent(this,
                 BigImageActivity.class);
 
@@ -380,6 +388,7 @@ public class AddRecommandActivity extends TitleActivity {
 
     private void doFinish() {
         if (selectedDIY == null && (!isFinished && introAlbum.size() == 1) && StringUtil.isEmpty(remark)) {
+            hideSoftInputView();
             finish();
         } else {
             new AlertDialog.Builder(this).setTitle(getString(R.string.dialog_title_tip)).setMessage(getString(R.string.dialog_content_tip)).setNegativeButton(getString(R.string.dialog_cancel_tip), new DialogInterface.OnClickListener() {
@@ -392,6 +401,7 @@ public class AddRecommandActivity extends TitleActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();
+                    hideSoftInputView();
                 }
             }).create().show();
         }

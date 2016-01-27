@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xbb.la.modellibrary.bean.Recommand;
 import com.xbb.la.modellibrary.config.Constant;
+import com.xbb.la.modellibrary.utils.MLog;
 import com.xbb.la.xbbemployee.R;
 import com.xbb.la.xbbemployee.adapter.RecommandAdapter;
 import com.xbb.la.xbbemployee.config.TitleActivity;
@@ -61,6 +62,8 @@ public class TransactionRecommandActivity extends TitleActivity {
 
     private int pointIndex;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +97,26 @@ public class TransactionRecommandActivity extends TitleActivity {
 
 
         });
+        recommand_list_lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                new AlertDialog.Builder(TransactionRecommandActivity.this).setTitle(getString(R.string.dialog_title_tip)).
+                        setMessage(getString(R.string.dialog_del_content_tip)).setNegativeButton(getString(R.string.dialog_del_cancel_tip), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).setPositiveButton(getString(R.string.dialog_del_ensure_tip), new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        recommandList.remove(position);
+                        recommandAdapter.notifyDataSetChanged();
+                    }
+                }).create().show();
+                return true;
+            }
+        });
     }
 
     private void getLocalList() {
@@ -103,6 +126,7 @@ public class TransactionRecommandActivity extends TitleActivity {
             recommand_list_lv.setAdapter(recommandAdapter);
         }
     }
+
     @Override
     protected void onClickTitleLeft(View v) {
         localBroadcastManager.sendBroadcast(new Intent(Constant.IntentAction.TRANSACTION_TO_FINISH));
@@ -111,7 +135,7 @@ public class TransactionRecommandActivity extends TitleActivity {
 
     @Override
     protected void onClickTitleRight(View v) {
-        startActivityForResult(new Intent(this, AddRecommandActivity.class).putExtra("type",1), GET_RECOMMAND);
+        startActivityForResult(new Intent(this, AddRecommandActivity.class).putExtra("type", 1), GET_RECOMMAND);
     }
 
     @Override
@@ -133,6 +157,18 @@ public class TransactionRecommandActivity extends TitleActivity {
                         showToast("插入失败");
                     }
 
+                }else{
+                    if (2 == select) {
+                        if (DBHelperMethod.getInstance().skipRecommand(orderId, userId)) {
+                            Intent skipIntent = new Intent(Constant.IntentAction.TRANSACTION_TO_FINISH);
+                            skipIntent.putExtra("step", 3);
+                            skipIntent.putExtra("insert", true);
+                            localBroadcastManager.sendBroadcast(skipIntent);
+                        } else {
+                            showToast("保存失败");
+                        }
+                    } else
+                        showToast("请添加建议后提交");
                 }
                 break;
             case R.id.recommand_skip_btn:
@@ -176,6 +212,7 @@ public class TransactionRecommandActivity extends TitleActivity {
                             recommandAdapter.notifyDataSetChanged();
                         }
                     }
+                    break;
                 case UPDATE_RECOMMAND:
                     boolean hasChange = data.getBooleanExtra("change", false);
                     if (hasChange) {

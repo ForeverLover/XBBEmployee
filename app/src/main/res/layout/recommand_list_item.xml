@@ -23,16 +23,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_sixteen"
-            android:textColor="@color/main_text_color"/>
+            android:textColor="@color/theme_color"/>
     </LinearLayout>
 
+       <!-- android:paddingTop="@dimen/dp_ten"
+        android:paddingBottom="@dimen/dp_ten"-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingRight="@dimen/dp_twenty"
-        android:paddingTop="@dimen/dp_ten"
-        android:paddingBottom="@dimen/dp_ten"
         android:paddingLeft="@dimen/dp_twenty">
 
         <LinearLayout
@@ -52,7 +52,7 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher" />
 
-            <TextView
+           <!-- <TextView
                 android:textColor="@color/main_text_color"
                 android:id="@+id/recommand_describe_content"
                 android:layout_width="match_parent"
@@ -60,7 +60,8 @@
                 android:layout_marginTop="@dimen/dp_five"
                 android:singleLine="true"
                 android:text="@string/recommand_layout_label"
-                android:textSize="@dimen/sp_forteen" />
+                android:visibility="invisible"
+                android:textSize="@dimen/sp_forteen" />-->
         </LinearLayout>
 
         <LinearLayout
@@ -90,14 +91,15 @@
                     android:layout_marginTop="@dimen/dp_five"
                     android:scaleType="centerCrop" />
 
-                <TextView
+               <!-- <TextView
+                    android:visibility="invisible"
                     android:textColor="@color/main_text_color"
                     android:id="@+id/recommand_describe_content_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_five"
                     android:text="@string/recommand_describe_label"
-                    android:textSize="@dimen/sp_forteen" />
+                    android:textSize="@dimen/sp_forteen" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -114,14 +116,14 @@
                     android:layout_marginTop="@dimen/dp_five"
                     android:scaleType="centerCrop" />
 
-                <TextView
+                <!--<TextView
                     android:textColor="@color/main_text_color"
                     android:id="@+id/recommand_describe_content_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_five"
                     android:gravity="center"
-                    android:textSize="@dimen/sp_sixteen" />
+                    android:textSize="@dimen/sp_sixteen" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -138,14 +140,14 @@
                     android:layout_marginTop="@dimen/dp_five"
                     android:scaleType="centerCrop" />
 
-                <TextView
+                <!--<TextView
                     android:textColor="@color/main_text_color"
                     android:id="@+id/recommand_describe_content_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_five"
                     android:gravity="center"
-                    android:textSize="@dimen/sp_sixteen" />
+                    android:textSize="@dimen/sp_sixteen" />-->
             </LinearLayout>
         </LinearLayout>
 

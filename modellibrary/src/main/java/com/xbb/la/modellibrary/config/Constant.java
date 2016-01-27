@@ -217,12 +217,14 @@ public class Constant {
          * 接口地址
          */
      String URL_API = "http://captainoak.cn/Api/worker/";
+//     String URL_API = "http://xbbwx.marnow.com/Api/worker/";
         /**
          * 本地地址
          */
 //        String URL_API = "http://192.168.0.105/xbbnew/Api/worker/";
 
         String BASE_URL = "http://captainoak.cn";
+//        String BASE_URL = "http://xbbwx.marnow.com";
     }
 
     public interface TempSet {

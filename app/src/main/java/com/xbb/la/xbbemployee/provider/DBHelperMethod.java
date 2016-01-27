@@ -423,6 +423,7 @@ public class DBHelperMethod {
     public boolean skipRecommand(String orderId, String employeeId) {
         if (StringUtil.isEmpty(employeeId) || StringUtil.isEmpty(orderId))
             return false;
+        clearTable(Constant.DB.TABLE_RECOMMAND, null, null);
         ContentValues contentValues = new ContentValues();
         contentValues.put(Constant.DB.TransactionColumns.CURRENT_STEP, 3);
         contentValues.put(Constant.DB.TransactionColumns.END_TIME, System.currentTimeMillis());

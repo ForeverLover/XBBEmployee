@@ -74,13 +74,15 @@
     <string name="dialog_title_tip">提示</string>
     <string name="dialog_content_tip">是否确定放弃当前编辑操作？</string>
     <string name="dialog_ensure_tip">放弃编辑</string>
-    <string name="dialog_cancel_tip">继续编辑</string>
+    <string name="dialog_cancel_tip">继续编辑</string><string name="dialog_del_content_tip">确定删除此建议内容？</string>
+    <string name="dialog_del_ensure_tip">确定</string>
+    <string name="dialog_del_cancel_tip">取消</string>
 
     <string name="recommand_skip_label">跳过</string>
     <string name="recommand_submit_label">提交</string>
     <string name="recommand_layout_label">建议图</string>
     <string name="recommand_describe_label">说明图</string>
-    <string name="recommand_content">建议内容：</string>
+    <string name="recommand_content">建议：</string>
 
     <!--温馨提示-->
     <string name="reminder_selection">请选择</string>

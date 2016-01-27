@@ -136,7 +136,10 @@ public class TransactionStartActivity extends TitleActivity {
                     } else
                         normalFlag = false;
                 } else if (startnormalList != null && startnormalList.size() == 4 && !normalIsFinished) {
-                    normalFlag = true;
+                    if (position == startnormalList.size() - 1) {
+                        normalFlag = true;
+                    } else
+                        normalFlag = false;
                 } else {
                     normalFlag = false;
                 }

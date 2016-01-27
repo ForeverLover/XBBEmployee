@@ -700,11 +700,13 @@ public class WheelView extends View {
         Paint paint = new Paint();
         paint.setColor(getResources().getColor(R.color.color_wheelview_div));
         paint.setStrokeWidth((float) 3);
-        canvas.drawLine(0, center - offset, getWidth(), center - offset, paint);
+        Paint splitPaint = new Paint();
+        splitPaint.setColor(getResources().getColor(R.color.split_color));
+        canvas.drawLine(0, center - offset, getWidth(), center - offset, splitPaint);
         paint.setColor(getResources().getColor(R.color.color_wheelview_center));
         canvas.drawRect(0, center - offset, getWidth(), center + offset, paint);
         paint.setColor(getResources().getColor(R.color.color_wheelview_div));
-        canvas.drawLine(0, center + offset, getWidth(), center + offset, paint);
+        canvas.drawLine(0, center + offset, getWidth(), center + offset, splitPaint);
     }
 
     @Override

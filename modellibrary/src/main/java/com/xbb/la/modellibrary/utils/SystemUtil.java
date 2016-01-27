@@ -408,11 +408,17 @@ public class SystemUtil {
     public List<File> convertPathListToFileList(List<String> pathList) {
         if (pathList == null || pathList.isEmpty())
             return null;
-        List<File> fileList = new ArrayList<File>();
-        for (String path : pathList
-                ) {
-            fileList.add(new File(path));
+        try{
+            List<File> fileList = new ArrayList<File>();
+            for (String path : pathList
+                    ) {
+                fileList.add(new File(path));
+            }
+            return fileList;
+        }catch (Exception e){
+            MLog.e("error","convertPathListToFileList:"+e.getMessage());
         }
-        return fileList;
+        return null;
+
     }
 }
